@@ -1,5 +1,6 @@
 
-(install-and-require-packages '(cmake-mode))
+
+(install-and-require-packages '(cmake-mode json find-file levenshtein cl-lib seq s dash))
 
 (autoload 'cmake-mode "cmake-mode")
 (add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))

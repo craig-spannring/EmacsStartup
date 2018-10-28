@@ -5,13 +5,13 @@
 PACKAGES is a list of packages that are required.
 "
   (mapc (lambda (pkg) 
-	(let* (;; f is a function that loads the 
-	       (f (lambda () (progn ;; (message "Requiring %s" pkg)
-                                    (require pkg)))))
-	  (condition-case nil (funcall f)
+	(let* (;; f is the function that tells emacs the package is required.
+	       (f (lambda () (progn (require pkg)))))
+	  (condition-case nil (funcall f) ;; Attempt to "require" the package
 	    (error (progn (condition-case nil
 			      (progn
-				;; on an error this will try to install and 
+				;; If the package wasn't found catch the error.
+				;; To handle the error we'll try to install and 
 				;; then make a 2nd attempt at requiring it
 				(message "Installing %s" pkg)
 				(package-install pkg)
