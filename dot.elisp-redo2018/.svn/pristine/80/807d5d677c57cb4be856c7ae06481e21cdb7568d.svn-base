@@ -1,0 +1,23 @@
+
+(require 'dired-x)
+
+(setq load-path (cons (expand-file-name "~/.elisp-redo2018") load-path))
+
+(setenv "PAGER" "cat")
+
+
+(load "setup_svn")
+(load "setup_rtags")
+(load "setup_moon")
+(load "msvc_functions")
+(load "setup_stuff_for_cc_mode")
+(load "setup_dired")
+(load "setup_qt")
+
+(load "gpsim")
+
+(load "setup_other_global_settings")
+(load "setup_global_keys")
+
+(load "setup_server")
+

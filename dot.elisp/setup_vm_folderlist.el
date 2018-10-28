@@ -1,0 +1,110 @@
+  (setq vm-auto-folder-alist 
+        (append vm-auto-folder-alist  
+                (list 
+                 '("Mailing-List:" 
+                   ;("contact java-help@lists.mysql.com" 
+                   ; . "mysql-java")
+                   ("contact announce-help@lists.mysql.com" .
+                    "mysql-announce"))
+;                 '("X-Sender:"
+;                   ("brad@yielding.com" . "junk"))
+                 '("Reply-To:"
+                   ;; ("win100survey@msn.com" . "junk")
+                   ("glade-users@glade.pn.org" . "gtk-app-devel-list"))
+                 '("Resent-From:"
+                   ("gtk-list@redhat.com" . "gtk-list")
+                   ("gtk-app-devel-list@redhat.com" . "gtk-app-devel-list")
+                   ;("freeodbc@as220.org" . "freeodbc")
+                   ("chat@gnat.com" . "gnatchat"))
+                 '("To:"
+                   ("glade-list@glade.pn.org" . "glade-devel")
+                   ;("wget@sunsite.auc.dk" . "wget")
+                   ;("CRYPTIX-JAVA@HELPLETS.COM" . "cryptix-java")
+                   ;("cryptix-java@Systemics.com" . "cryptix-java")
+                   ;("cryptix-java@systemics.com" . "cryptix-java")
+                   ;("msqlperl@franz.ww.tu-berlin.de" . "msqlperl")
+                   ;("pts-users@homeport.org" . "pts-users")
+                   ("resumes@bangkok" . "incoming"))
+                 ;'("From "
+                 ;  ("bouncers-dbi-dev@fugue.com" . "dbi-developers"))
+                 ;'("From:"
+                 ;  ("JDCTechTips1@FDDS.com" . "jdctechtips")
+                 ;  ("info@cobain.simlab.net" . "junk"))
+                 ;'("cc:"
+                 ;  ("wget@sunsite.auc.dk" . "wget"))
+                 ;'("X-AddUser:" 
+                 ;  ("failed" . "adduser")
+                 ;  ("okay" . "adduser"))
+;                ; '("X-Advertisement"
+;                   ("www.iemmc.org" . "junk"))                 
+;                 '("X-[0-9]:" 
+;                   ("cyberpromo" . "junk"))
+                 '("Sender:"
+                 ;  ("owner-users@cryptix.org" . "cryptix-users")
+                   ("gtk-app-devel-list-admin@gnome.org" . "gtk-app-devel-list")
+                   ("cryptix-users-admin@cryptix.org" . "cryptix-users")
+                   ("owner-chat@ACT-Europe.FR" . "gnatchat")
+                   ("owner-glade-devel@gdev.hom.net" . "glade-devel")
+                 ;  ("samba-ntdom@samba.org" . "samba-ntdom")
+                   ("bounce-freetds-14076@franklin.oit.unc.edu" . "tds")
+                   (".*<TEAM-ADA@ACM.ORG>.*" . "team-ada")
+                 ;  ("owner-mysql-announce@tcx.se" . "mysql-announce")
+                 ;  ("owner-mysql-win32@analytikerna.se" . "mysql-win32")
+                 ;  ("owner-mysql-win32@tcx.se" . "mysql-win32")
+                 ;  ("owner-msql-mysql-modules-digest@tcx.se" . 
+                 ;   "msql-mysql-modules-digest")
+                 ;  ("owner-mysql@tcx.se" . "mysql")
+                 ;  ("owner-mysql-digest@tcx.se" . "mysql-digest")
+                 ;  ("owner-myodbc@analytikerna.se" . "myodbc")
+                 ;  ("owner-myodbc@tcx.se" . "myodbc") 
+                 ;  ("owner-mysql-java@tcx.se" . "mysql-java")
+                 ;  ("owner-mysql-java@analytikerna.se" . "mysql-java")
+                 ;  ("samba-ntdom@samba.anu.edu.au" . "samba-ntdom")
+                 ;  ("owner-dbi-dev" . "dbi-developers")
+                   ("owner-ietf-nntp@academ.com" . "ietf-nntp")
+                   ("Windows NTBugtraq Mailing List <NTBUGTRAQ@LISTSERV.NTBUGTRAQ.COM>" . "ntbugtraq")
+                   ("Windows NT BugTraq Mailing List <NTBUGTRAQ@NTADVICE.COM>" . "ntbugtraq")
+                   ("Windows NT BugTraq Mailing List <NTBUGTRAQ@LISTSERV.NTBUGTRAQ.COM>" . "ntbugtraq")
+                   ("Bugtraq List <BUGTRAQ@NETSPACE.ORG>" . "bugtraq")
+                   ("Bugtraq List <BUGTRAQ@netspace.org>" . "bugtraq")
+                 ;  ("owner-cryptix-java@systemics.com" . "cryptix-java")
+                 ;  ("owner-cryptix-java@Systemics.com" . "cryptix-java")
+                 ;  ("owner-freebsd-current-digest@FreeBSD.ORG" . "freebsd-current-digest")
+                   ("owner-freebsd-stable-digest@FreeBSD.ORG" . "freebsd-stable-digest")
+                   ("owner-freebsd-isp@FreeBSD.ORG" . "freebsd-isp")
+                   ("owner-freebsd-fs@FreeBSD.ORG" . "freebsd-fs")
+                   ("owner-freebsd-small@FreeBSD.ORG" . "freebsd-small")
+                   ("owner-freebsd-mozilla@freebsd.org" . "freebsd-mozilla")
+                   ("owner-freebsd-mozilla@FreeBSD.ORG" . "freebsd-mozilla")
+                   ("owner-afs@FreeBSD.ORG" . "freebsd-afs")
+                   ("owner-afs@freebsd.org" . "freebsd-afs")
+                   ("owner-freebsd-afs@FreeBSD.ORG" . "freebsd-afs")
+                   ("owner-freebsd-afs@freebsd.org" . "freebsd-afs")
+                   ("owner-java@freebsd.org" . "freebsd-java")
+                   ("owner-java@FreeBSD.ORG" . "freebsd-java")
+                   ("owner-freebsd-java@FreeBSD.ORG" . "freebsd-java")
+                   ("owner-freebsd-java@freebsd.org" . "freebsd-java")
+                   ("owner-freebsd-smp@FreeBSD.ORG" . "freebsd-smp")
+                   ("owner-freebsd-hackers@FreeBSD.ORG" . "freebsd-hackers")
+                   ("owner-freebsd-hackers@freebsd.org" . "freebsd-hackers")
+                   ("owner-freebsd-security-notifications@FreeBSD.ORG" 
+                    . "freebsd-security")
+                   ("owner-freebsd-security@freebsd.org" . "freebsd-security")
+                   ("owner-freebsd-security@FreeBSD.ORG" . "freebsd-security")
+                   ("owner-freebsd-announce@FreeBSD.ORG" . "freebsd-announce")
+                   ("owner-freebsd-database@FreeBSD.ORG" . "freebsd-database")
+                   ("owner-freebsd-database@freebsd.org" . "freebsd-database")
+                 ;  ("owner-guavac@eecs.com" . "guavac")
+                 ;  ("owner-msqlperl@franz.ww.tu-berlin.de" . "msqlperl")
+                   ("owner-pts-users@homeport.org" . "pts-users"))
+                 '("Subject:" 
+                   (".gimpwin-users." . "gimpwin-users")
+                 ;  ("MSQL-JDBC" . "msql-jdbc")
+                 ;  ("Re: .Cryptix-Java." . "cryptix-java")
+                   (".Cryptix-Java." . "cryptix-java")
+                   ("Cryptix-Java" . "cryptix-java")
+                   ("ACCREQ for " . "adduser")
+;;                   ("RISKS DIGEST" . "risks")
+                   ("VB:.*" . "visual_builder")
+                   ("DISPLAY/[0-9]*:.*" . "display_prs")))))
+
