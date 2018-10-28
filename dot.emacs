@@ -53,7 +53,7 @@
  '(line-move-visual nil)
  '(mediawiki-site-alist
    (quote
-    (("TeeJetWiki" "http://bznwiki.spray.com/MediaWiki/mediawiki-current/" "cspannri" "MIclb37diu." "SSCO_HQ" "Main Page"))))
+    (("MI" "http://miwiki.mti.local/wiki" "craig.spannring" "" nil "Main Page"))))
  '(mouse-drag-copy-region t)
  '(name_of_coder "Craig Spannring")
  '(package-archives
@@ -62,7 +62,7 @@
      ("melpa-stable" . "http://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (magit s define-word cmake-ide my-package-that-does-not-exist qwerty-foo-bar cmake-mode company)))
+    (mediawiki magit s define-word cmake-ide my-package-that-does-not-exist qwerty-foo-bar cmake-mode company)))
  '(save-place t nil (saveplace))
  '(select-enable-clipboard nil)
  '(select-enable-primary t)
