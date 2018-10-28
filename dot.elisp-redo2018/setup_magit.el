@@ -1,4 +1,4 @@
-
+;;; Make sure magit is installed.
 (install-and-require-packages '(magit))
                                 ;; dash
                                 ;; async-commandghub
