@@ -29,6 +29,7 @@ PACKAGES is a list of packages that are required.
  
 (require 'dired-x)
 (load "setup_svn")
+(load "setup_magit")
 (load "setup_rtags")
 (load "setup_moon")
 (load "msvc_functions")

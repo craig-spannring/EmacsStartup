@@ -62,7 +62,7 @@
      ("melpa-stable" . "http://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (s define-word cmake-ide my-package-that-does-not-exist qwerty-foo-bar cmake-mode company)))
+    (magit s define-word cmake-ide my-package-that-does-not-exist qwerty-foo-bar cmake-mode company)))
  '(save-place t nil (saveplace))
  '(select-enable-clipboard nil)
  '(select-enable-primary t)
