@@ -572,6 +572,7 @@ the value is \"\".
   (setq msvc-current-project nil)
   (setq msvc-project-directory dir)
   (setq msvc-current-compilation-system 'other)
+  (global-set-key [f9 ?f] 'rtags-find-file)
   (message "Default compile directory %s" dir)
 )
 
@@ -1053,7 +1054,9 @@ the value is \"\".
    ((string= (_msvc_file-name-extension proj-file) "rtags-config")
     (msvc-rtags-config-load-project proj-file))
    (t
-    (_msvc-set-project proj-file))))
+    (_msvc-set-project proj-file)))
+  (global-set-key [f9 ?f] 'rtags-find-file))
+
 
 (defun _msvc-set-project (proj-file)
   "Load in a Microsoft Visual C++ project (.DSP), Platform Builder
