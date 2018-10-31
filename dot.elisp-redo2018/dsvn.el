@@ -2,6 +2,7 @@
 
 ;; Copyright 2006-2010 Virtutech AB
 ;; Copyright 2010 Intel
+;; Copyright 2018 Craig Spannring
 
 ;; Author: David Kågedal <davidk@lysator.liu.se>
 ;;	   Mattias Engdegård <mattiase@acm.org>
@@ -2107,7 +2108,7 @@ where the file information is."
               (funcall function local-file-name file-pos)))))
       (setq svn-buffers (cdr svn-buffers)))))
 
-(defun svn-after-save ()
+(defun svn-after-save-old ()
   "Update svn status buffer when saving a file."
   (svn-foreach-svn-buffer
    (buffer-file-name)
@@ -2117,8 +2118,28 @@ where the file information is."
            (when (= old-status ?\ )
              (svn-update-status-flag file-pos ?M))
            (svn-update-status-msg file-pos ""))
-       (svn-run-status-v (list local-file-name) nil))))
+       (svn-run-status-v (list local-file-name) nil)
+       )))
   nil)
+
+(defun svn-after-save-new ()
+  "Update svn status buffer when saving a file."
+  (svn-foreach-svn-buffer
+   (buffer-file-name)
+   (lambda (local-file-name file-pos)
+     (if file-pos
+         (let ((old-status (svn-file-status file-pos)))
+           (when (= old-status ?\ )
+             (svn-update-status-flag file-pos ?M))
+           (svn-update-status-msg file-pos ""))
+       (unless svn-running
+         (svn-run-status-v (list local-file-name) nil))
+       )))
+  nil)
+
+(defun svn-after-save ()
+  "Update svn status buffer when saving a file."
+  (svn-after-save-new))
 
 (add-hook 'after-save-hook 'svn-after-save)
 
