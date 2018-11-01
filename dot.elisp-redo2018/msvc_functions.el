@@ -508,9 +508,9 @@ the value is \"\".
              (file-exists-p name)
              (file-regular-p name)))
            (t
-            (message "hit the defualt case")
+            ;; (message "hit the defualt case")
             nil))))
-    (message "looking at %s -> %s" name result)
+    ;; (message "looking at %s -> %s" name result)
     result))
 
 
@@ -572,7 +572,6 @@ the value is \"\".
   (setq msvc-current-project nil)
   (setq msvc-project-directory dir)
   (setq msvc-current-compilation-system 'other)
-  (global-set-key [f9 ?f] 'rtags-find-file)
   (message "Default compile directory %s" dir)
 )
 
@@ -855,10 +854,13 @@ the value is \"\".
   (let* ((proj-path   (file-name-directory (expand-file-name proj-file)))
 	 (dep-file    (concat proj-path ".depend"))
 	 (commands-db (concat proj-path "compile_commands.json")))
-    (when (or (not (file-exists-p dep-file)) (not (file-exists-p commands-db)))
-      (error "Missing .depend or compile_commands.json.  Please run 'bear make ...'"))
+    (when (or
+	   nil
+	   ;; (not (file-exists-p dep-file))
+	   (not (file-exists-p commands-db)))
+      (error "Missing .depend or compile_commands.json.  Perhaps run 'bear make ...'"))
     (cts-rtp-start-rdmserver-unless-running proj-path)
-    (msvc-gmake-load-depend-file dep-file)
+    ;; (msvc-gmake-load-depend-file dep-file)
     (cts-rtp--load-compile-commands proj-path)
     (cts-rtp-switch-project proj-path)
     (setq msvc-current-compilation-system 'rtags-ide)))

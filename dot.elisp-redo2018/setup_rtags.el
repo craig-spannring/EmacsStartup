@@ -7,13 +7,9 @@
 	flycheck-rtags
 	))
 
-;; (require 'rtags)
-(require 'rtags_project)
-;;(load "rtags")
+;; (require 'rtags_project)
 ;;(load "rtags_project")
 
-;;(require 'flycheck)
-;;(require 'semantic)
 
 
 
@@ -25,6 +21,7 @@
   ;; RTags creates more accurate overlays.
   (setq-local flycheck-highlighting-mode nil)
   (setq-local flycheck-check-syntax-automatically nil))
+  
 
 ;; only run this if rtags is installed
 (when (require 'rtags nil :noerror)
@@ -40,7 +37,7 @@
   ;; jump to definition and see the keybindings.
   (rtags-enable-standard-keybindings)
   ;; comment this out if you don't have or don't use helm
-  (setq rtags-use-helm t)
+;  (setq rtags-use-helm t)
   ;; company completion setup
   (setq rtags-autostart-diagnostics t)
   (rtags-diagnostics)
@@ -49,7 +46,7 @@
   (global-company-mode)
   (define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
   ;; use rtags flycheck mode -- clang warnings shown inline
-  (require 'flycheck-rtags)
+;  (require 'flycheck-rtags)
   ;; c-mode-common-hook is also called by c++-mode
   (add-hook 'c-mode-common-hook #'setup-flycheck-rtags)
   ;; start the rdm server if needed when we edit C/C++ code. 
