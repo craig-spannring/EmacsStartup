@@ -61,9 +61,6 @@
 ;;;;      file isn't found in the project's file list, then this
 ;;;;      function will call ff-find-other-file
 ;;;;
-;;;;   msvc-current-project
-;;;;      Return the name of the current project
-;;;;
 ;;;;   msvc-find-file
 ;;;;      Switch to a buffer that is visiting a file in the current project.
 ;;;;
@@ -852,15 +849,16 @@ the value is \"\".
                   '("rtag-config")
                   nil))))
   (let* ((proj-path   (file-name-directory (expand-file-name proj-file)))
-	 (dep-file    (concat proj-path ".depend"))
 	 (commands-db (concat proj-path "compile_commands.json")))
     (when (or
 	   nil
-	   ;; (not (file-exists-p dep-file))
 	   (not (file-exists-p commands-db)))
-      (error "Missing .depend or compile_commands.json.  Perhaps run 'bear make ...'"))
+      (error "Missing compile_commands.json.  Perhaps run 'bear make ...'"))
     (cts-rtp-start-rdmserver-unless-running proj-path)
-    ;; (msvc-gmake-load-depend-file dep-file)
+    
+    (setq msvc-current-project proj-file)
+    (setq msvc-project-directory (file-name-directory proj-file))
+
     (cts-rtp--load-compile-commands proj-path)
     (cts-rtp-switch-project proj-path)
     (setq msvc-current-compilation-system 'rtags-ide)))
@@ -1249,6 +1247,14 @@ Note- msdev.exe must be in your PATH for MSVC projects."
                         msvc-uvbuild-exe
                         (msvc-convert-unix-file-name-to-windows msvc-current-project)
                         msvc-current-config)))
+     ((equal msvc-current-compilation-system 'rtags-ide)
+      ;;
+      ;; We need to
+      ;;   1) look at the compile_commands.json.  If it's a symlink
+      ;;      then we'll want to compile in the directory pointed to.
+      ;;   2) Figure out if we have a ninja or make based build. 
+      (message "Don't know how to compile with rtags-ide yet")
+      (setq cmd "echo not implemented yet"))
      (t
       (setq cmd (read-from-minibuffer "Compile project command: "
                                  compile-command nil nil
