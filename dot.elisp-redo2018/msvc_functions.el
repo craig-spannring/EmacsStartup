@@ -224,7 +224,7 @@ The items in the data are of the form (basename source header template))
 
 FNAME - Fully qualified path of a file. "
   (let* ((result (reduce (lambda (a b) (or a b))
-                         (mapcar '(lambda (x)
+                         (mapcar (lambda (x)
                                     (let* ((tmp (string-prefix-p x fname)))
                                       ;; (message "%s,%s -> %s" fname x tmp)
                                       tmp))
@@ -239,7 +239,7 @@ FNAME - Fully qualified path of a file. "
 ;;;;
 
 (defun _msvc-filelookup-new ()
-  "Create a new file lookup AVL tree"
+  "Create a new (aka empty) file lookup AVL tree"
    (setq msvc-project-file-tree (avltree-create (lambda (x1 x2)
                                                   (string-lessp
                                                    (downcase (car x1))
@@ -855,6 +855,14 @@ the value is \"\".
 	   (not (file-exists-p commands-db)))
       (error "Missing compile_commands.json.  Perhaps run 'bear make ...'"))
     (cts-rtp-start-rdmserver-unless-running proj-path)
+    (dotimes (i 5)
+      (let ((running (cts-rtp--is-server-running proj-path))
+            (responsive (cts-rtp--is-server-responsive proj-path)))
+        (when (not (and running responsive))
+          (message "Waiting for RDM server to start")
+          (sleep-for 1))))
+    (unless (cts-rtp--is-server-responsive proj-path)
+      (error "Could not start RDM server"))
     
     (setq msvc-current-project proj-file)
     (setq msvc-project-directory (file-name-directory proj-file))

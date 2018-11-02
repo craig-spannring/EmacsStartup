@@ -92,7 +92,7 @@
     ;; Create a readme file in the rdm directory
     (let* ((filename (concat (cts-rtp--rdmserver-dir project-path) "README.txt")))
 	  (unless (file-exists-p filename)
-	      (with-temp-file filename (insert "Project: %s\n" project-path))))))
+	      (with-temp-file filename (insert (message "Project: %s\n" project-path)))))))
 
 
 (defun cts-rtp--rdm-cmdline (project-path)
@@ -116,12 +116,20 @@
 (defun cts-rtp--is-server-running (project-path)
   ;; Look through all the processes for one that has the same command
   ;; line as the rdm for this project would have.
-  (let* ((cmdline (cts-rtp--rdm-cmdline project-path)))
-    (dolist (pid (reverse (list-system-processes)))
-      (let* ((attrs (process-attributes pid))
+  (let* ((found nil)
+         (cmdline (cts-rtp--rdm-cmdline project-path)))
+    
+    (dolist (pid (list-system-processes) found)
+      (let* ((attrs (reverse (process-attributes pid)))
 	     (cmd   (cdr (assoc 'args attrs))))
-	(when (string-equal cmdline cmd) (return t)))
-      nil)))
+        (setq found (or found (string-equal cmdline cmd)))))
+    found))
+    
+(defun cts-rtp--is-server-responsive (project-path)
+  (let* ((sock-path (cts-rtp--rdmserver-socket project-path)))
+    (with-temp-buffer (rtags-call-rc "--socket-file" sock-path
+                                     "--timeout=1000"
+                                     "--is-indexing"))))
     
 
 (defun cts-rtp--projpath-hash (project-path)
@@ -164,5 +172,8 @@
   "
   (concat (cts-rtp--rdmserver-dir project-path) "rdm.log"))
 
+(defun cts-rtp-all-files (project-path)
+  (message "rdm status %s" (cts-rtp--is-server-responsive project-path))
+  )
 
 (provide 'rtags_project)
