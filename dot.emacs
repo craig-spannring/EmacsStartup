@@ -25,7 +25,7 @@
  '(dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\.$\\|^\\..+$")
  '(display-time-format nil)
  '(display-time-mode t)
- '(fancy-splash-image "~/.elisp/teejetlogo.jpeg")
+ '(fancy-splash-image "~/.elisp/Logo_MI_coldscience.jpeg")
  '(graphviz-dot-auto-indent-on-semi nil)
  '(mediawiki-site-alist
    (quote

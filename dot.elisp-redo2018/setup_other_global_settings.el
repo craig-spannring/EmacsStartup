@@ -218,3 +218,5 @@ save the journal entry and bury the .journal buffer"
                                                   ((and (>= number 65) (<= number 90))  (+ number 32))
                                                   (t                                   number))))))
       (translate-region (region-beginning) (region-end) my-swap-table))))
+
+(save-place-mode 1)
