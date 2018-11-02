@@ -42,7 +42,7 @@
  '(dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\.$\\|^\\..+$")
  '(display-time-format nil)
  '(display-time-mode t)
- '(fancy-splash-image "~/.elisp/teejetlogo.jpeg")
+ '(fancy-splash-image "~/.elisp/Logo_MI_coldscience.jpeg")
  '(find-grep-options "-I -q")
  '(graphviz-dot-auto-indent-on-semi nil)
  '(ispell-program-name "aspell")
@@ -63,7 +63,6 @@
  '(package-selected-packages
    (quote
     (mediawiki magit s define-word cmake-ide my-package-that-does-not-exist qwerty-foo-bar cmake-mode company)))
- '(save-place t nil (saveplace))
  '(select-enable-clipboard nil)
  '(select-enable-primary t)
  '(show-paren-mode t)
