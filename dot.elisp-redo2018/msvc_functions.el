@@ -1262,7 +1262,10 @@ Note- msdev.exe must be in your PATH for MSVC projects."
       ;;      then we'll want to compile in the directory pointed to.
       ;;   2) Figure out if we have a ninja or make based build. 
       (message "Don't know how to compile with rtags-ide yet")
-      (setq cmd "echo not implemented yet"))
+      
+      (setq cmd (read-from-minibuffer "Compile project command: "
+                                 compile-command nil nil
+                                 '(compile-history . 1))))
      (t
       (setq cmd (read-from-minibuffer "Compile project command: "
                                  compile-command nil nil

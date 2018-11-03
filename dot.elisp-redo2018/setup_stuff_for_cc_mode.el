@@ -77,7 +77,7 @@ more pleasant.")
                              (substatement-open . 0)
                              (case-label . +)
                              (arglist-intro . +))))
-        ("MI_STYLE"
+        ("NOT_MI_STYLE"
          (c-basic-offset . 4)
          (c-comment-only-line-offset . 0)
          (c-offsets-alist
@@ -87,7 +87,7 @@ more pleasant.")
           (substatement-label . 0)
           (label . 0)
           (statement-cont . +)))       
-        ("NOT_MI_STYLE" ;; Montana Instruments         
+        ("MI_STYLE" ;; Montana Instruments         
          (c-special-indent-hook . (midtech_special-indentation))
          (c-basic-offset . 4)
          (c-offsets-alist . ((inclass . ++)
