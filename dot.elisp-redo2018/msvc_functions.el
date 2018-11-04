@@ -1331,12 +1331,21 @@ msvc-project-file-tree variable then call ff-find-other-file.
 
   (interactive)
 
-  (let* ((buf-fname (buffer-file-name))
-         (key       (_msvc-file-name-key buf-fname))
-         (files     (_msvc-filelookup-get-item key))
-         (file      (_msvc-next-in-list buf-fname files)))
-    (cond (file   (find-file file))
-          (t      (ff-find-other-file)))))
+  (cond
+   ((eq msvc-current-compilation-system 'rtags-ide)
+    (let* ((full_base (file-name-sans-extension (buffer-file-name)))
+           (base      (file-name-nondirectory full_base))
+           (ext       (file-name-extension (buffer-file-name)))
+           (look-for  (concat base (cond ((string-equal ext "cpp") ".h")
+                                         (t                        ".cpp")))))
+      (rtags-find-file nil look-for)))
+   (t
+    (let* ((buf-fname (buffer-file-name))
+           (key       (_msvc-file-name-key buf-fname))
+           (files     (_msvc-filelookup-get-item key))
+           (file      (_msvc-next-in-list buf-fname files)))
+      (cond (file   (find-file file))
+            (t      (ff-find-other-file)))))))
 
 
 
