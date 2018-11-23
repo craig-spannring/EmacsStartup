@@ -43,13 +43,13 @@
 ;;;
 ;;;    Basic mechanism for creating the rdm server is
 ;;;       SBROOT=$HOME/.rdm_servers/<some name derived from project location>
-;;;    	  mkdir -p $SBROOT/.rtags
-;;;    	  rdm --socket-file=$SBROOT/.rtags/rdm_socket \
-;;;    	      --data-dir=$SBROOT/.rtags/rtags \
-;;;    	      --log-file=$SBROOT/.rtags/rdm.log \
-;;;    	      --silent \
-;;;    	      --watch-sources-only \
-;;;    	      --job-count=$NCORES
+;;;       mkdir -p $SBROOT/.rtags
+;;;       rdm --socket-file=$SBROOT/.rtags/rdm_socket \
+;;;           --data-dir=$SBROOT/.rtags/rtags \
+;;;           --log-file=$SBROOT/.rtags/rdm.log \
+;;;           --silent \
+;;;           --watch-sources-only \
+;;;           --job-count=$NCORES
 ;;;       
 
 
@@ -70,7 +70,7 @@
   "Tell rdm to load the compile_commands.json file"
   (with-temp-buffer
     (rtags-call-rc "--socket-file" (cts-rtp--rdmserver-socket project-path)
-		 "-J" project-path)))
+                 "-J" project-path)))
 
 (defun cts-rtp-start-rdmserver-unless-running (project-path)
   "Start an rdm server for the project
@@ -83,16 +83,16 @@
 
     ;; Start the rdm process 
     (let* ((hash (cts-rtp--projpath-hash project-path))
-	   (rtags-rdm-process (start-file-process-shell-command
-			      (format "RTags-%s" hash)
-			      (format "*rdm-%s*" hash)
-			      (cts-rtp--rdm-cmdline project-path))))
+           (rtags-rdm-process (start-file-process-shell-command
+                              (format "RTags-%s" hash)
+                              (format "*rdm-%s*" hash)
+                              (cts-rtp--rdm-cmdline project-path))))
       (set-process-query-on-exit-flag rtags-rdm-process nil)
       (set-process-sentinel rtags-rdm-process 'rtags-sentinel))
     ;; Create a readme file in the rdm directory
     (let* ((filename (concat (cts-rtp--rdmserver-dir project-path) "README.txt")))
-	  (unless (file-exists-p filename)
-	      (with-temp-file filename (insert (message "Project: %s\n" project-path)))))))
+          (unless (file-exists-p filename)
+              (with-temp-file filename (insert (message "Project: %s\n" project-path)))))))
 
 
 (defun cts-rtp--rdm-cmdline (project-path)
@@ -106,12 +106,12 @@
   ;; --job-count=$NCORES
   (concat (rtags-executable-find "rdm")                      
           (format " --socket-file %s" (cts-rtp--rdmserver-socket project-path))
-	  (format " --data-dir %s" (cts-rtp--rdmserver-datadir project-path))
-	  (format " --log-file %s" (cts-rtp--rdmserver-logfile project-path))
-	  " --silent"
-	  " --watch-sources-only"
-	  ; " --daemon"
-	  (format " --job-count %d" (system-cores :logical))))
+          (format " --data-dir %s" (cts-rtp--rdmserver-datadir project-path))
+          (format " --log-file %s" (cts-rtp--rdmserver-logfile project-path))
+          " --silent"
+          " --watch-sources-only"
+          ; " --daemon"
+          (format " --job-count %d" (system-cores :logical))))
 
 (defun cts-rtp--is-server-running (project-path)
   ;; Look through all the processes for one that has the same command
@@ -121,7 +121,7 @@
     
     (dolist (pid (list-system-processes) found)
       (let* ((attrs (reverse (process-attributes pid)))
-	     (cmd   (cdr (assoc 'args attrs))))
+             (cmd   (cdr (assoc 'args attrs))))
         (setq found (or found (string-equal cmdline cmd)))))
     found))
     

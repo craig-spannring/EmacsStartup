@@ -863,7 +863,7 @@ the value is \"\".
           (sleep-for 1))))
     (unless (cts-rtp--is-server-responsive proj-path)
       (error "Could not start RDM server"))
-    
+    (sleep-for 1) 
     (setq msvc-current-project proj-file)
     (setq msvc-project-directory (file-name-directory proj-file))
 
