@@ -22,12 +22,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(company_name "Montana Instruments")
+ '(cts-c-file-header-style "MI_STYLE")
  '(current-coding-standard "MI_STYLE")
  '(dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\.$\\|^\\..+$")
  '(display-time-format nil)
  '(display-time-mode t)
  '(fancy-splash-image "~/.elisp/Logo_MI_coldscience.jpeg")
  '(graphviz-dot-auto-indent-on-semi nil)
+ '(line-move-visual nil)
  '(mediawiki-site-alist
    (quote
     (("MI" "http://miwiki.mti.local/wiki" "craig.spannring" "" nil "Main Page"))))
@@ -39,8 +41,8 @@
      ("melpa-stable" . "http://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (rtags mediawiki magit s define-word cmake-ide cmake-mode company)))
- '(save-place t nil (saveplace))
+    (popup rtags mediawiki magit s define-word cmake-ide cmake-mode company)))
+ '(save-place-mode t nil (saveplace))
  '(select-enable-clipboard nil)
  '(select-enable-primary t)
  '(show-paren-mode t)

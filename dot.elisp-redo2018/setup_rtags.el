@@ -5,6 +5,7 @@
 	company-rtags 
 	flycheck      
 	flycheck-rtags
+        popup
 	))
 
 ;; (require 'rtags_project)
