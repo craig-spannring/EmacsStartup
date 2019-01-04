@@ -15,41 +15,20 @@
 (setq software_version_string "")
 
 
+;; TODO Think about how we want to handle customization
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ada-clean-buffer-before-saving nil)
- '(ada-label-indent 0)
- '(ada-search-directories (quote ("." "$ADA_INCLUDE_PATH")))
- '(comint-password-prompt-regexp
-   "\\(\\([Oo]ld \\|[Nn]ew \\|'s \\|login \\|Kerberos \\|CVS \\|UNIX \\| SMB \\|\\[sudo\\] \\|^\\)[Pp]assword\\( (again)\\)?\\|pass phrase\\|\\(Enter\\|Repeat\\|Bad\\) passphrase\\)\\(?:, try again\\)?\\(?: for [^:]+\\)?:\\s *\\'")
- '(company_name "TeeJet Technologies")
+ '(company_name "Montana Instruments")
+ '(cts-c-file-header-style "MI_STYLE")
  '(current-coding-standard "MI_STYLE")
- '(cvs-buffer-name-alist
-   (quote
-    (("diff" cvs-diff-buffer-name diff-mode)
-     ("status" "*cvs-info*" cvs-status-mode)
-     ("tree" "*cvs-info*" cvs-status-mode)
-     ("message" "*cvs-commit*" nil cvs-log-edit-insert-pr-summary)
-     ("log" "*cvs-info*" log-view-mode))))
- '(cvs-edit-hook
-   (quote
-    (cvs-edit-insert-cvs-template cvs-edit-insert-changelog)))
- '(cvs-edit-mode-hook (quote (cvs-insert-pr-summary)))
- '(cvs-mode-commit-hook (quote (cvs-insert-pr-summary)))
  '(dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\.$\\|^\\..+$")
  '(display-time-format nil)
  '(display-time-mode t)
  '(fancy-splash-image "~/.elisp/Logo_MI_coldscience.jpeg")
- '(find-grep-options "-I -q")
  '(graphviz-dot-auto-indent-on-semi nil)
- '(ispell-program-name "aspell")
- '(jabber-backlog-days 30.0)
- '(jabber-history-enable-rotation t)
- '(jabber-history-enabled t)
- '(jabber-history-size-limit 10240)
  '(line-move-visual nil)
  '(mediawiki-site-alist
    (quote
@@ -62,7 +41,8 @@
      ("melpa-stable" . "http://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (mediawiki magit s define-word cmake-ide my-package-that-does-not-exist qwerty-foo-bar cmake-mode company)))
+    (popup rtags mediawiki magit s define-word cmake-ide cmake-mode company)))
+ '(save-place-mode t nil (saveplace))
  '(select-enable-clipboard nil)
  '(select-enable-primary t)
  '(show-paren-mode t)

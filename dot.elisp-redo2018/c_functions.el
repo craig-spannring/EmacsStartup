@@ -113,7 +113,9 @@ This list is of the form
 
 Example of adding your own file extensions-
    (setq comment_string_list (cons '(\".hxx\" \"// \" \"// \" nil)")
-
+(defcustom cts-c-file-header-style ""
+  "What style of header comments?  Currently supported styles are
+   MI_STYLE, MIDTECH_STYLE")
                               
 
 ;;
@@ -328,7 +330,11 @@ file if it is a header file and doesn't already have one."
       (Insert_Multi_Include_Protection_If_Needed 
        (Find_Simple_File_Name (buffer-file-name)))
       (goto-char (point-min))
-      (cond 
+      (cond
+       ((equal cts-c-file-header-style "MI_STYLE")
+        (mi_insert-header-comment-text simple-name))
+       ((equal cts-c-file-header-style "MIDTECH_STYLE")
+        (midtech_insert-header-comment-text simple-name))
        ((equal c-indentation-style "MIDTECH_STYLE")
         (midtech_insert-header-comment-text simple-name))
        (t (normal_insert-header-comment-text simple-name)))
@@ -402,6 +408,18 @@ file if it is a header file and doesn't already have one."
     (when (and software_version_string (not (string= "" software_version_string)))
       (insert 
        (concat " * " software_version_string) "\n"))
+    (insert  " */    \n")
+    (goto-char def-line)
+    )
+  )
+
+(defun mi_insert-header-comment-text (simple-name)
+  (let (def-line)
+    (insert  "/**\n")
+    (insert  " * @file\n")
+    (insert  " * ")
+    (setq def-line (point))
+    (insert  "\n")
     (insert  " */    \n")
     (goto-char def-line)
     )
@@ -835,6 +853,7 @@ file if it is a header file and doesn't already have one."
       (forward-line))))
 
 (defun midtech_special-indentation ()
+  "Special indentation to meet requirements of TeeJet coding standard."
   (save-excursion
     (let ((need-to-unindent t)
           (starting-point (point))

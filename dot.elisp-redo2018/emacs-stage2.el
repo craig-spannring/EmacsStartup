@@ -23,23 +23,20 @@ PACKAGES is a list of packages that are required.
 
 (setenv "PAGER" "cat")
 (setq load-path (cons (expand-file-name "~/.elisp-redo2018") load-path))
-(when (equal system-name "bznmac02.local")
-  ;; TODO we should add /usr/local/bin iff it isn't already in the path
-  (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin")))
  
 (require 'dired-x)
 (load "setup_svn")
 (load "setup_magit")
-(load "setup_moon")
+(load "setup_rtags")
 (load "msvc_functions")
 (load "setup_cmake")
-// (load "setup_cmake-ide")
-(load "setup_rtags")
+;; (load "setup_cmake-ide")
 (load "setup_stuff_for_cc_mode")
 (load "setup_dired")
 (load "setup_qt")
 (load "setup_other_global_settings")
 (load "setup_global_keys")
+(load "setup_moon")
 (load "setup_server")
 
 

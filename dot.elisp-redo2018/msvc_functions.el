@@ -61,9 +61,6 @@
 ;;;;      file isn't found in the project's file list, then this
 ;;;;      function will call ff-find-other-file
 ;;;;
-;;;;   msvc-current-project
-;;;;      Return the name of the current project
-;;;;
 ;;;;   msvc-find-file
 ;;;;      Switch to a buffer that is visiting a file in the current project.
 ;;;;
@@ -227,7 +224,7 @@ The items in the data are of the form (basename source header template))
 
 FNAME - Fully qualified path of a file. "
   (let* ((result (reduce (lambda (a b) (or a b))
-                         (mapcar '(lambda (x)
+                         (mapcar (lambda (x)
                                     (let* ((tmp (string-prefix-p x fname)))
                                       ;; (message "%s,%s -> %s" fname x tmp)
                                       tmp))
@@ -242,7 +239,7 @@ FNAME - Fully qualified path of a file. "
 ;;;;
 
 (defun _msvc-filelookup-new ()
-  "Create a new file lookup AVL tree"
+  "Create a new (aka empty) file lookup AVL tree"
    (setq msvc-project-file-tree (avltree-create (lambda (x1 x2)
                                                   (string-lessp
                                                    (downcase (car x1))
@@ -508,9 +505,9 @@ the value is \"\".
              (file-exists-p name)
              (file-regular-p name)))
            (t
-            (message "hit the defualt case")
+            ;; (message "hit the defualt case")
             nil))))
-    (message "looking at %s -> %s" name result)
+    ;; (message "looking at %s -> %s" name result)
     result))
 
 
@@ -572,7 +569,6 @@ the value is \"\".
   (setq msvc-current-project nil)
   (setq msvc-project-directory dir)
   (setq msvc-current-compilation-system 'other)
-  (global-set-key [f9 ?f] 'rtags-find-file)
   (message "Default compile directory %s" dir)
 )
 
@@ -853,12 +849,24 @@ the value is \"\".
                   '("rtag-config")
                   nil))))
   (let* ((proj-path   (file-name-directory (expand-file-name proj-file)))
-	 (dep-file    (concat proj-path ".depend"))
 	 (commands-db (concat proj-path "compile_commands.json")))
-    (when (or (not (file-exists-p dep-file)) (not (file-exists-p commands-db)))
-      (error "Missing .depend or compile_commands.json.  Please run 'bear make ...'"))
+    (when (or
+	   nil
+	   (not (file-exists-p commands-db)))
+      (error "Missing compile_commands.json.  Perhaps run 'bear make ...'"))
     (cts-rtp-start-rdmserver-unless-running proj-path)
-    (msvc-gmake-load-depend-file dep-file)
+    (dotimes (i 5)
+      (let ((running (cts-rtp--is-server-running proj-path))
+            (responsive (cts-rtp--is-server-responsive proj-path)))
+        (when (not (and running responsive))
+          (message "Waiting for RDM server to start")
+          (sleep-for 1))))
+    (unless (cts-rtp--is-server-responsive proj-path)
+      (error "Could not start RDM server"))
+    (sleep-for 1) 
+    (setq msvc-current-project proj-file)
+    (setq msvc-project-directory (file-name-directory proj-file))
+
     (cts-rtp--load-compile-commands proj-path)
     (cts-rtp-switch-project proj-path)
     (setq msvc-current-compilation-system 'rtags-ide)))
@@ -1247,6 +1255,17 @@ Note- msdev.exe must be in your PATH for MSVC projects."
                         msvc-uvbuild-exe
                         (msvc-convert-unix-file-name-to-windows msvc-current-project)
                         msvc-current-config)))
+     ((equal msvc-current-compilation-system 'rtags-ide)
+      ;;
+      ;; We need to
+      ;;   1) look at the compile_commands.json.  If it's a symlink
+      ;;      then we'll want to compile in the directory pointed to.
+      ;;   2) Figure out if we have a ninja or make based build. 
+      (message "Don't know how to compile with rtags-ide yet")
+      
+      (setq cmd (read-from-minibuffer "Compile project command: "
+                                 compile-command nil nil
+                                 '(compile-history . 1))))
      (t
       (setq cmd (read-from-minibuffer "Compile project command: "
                                  compile-command nil nil
@@ -1312,12 +1331,21 @@ msvc-project-file-tree variable then call ff-find-other-file.
 
   (interactive)
 
-  (let* ((buf-fname (buffer-file-name))
-         (key       (_msvc-file-name-key buf-fname))
-         (files     (_msvc-filelookup-get-item key))
-         (file      (_msvc-next-in-list buf-fname files)))
-    (cond (file   (find-file file))
-          (t      (ff-find-other-file)))))
+  (cond
+   ((eq msvc-current-compilation-system 'rtags-ide)
+    (let* ((full_base (file-name-sans-extension (buffer-file-name)))
+           (base      (file-name-nondirectory full_base))
+           (ext       (file-name-extension (buffer-file-name)))
+           (look-for  (concat base (cond ((string-equal ext "cpp") ".h")
+                                         (t                        ".cpp")))))
+      (rtags-find-file nil look-for)))
+   (t
+    (let* ((buf-fname (buffer-file-name))
+           (key       (_msvc-file-name-key buf-fname))
+           (files     (_msvc-filelookup-get-item key))
+           (file      (_msvc-next-in-list buf-fname files)))
+      (cond (file   (find-file file))
+            (t      (ff-find-other-file)))))))
 
 
 

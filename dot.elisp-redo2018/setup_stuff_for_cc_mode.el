@@ -77,7 +77,17 @@ more pleasant.")
                              (substatement-open . 0)
                              (case-label . +)
                              (arglist-intro . +))))
-        ("MI_STYLE" ;; Montana Instruments
+        ("NOT_MI_STYLE"
+         (c-basic-offset . 4)
+         (c-comment-only-line-offset . 0)
+         (c-offsets-alist
+          (statement-block-intro . +)
+          (knr-argdecl-intro . 0)
+          (substatement-open . 0)
+          (substatement-label . 0)
+          (label . 0)
+          (statement-cont . +)))       
+        ("MI_STYLE" ;; Montana Instruments         
          (c-special-indent-hook . (midtech_special-indentation))
          (c-basic-offset . 4)
          (c-offsets-alist . ((inclass . ++)
@@ -97,7 +107,7 @@ more pleasant.")
       cts-additional-c-styles)
 
 
-(defcustom current-coding-standard "MIDTECH_STYLE"
+(defcustom current-coding-standard "MI_STYLE"
   "Which coding standard are we working with right now?"
   :type '(string)
   :options '("MIDTECH_STYLE" "PI_STYLE" "MI_STYLE"))
