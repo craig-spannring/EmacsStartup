@@ -28,6 +28,7 @@
  '(display-time-mode t)
  '(fancy-splash-image "~/.elisp/Logo_MI_coldscience.jpeg")
  '(graphviz-dot-auto-indent-on-semi nil)
+ '(mediawiki-debug t)
  '(mediawiki-site-alist
    (quote
     (("MI" "http://miwiki.mti.local/wiki" "craig.spannring" "" nil "Main Page"))))
@@ -40,7 +41,7 @@
  '(package-selected-packages
    (quote
     (rtags mediawiki magit s define-word cmake-ide cmake-mode company)))
- '(save-place t nil (saveplace))
+ '(save-place-mode t nil (saveplace))
  '(select-enable-clipboard nil)
  '(select-enable-primary t)
  '(show-paren-mode t)
