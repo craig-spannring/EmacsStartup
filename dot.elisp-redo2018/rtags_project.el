@@ -109,7 +109,7 @@
           (format " --data-dir %s" (cts-rtp--rdmserver-datadir project-path))
           (format " --log-file %s" (cts-rtp--rdmserver-logfile project-path))
           " --silent"
-          " --watch-sources-only"
+          ; " --watch-sources-only"
           ; " --daemon"
           (format " --job-count %d" (system-cores :logical))))
 

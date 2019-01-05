@@ -2166,7 +2166,9 @@ where the file information is."
 	    (svn-foreach-svn-buffer
 	     file
 	     (lambda (local-file-name file-pos)
-	       (svn-refresh-item local-file-name t))))
+               (condition-case nil 
+                   (svn-refresh-item local-file-name t)
+                 (error (message "Warning: could not refresh %s" file))))))
 	  ;; In emacs versions prior to 23, the argument is a single file.
 	  (if (listp file-or-files)
 	      file-or-files
