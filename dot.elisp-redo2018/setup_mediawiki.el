@@ -3,20 +3,20 @@
 
 
 (when nil
-  (defcustom teejet-mediawiki-url "http://bznwiki.spray.com/" "Top level URL for TeeJet's wiki")
-  (defcustom teejet-mediawiki-wikiname "TeeJet" "Name of wiki in mediawiki-site-alist")
-  (defcustom teejet-mediawiki-firstpage "Main Page" "Initial page to open")
+  (defcustom mi-mediawiki-url "http://bznwiki.spray.com/" "Top level URL for MI's wiki")
+  (defcustom mi-mediawiki-wikiname "MI" "Name of wiki in mediawiki-site-alist")
+  (defcustom mi-mediawiki-firstpage "Main Page" "Initial page to open")
   
   
   
-  (defun teejet-mediawiki-login (username password)
+  (defun mi-mediawiki-login (username password)
     (interactive (list (read-string (format "User name (%s): " (user-login-name))
                                     nil nil (user-login-name))
                        (read-passwd "Password: ")))
-    (when (not (assoc teejet-mediawiki-wikiname mediawiki-site-alist))
-      (push (list teejet-mediawiki-wikiname teejet-mediawiki-url username password
-                  teejet-mediawiki-firstpage)
+    (when (not (assoc mi-mediawiki-wikiname mediawiki-site-alist))
+      (push (list mi-mediawiki-wikiname mi-mediawiki-url username password
+                  mi-mediawiki-firstpage)
             mediawiki-site-alist))
-    (mediawiki-site teejet-mediawiki-wikiname))
+    (mediawiki-site mi-mediawiki-wikiname))
   )
     
