@@ -238,6 +238,7 @@ Example of adding your own file extensions-
          (guard    (cond (unique_inclusion_guards 
                           (format "_%s"
                                   (md5 (format "%s%s%s"
+                                               (current-time-string)
                                                name_of_coder
                                                fname
                                                (system-name)))))
