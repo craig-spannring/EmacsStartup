@@ -109,9 +109,10 @@
           (format " --data-dir %s" (cts-rtp--rdmserver-datadir project-path))
           (format " --log-file %s" (cts-rtp--rdmserver-logfile project-path))
           " --silent"
+          " --rp-nice-value 1 "
           ; " --watch-sources-only"
           ; " --daemon"
-          (format " --job-count %d" (system-cores :logical))))
+          (format " --job-count %d" (system-cores :physical))))
 
 (defun cts-rtp--is-server-running (project-path)
   ;; Look through all the processes for one that has the same command

@@ -1,4 +1,5 @@
 
+(install-and-require-packages '(modern-cpp-font-lock))
 (require 'find-file)
 
 
@@ -48,7 +49,6 @@ more pleasant.")
 ; be-selective ;  (define-key gud-mode-map   [S-up]   'gud-finish)
   
   )
-
 
 (add-to-list 'auto-mode-alist '("\\.C$"  . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cc$" . c++-mode))
@@ -159,6 +159,8 @@ more pleasant.")
   ;; (turn-on-ws-trim)
 )
 (add-hook 'c-mode-common-hook 'my-cc-mode-common-hook)
+(add-hook 'c++-mode-hook #'modern-c++-font-lock-mode)
+
 ; be-selective ;  (add-hook 'c-mode-common-hook 'hs-minor-mode)
 ; be-selective ;
 ; be-selective ;  ;;

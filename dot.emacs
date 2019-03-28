@@ -41,7 +41,7 @@
      ("melpa-stable" . "http://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (popup rtags mediawiki magit s define-word cmake-ide cmake-mode company)))
+    (modern-cpp-font-lock popup rtags mediawiki magit s define-word cmake-ide cmake-mode company)))
  '(save-place-mode t nil (saveplace))
  '(select-enable-clipboard nil)
  '(select-enable-primary t)
