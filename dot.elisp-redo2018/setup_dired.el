@@ -9,9 +9,9 @@
                     (if t                                         " \\( ! -name '*~' \\) "                    "")
                     (if t                                         " \\( ! -name 'BROWSE' \\) "                "")
                     (if (not (string= system-type "windows-nt"))  " \\( ! -name '.QTmakefile*' \\) "          "")
-                    (if (not (string= system-type "windows-nt"))  " \\( ! -name 'moc_*.cpp' \\) "             "")
-                    (if (not (string= system-type "windows-nt"))  " \\( ! -regex '.*/.obj.*' \\) "            "")
-                    (if (not (string= system-type "windows-nt"))  " \\( ! -regex '.*/.obj.*' \\) "            "")))
+                    (if (not (string= system-type "windows-nt"))  " \\( ! -name 'moc_*\\.cpp' \\) "             "")
+                    (if (not (string= system-type "windows-nt"))  " \\( ! -regex '.*/\\.obj.*' \\) "            "")
+                    (if (not (string= system-type "windows-nt"))  " \\( ! -regex '.*/\\.obj.*' \\) "            "")))
        (pattern (cond
                  ((string= system-type "windows-nt")
                   (format "gfind . %s -type f -print0 | xargs -0 -e grep -nIH -e  " predicates))
