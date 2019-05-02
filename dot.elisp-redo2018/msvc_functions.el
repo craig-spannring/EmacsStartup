@@ -568,7 +568,7 @@ the value is \"\".
   (message "Compile directory is %s" dir)
   (setq msvc-current-project nil)
   (setq msvc-project-directory dir)
-  (cond ((eq msvc-project-directory 'rtags-ide) nil)
+  (cond ((eq msvc-current-compilation-system 'rtags-ide) nil)
         (t (setq msvc-current-compilation-system 'other)))
   (message "Default compile directory %s" dir)
 )
