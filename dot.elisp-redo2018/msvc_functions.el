@@ -568,7 +568,8 @@ the value is \"\".
   (message "Compile directory is %s" dir)
   (setq msvc-current-project nil)
   (setq msvc-project-directory dir)
-  (setq msvc-current-compilation-system 'other)
+  (cond ((eq msvc-project-directory 'rtags-ide) nil)
+        (t (setq msvc-current-compilation-system 'other)))
   (message "Default compile directory %s" dir)
 )
 
@@ -850,10 +851,12 @@ the value is \"\".
                   nil))))
   (let* ((proj-path   (file-name-directory (expand-file-name proj-file)))
 	 (commands-db (concat proj-path "compile_commands.json")))
-    (when (or
-	   nil
-	   (not (file-exists-p commands-db)))
+
+    ;; Check for existence of compile_commands.json.  Can't work without it
+    (when (or nil (not (file-exists-p commands-db)))
       (error "Missing compile_commands.json.  Perhaps run 'bear make ...'"))
+
+    ;; Try to start the RDM server.  Wait up to 5 seconds. (Is 5 enough time?)
     (cts-rtp-start-rdmserver-unless-running proj-path)
     (dotimes (i 5)
       (let ((running (cts-rtp--is-server-running proj-path))
@@ -864,6 +867,8 @@ the value is \"\".
     (unless (cts-rtp--is-server-responsive proj-path)
       (error "Could not start RDM server"))
     (sleep-for 1) 
+    (message "RDM started.")
+    
     (setq msvc-current-project proj-file)
     (setq msvc-project-directory (file-name-directory proj-file))
 
