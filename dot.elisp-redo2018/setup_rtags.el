@@ -8,11 +8,6 @@
         popup
 	))
 
-;; (require 'rtags_project)
-;;(load "rtags_project")
-
-
-
 
 ;; ensure that we use only rtags checking
 ;; https://github.com/Andersbakken/rtags#optional-1

@@ -10,6 +10,7 @@
 
 (cond
  ((= 25 emacs-major-version) (load "~/.elisp-redo2018/emacs-stage2.el"))
+ ((= 26 emacs-major-version) (load "~/.elisp-redo2018/emacs-stage2.el"))
  (t                          (load "~/.elisp/emacs-stage2.el")))
 
 (setq software_version_string "")
@@ -28,6 +29,7 @@
  '(display-time-format nil)
  '(display-time-mode t)
  '(fancy-splash-image "~/.elisp/Logo_MI_coldscience.jpeg")
+ '(find-grep-options "-q --exclude '*.svn-base'")
  '(graphviz-dot-auto-indent-on-semi nil)
  '(line-move-visual nil)
  '(mediawiki-site-alist
@@ -41,7 +43,8 @@
      ("melpa-stable" . "http://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (modern-cpp-font-lock popup rtags mediawiki magit s define-word cmake-ide cmake-mode company)))
+    (modern-cpp-font-lock popup mediawiki magit s define-word cmake-ide cmake-mode company)))
+ '(python-shell-interpreter "python3")
  '(save-place-mode t nil (saveplace))
  '(select-enable-clipboard nil)
  '(select-enable-primary t)

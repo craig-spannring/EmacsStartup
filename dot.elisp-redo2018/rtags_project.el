@@ -53,8 +53,7 @@
 ;;;       
 
 
-(require 'rtags)
-(require 'system-cores)
+(install-and-require-packages '(system-cores))
 
 (defcustom cts-rtp-rdmservers-dir
   (expand-file-name "~/.rdm-servers")

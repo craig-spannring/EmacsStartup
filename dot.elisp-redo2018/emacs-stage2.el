@@ -34,6 +34,7 @@ PACKAGES is a list of packages that are required.
 (load "setup_stuff_for_cc_mode")
 (load "setup_dired")
 (load "setup_qt")
+(load "setup_python")
 (load "setup_other_global_settings")
 (load "setup_global_keys")
 (load "setup_moon")

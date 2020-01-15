@@ -130,8 +130,6 @@ save the journal entry and bury the .journal buffer"
      ((string= (substring dir -1 nil) "\\") (setq dir (substring dir 0 -1))))
     (message "The dir is %s" dir)
     (shell-command-to-string (format "explorer %s" (shell-quote-argument dir)))
-    ; (dired-do-shell-command "explorer" nil (list dir))
-    ; (dired-do-shell-command "explorer" nil (list dir))
 ))
 
 
@@ -145,10 +143,14 @@ save the journal entry and bury the .journal buffer"
      ((string= (substring dir -2 nil) ":\\") nil)
      ((string= (substring dir -1 nil) "\\") (setq dir (substring dir 0 -1))))
     (message "The dir is %s" dir)
-    (shell-command-to-string (format "nautilus %s" (shell-quote-argument dir)))
-    ; (dired-do-shell-command "explorer" nil (list dir))
-    ; (dired-do-shell-command "explorer" nil (list dir))
-))
+    (cond
+     ((executable-find "nemo")
+      (shell-command-to-string (format "nemo %s" (shell-quote-argument dir))))
+     ((executable-find "nautilus")
+      (shell-command-to-string (format "nautilus %s" (shell-quote-argument dir))))
+     (t (message "Don't know how to open filesystem explorer. (Tried nemo and nautilus)")))
+    )
+  )
 
 (when (equal system-type 'darwin)
   (defun explorer (dir)
