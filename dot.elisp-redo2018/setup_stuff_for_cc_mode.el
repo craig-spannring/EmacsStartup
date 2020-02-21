@@ -95,6 +95,7 @@ more pleasant.")
                              (member-init-intro . 0)
                              (substatement-open . 0)
                              (case-label . +)
+                             (inlambda . 0)
                              (arglist-intro . +))))))
 
 (message "about to set c-style-alist")
