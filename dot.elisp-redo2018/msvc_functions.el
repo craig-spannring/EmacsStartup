@@ -76,12 +76,7 @@
 
 
 (require 'cl)
-(cond
- ((require 'avltree nil t)
-  t)
- (t
-  (setq load-path (cons '"~/.elisp/elib-1.0" load-path))
-  (require 'avltree)))
+(require 'avl-tree)
 (require 'xml)
 (require 'uvision_project)
 (require 'rtags_project)
@@ -240,7 +235,7 @@ FNAME - Fully qualified path of a file. "
 
 (defun _msvc-filelookup-new ()
   "Create a new (aka empty) file lookup AVL tree"
-   (setq msvc-project-file-tree (avltree-create (lambda (x1 x2)
+   (setq msvc-project-file-tree (avl-tree-create (lambda (x1 x2)
                                                   (string-lessp
                                                    (downcase (car x1))
                                                    (downcase (car x2)))))))
@@ -255,7 +250,7 @@ Example-
    ((foo.cpp foo.h) (nil bar.h) (glorp.cpp glorp.hpp glorp.tmpl.h))
 "
   (mapcar (lambda (x) (rest x)) ; (list (cadr x) (cddr x)))
-                      (avltree-flatten msvc-project-file-tree)))
+                      (avl-tree-flatten msvc-project-file-tree)))
 
 
 (defun _msvc-filelookup-allfiles ()
@@ -304,7 +299,7 @@ The result is of the form ((\"Foo.h\" . \"/fullpath/Foo.h\") ...)
                                 (t            (_msvc-filelookup-template key))))))
     ;; (message "%s Loading: %s" (float-time) (file-name-nondirectory fullname))
     (message "Loading: %s"  (file-name-nondirectory fullname))
-    (avltree-enter msvc-project-file-tree item)))
+    (avl-tree-enter msvc-project-file-tree item)))
 
 
 (defun _msvc-filelookup-template (fname)
@@ -354,7 +349,7 @@ The result will be a fully qualified pathname (string) of the header file
   "Lookup key in the avltree.
 Return a list with the matching filename, nil if key is not in tree. "
 
-  (rest (avltree-member msvc-project-file-tree (list key nil nil nil))))
+  (rest (avl-tree-member msvc-project-file-tree (list key nil nil nil))))
 
 
 
