@@ -9,8 +9,7 @@
 (package-initialize)
 
 (cond
- ((= 25 emacs-major-version) (load "~/.elisp-redo2018/emacs-stage2.el"))
- ((= 26 emacs-major-version) (load "~/.elisp-redo2018/emacs-stage2.el"))
+ ((> emacs-major-version 24) (load "~/.elisp-redo2018/emacs-stage2.el"))
  (t                          (load "~/.elisp/emacs-stage2.el")))
 
 (setq software_version_string "")
@@ -43,7 +42,7 @@
      ("melpa-stable" . "http://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (modern-cpp-font-lock popup mediawiki magit s define-word cmake-ide cmake-mode company)))
+    (org-jira modern-cpp-font-lock popup mediawiki magit s define-word cmake-ide cmake-mode company)))
  '(python-shell-interpreter "python3")
  '(save-place-mode t nil (saveplace))
  '(select-enable-clipboard nil)
