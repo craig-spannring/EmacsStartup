@@ -21,15 +21,21 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
  '(company_name "Montana Instruments")
  '(cts-c-file-header-style "MI_STYLE")
  '(current-coding-standard "MI_STYLE")
+ '(custom-enabled-themes nil)
  '(dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\.$\\|^\\..+$")
  '(display-time-format nil)
  '(display-time-mode t)
  '(fancy-splash-image "~/.elisp/Logo_MI_coldscience.jpeg")
  '(find-grep-options "-q --exclude '*.svn-base'")
  '(graphviz-dot-auto-indent-on-semi nil)
+ '(gud-pdb-command-name "pdb3")
  '(line-move-visual nil)
  '(mediawiki-site-alist
    (quote
@@ -39,10 +45,11 @@
  '(package-archives
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
-     ("melpa-stable" . "http://stable.melpa.org/packages/"))))
+     ("melpa" . "https://melpa.org/packages/")
+     ("melpa-stable" . "https://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (org-jira modern-cpp-font-lock popup mediawiki magit s define-word cmake-ide cmake-mode company)))
+    (sql-indent lorem-ipsum csharp-mode org-jira modern-cpp-font-lock popup mediawiki magit s define-word cmake-ide cmake-mode company)))
  '(python-shell-interpreter "python3")
  '(save-place-mode t nil (saveplace))
  '(select-enable-clipboard nil)
@@ -70,3 +77,24 @@
  )
 
 
+ ; '(safe-local-variable-values
+ ;   (quote
+ ;    ((eval c-set-offset
+ ;           (quote arglist-cont-nonempty)
+ ;           (quote
+ ;            (c-lineup-gcc-asm-reg c-lineup-arglist)))
+ ;     (eval c-set-offset
+ ;           (quote arglist-close)
+ ;           0)
+ ;     (eval c-set-offset
+ ;           (quote arglist-intro)
+ ;           (quote ++))
+ ;     (eval c-set-offset
+ ;           (quote case-label)
+ ;           0)
+ ;     (eval c-set-offset
+ ;           (quote statement-case-open)
+ ;           0)
+ ;     (eval c-set-offset
+ ;           (quote substatement-open)
+ ;           0))))
