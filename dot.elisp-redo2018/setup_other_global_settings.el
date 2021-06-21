@@ -153,15 +153,36 @@ save the journal entry and bury the .journal buffer"
   )
 
 (when (equal system-type 'darwin)
-  (defun explorer (dir)
-    "Open a directory in Finder"
-    (interactive "D")
-    (setq dir (expand-file-name dir))
-    (shell-command-to-string (format "open %s" (shell-quote-argument dir)))))
-
-
-(when (equal system-type 'darwin)
-  (setq process-connection-type t))
+  (let ()
+    (defun explorer (dir)
+      "Open a directory in Finder"
+      (interactive "D")
+      (setq dir (expand-file-name dir))
+      (shell-command-to-string (format "open %s" (shell-quote-argument dir)))))
+  
+  (setq process-connection-type t)
+  
+  (when (string= (system-name) "nomad.local")
+    (setenv "PATH" (string-join (list
+                                 (getenv "PATH")
+                                 "/usr/bin"
+                                 "/bin"
+                                 "/usr/sbin"
+                                 "/sbin"
+                                 "/Library/Frameworks/Python.framework/Versions/3.9/bin"
+                                 "/Library/PostgreSQL/12/bin"
+                                 "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9"
+                                 "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9"
+                                 "/usr/local/bin"
+                                 "/opt/X11/bin"
+                                 "/Library/Apple/usr/bin"
+                                 "/Users/cts/bin"
+                                 "/opt/local/bin"
+                                 "/opt/local/sbin"
+                                 (expand-file-name "~/bin") ) ":")
+            )
+    )
+  )
 
 (when (equal system-type 'windows-nt)
   (setq ispell-program-name "aspell"))
