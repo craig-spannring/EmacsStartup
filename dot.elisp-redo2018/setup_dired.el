@@ -1,4 +1,6 @@
 
+(install-and-require-packages '(ztree))
+
 (require 'dired-x)
 
 
