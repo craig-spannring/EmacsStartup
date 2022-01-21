@@ -49,13 +49,14 @@
      ("melpa-stable" . "https://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (sql-indent lorem-ipsum csharp-mode org-jira modern-cpp-font-lock popup mediawiki magit s define-word cmake-ide cmake-mode company)))
+    (ztree sql-indent lorem-ipsum csharp-mode org-jira modern-cpp-font-lock popup mediawiki magit s define-word cmake-ide cmake-mode company)))
  '(python-shell-interpreter "python3")
  '(save-place-mode t nil (saveplace))
  '(select-enable-clipboard nil)
  '(select-enable-primary t)
  '(show-paren-mode t)
  '(split-width-threshold 200)
+ '(sql-ms-program "sqlcmd")
  '(subversion-preferred-package (quote dsvn))
  '(tool-bar-mode t)
  '(undo-outer-limit 5000000)
@@ -98,3 +99,4 @@
  ;     (eval c-set-offset
  ;           (quote substatement-open)
  ;           0))))
+(put 'downcase-region 'disabled nil)
