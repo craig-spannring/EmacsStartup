@@ -17,13 +17,13 @@
        (pattern (cond
                  ((string= system-type "windows-nt")
                   (format "gfind . %s -type f -print0 | xargs -0 -e grep -nIH -e  " predicates))
-                 ((string= system-type "darwin")
-                  (format "find . %s -type f -print0 | xargs -0 grep -nIH -e " predicates))
+                 ;((string= system-type "darwin")
+                 ; (format "find . %s -type f -print0 | xargs -0 grep -nIH -e " predicates))
                  (t
 		  (format "find . %s -type f -exec grep --color -nIH -e   {} +" predicates))))
        (index (cond
                  ((string= system-type "windows-nt")   (length pattern))
-                 ((string= system-type "darwin")       (length pattern))
+                 ;((string= system-type "darwin")       (length pattern))
                  (t                                    (- (length pattern) 5)))))
   
   (cond 
