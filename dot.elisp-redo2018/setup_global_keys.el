@@ -44,8 +44,8 @@
 ;; (if (not (string-match "XEmacs" emacs-version))
 ;;     (global-set-key [S-f3] 'next-error))
 
-;; (global-set-key [home] 'beginning-of-line)
-;; (global-set-key [end] 'end-of-line)
+(global-set-key [home] 'move-beginning-of-line)
+(global-set-key [end] 'move-end-of-line)
 ;; (global-set-key [insertchar] 'overwrite-mode)
 ;; (global-set-key [delete] 'delete-char)
 
