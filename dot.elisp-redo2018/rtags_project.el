@@ -109,9 +109,11 @@
           (format " --log-file %s" (cts-rtp--rdmserver-logfile project-path))
           " --silent"
           " --rp-nice-value 1 "
+          (format " --exclude-filter %s"
+                  "\"*/tmp/bsr2-builds/*;*/CMakeFiles/*;*/cmake*/Modules/*;*/conftest.c*;/tmp/*;/private/tmp/*;/private/var/*\"")
           ; " --watch-sources-only"
           ; " --daemon"
-          (format " --job-count %d" (system-cores :physical))))
+          (format " --job-count %d" (max 1 (- (system-cores :physical) 1)))))
 
 (defun cts-rtp--is-server-running (project-path)
   ;; Look through all the processes for one that has the same command

@@ -30,6 +30,7 @@
  '(fancy-splash-image "~/.elisp/Logo_MI_coldscience.jpeg")
  '(find-grep-options "-q --exclude '*.svn-base'")
  '(graphviz-dot-auto-indent-on-semi nil)
+ '(gud-pdb-command-name "pdb3")
  '(line-move-visual nil)
  '(mediawiki-site-alist
    (quote
@@ -42,7 +43,7 @@
      ("melpa-stable" . "http://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (org-jira modern-cpp-font-lock popup mediawiki magit s define-word cmake-ide cmake-mode company)))
+    (csharp-mode org-jira modern-cpp-font-lock popup mediawiki magit s define-word cmake-ide cmake-mode company)))
  '(python-shell-interpreter "python3")
  '(save-place-mode t nil (saveplace))
  '(select-enable-clipboard nil)
@@ -70,3 +71,24 @@
  )
 
 
+ ; '(safe-local-variable-values
+ ;   (quote
+ ;    ((eval c-set-offset
+ ;           (quote arglist-cont-nonempty)
+ ;           (quote
+ ;            (c-lineup-gcc-asm-reg c-lineup-arglist)))
+ ;     (eval c-set-offset
+ ;           (quote arglist-close)
+ ;           0)
+ ;     (eval c-set-offset
+ ;           (quote arglist-intro)
+ ;           (quote ++))
+ ;     (eval c-set-offset
+ ;           (quote case-label)
+ ;           0)
+ ;     (eval c-set-offset
+ ;           (quote statement-case-open)
+ ;           0)
+ ;     (eval c-set-offset
+ ;           (quote substatement-open)
+ ;           0))))
