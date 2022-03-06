@@ -21,9 +21,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
  '(company_name "Montana Instruments")
  '(cts-c-file-header-style "MI_STYLE")
  '(current-coding-standard "MI_STYLE")
+ '(custom-enabled-themes nil)
  '(dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\.$\\|^\\..+$")
  '(display-time-format nil)
  '(display-time-mode t)
@@ -33,24 +38,23 @@
  '(gud-pdb-command-name "pdb3")
  '(line-move-visual nil)
  '(mediawiki-site-alist
-   (quote
-    (("MI" "http://miwiki.mti.local/wiki" "craig.spannring" "" nil "Main Page"))))
+   '(("MI" "http://miwiki.mti.local/wiki" "craig.spannring" "" nil "Main Page")))
  '(mouse-drag-copy-region t)
  '(name_of_coder "Craig Spannring")
  '(package-archives
-   (quote
-    (("gnu" . "http://elpa.gnu.org/packages/")
-     ("melpa-stable" . "http://stable.melpa.org/packages/"))))
+   '(("gnu" . "http://elpa.gnu.org/packages/")
+     ("melpa" . "https://melpa.org/packages/")
+     ("melpa-stable" . "https://stable.melpa.org/packages/")))
  '(package-selected-packages
-   (quote
-    (csharp-mode org-jira modern-cpp-font-lock popup mediawiki magit s define-word cmake-ide cmake-mode company)))
+   '(ztree sql-indent lorem-ipsum csharp-mode org-jira modern-cpp-font-lock popup mediawiki magit s define-word cmake-ide cmake-mode company))
  '(python-shell-interpreter "python3")
  '(save-place-mode t nil (saveplace))
  '(select-enable-clipboard nil)
  '(select-enable-primary t)
  '(show-paren-mode t)
  '(split-width-threshold 200)
- '(subversion-preferred-package (quote dsvn))
+ '(sql-ms-program "sqlcmd")
+ '(subversion-preferred-package 'dsvn)
  '(tool-bar-mode t)
  '(undo-outer-limit 5000000)
  '(w3m-home-page "http://bzncode.spray.com")

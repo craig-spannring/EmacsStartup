@@ -39,5 +39,7 @@ PACKAGES is a list of packages that are required.
 (load "setup_global_keys")
 (load "setup_moon")
 (load "setup_server")
-
-
+(load "sql_setup")
+system-type
+(when (eq system-type 'darwin)
+  (load "setup_macos"))

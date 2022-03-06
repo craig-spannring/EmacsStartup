@@ -485,10 +485,28 @@ the value is \"\".
       nil))))
 
 
+(defun _msvc-bsr2-rtags (name)
+  ;; (message "  _msvc-bsr2-rtags (%s)" name)
+  (let* ((dir        (file-name-directory name))
+         (syssrc     (concat dir "SystemsSrc"))
+         (rtag       (expand-file-name ".rtags-config" syssrc )))
+    ;; (message "name:         %s" name)
+    ;; (message " dir:         %s" dir)
+    ;; (message " syssrc:      %s" syssrc)
+    ;; (message " rtag:        %s" rtag)
+    rtag))
+   
+
 (defun msvc-read-file-name-with-extension-p (name)
-  ;; (message "looking at %s" name)
+  ;;(message "looking at %s" name)
+  ;;(message "   %s" (_msvc-bsr2-rtags name))
   (let* ((result
           (cond
+           ((and (file-exists-p name)
+                 (file-name-nondirectory name)
+                 (file-regular-p name)
+                 (file-regular-p (_msvc-bsr2-rtags name)))
+            t)
            ((not (_msvc_file-name-extension name))
             nil)
            ((_msvc_file-name-extension name)
@@ -509,14 +527,18 @@ the value is \"\".
 
 (defun msvc-read-file-name-with-extension (prompt dir extensions initial)
   (setq  msvc-read-file-name-with-extension-list extensions)
-  (completing-read
-   prompt                                ; prompt
-   'msvc-complete-file-name              ; table
-   'msvc-read-file-name-with-extension-p ; predicate
-   t                                     ; require-match
-   nil                                   ; init
-   nil                                   ; hist
-   nil)                                  ; def
+  (let*
+      ((raw (completing-read
+             prompt                                ; prompt
+             'msvc-complete-file-name              ; table
+             'msvc-read-file-name-with-extension-p ; predicate
+             t                                     ; require-match
+             nil                                   ; init
+             nil                                   ; hist
+             nil))                                 ; def
+       (basename (file-name-nondirectory raw)))
+    (cond ((string-equal basename "bsr2") (_msvc-bsr2-rtags raw))
+          (t raw)))
   )
 
 (defun msvc-read-dep-file-name-p (name)
