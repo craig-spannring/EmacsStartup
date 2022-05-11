@@ -1306,7 +1306,9 @@ new doxygen style."
                 (read-string (format "Id: "))
                 (read-string (format "USB String (be careful with trailing spaces): "))))
 
-  (let* (active-line end-pos (start-pos (point)))
+  (let* (active-line
+         end-pos
+         (start-pos (point)))
     (insert (format " constexpr std::array<uint8_t, %d> %s = {\n" (+ 2 (* 2 (length usb-string))) var-name))
     (insert (format " 2 + %d*2, \n" (length usb-string)))
     (insert " USB_DTYPE_STRING,\n")
