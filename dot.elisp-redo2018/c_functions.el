@@ -1300,6 +1300,29 @@ new doxygen style."
   "Return column in which the cursor is located."
   (- (point) (line-beginning-position)))
 
+(defun insert-usb-dtype-string(var-name usb-string)
+  "Prompt for a name and insert USB string definition before current point"
+  (interactive (list
+                (read-string (format "Id: "))
+                (read-string (format "USB String (be careful with trailing spaces): "))))
+
+  (let* (active-line end-pos (start-pos (point)))
+    (insert (format " constexpr std::array<uint8_t, %d> %s = {\n" (+ 2 (* 2 (length usb-string))) var-name))
+    (insert (format " 2 + %d*2, \n" (length usb-string)))
+    (insert " USB_DTYPE_STRING,\n")
+    (insert (format "  // '%s'\n" usb-string))
+
+    (insert (mapconcat '(lambda (c) (format "'%c', 0" c)) usb-string ", "))
+    
+    (insert "\n };")
+
+    (setq end-pos (point))
+    (goto-char active-line)
+    (end-of-line)
+    (indent-region start-pos end-pos nil)
+    )
+  )
+  
 (cond 
  ((string-match "XEmacs" emacs-version)
   (defun line-end-position ()
