@@ -1,5 +1,5 @@
 
-(install-and-require-packages '(modern-cpp-font-lock))
+(install-and-require-packages '(modern-cpp-font-lock string-inflection))
 (require 'find-file)
 
 

@@ -38,15 +38,18 @@
  '(gud-pdb-command-name "pdb3")
  '(line-move-visual nil)
  '(mediawiki-site-alist
-   '(("MI" "http://miwiki.mti.local/wiki" "craig.spannring" "" nil "Main Page")))
+   (quote
+    (("MI" "http://miwiki.mti.local/wiki" "craig.spannring" "" nil "Main Page"))))
  '(mouse-drag-copy-region t)
  '(name_of_coder "Craig Spannring")
  '(package-archives
-   '(("gnu" . "http://elpa.gnu.org/packages/")
+   (quote
+    (("gnu" . "http://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")
-     ("melpa-stable" . "https://stable.melpa.org/packages/")))
+     ("melpa-stable" . "https://stable.melpa.org/packages/"))))
  '(package-selected-packages
-   '(ztree sql-indent lorem-ipsum csharp-mode org-jira modern-cpp-font-lock popup mediawiki magit s define-word cmake-ide cmake-mode company))
+   (quote
+    (string-inflection json-mode ztree sql-indent lorem-ipsum csharp-mode org-jira modern-cpp-font-lock popup mediawiki magit s define-word cmake-ide cmake-mode company)))
  '(python-shell-interpreter "python3")
  '(save-place-mode t nil (saveplace))
  '(select-enable-clipboard nil)
@@ -54,7 +57,7 @@
  '(show-paren-mode t)
  '(split-width-threshold 200)
  '(sql-ms-program "sqlcmd")
- '(subversion-preferred-package 'dsvn)
+ '(subversion-preferred-package (quote dsvn))
  '(tool-bar-mode t)
  '(undo-outer-limit 5000000)
  '(w3m-home-page "http://bzncode.spray.com")
