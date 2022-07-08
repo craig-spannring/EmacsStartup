@@ -44,7 +44,9 @@
 ;;    insert-c-class
 ;;       Prompt the user for the name of the new class and it's 
 ;;       base class
-;;       
+;;    insert-usb-dtype-string
+;;       Prompt for a name and insert USB string definition before
+;;       current point 
 ;;  Customization variables:
 ;;    company_name
 ;;       string that hold the company name to place in copyright notices.
