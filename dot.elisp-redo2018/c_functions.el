@@ -1303,7 +1303,11 @@ new doxygen style."
   (- (point) (line-beginning-position)))
 
 (defun insert-usb-dtype-string(var-name usb-string)
-  "Prompt for a name and insert USB string definition before current point"
+  "Prompt for a name and insert USB string definition before current point. 
+
+  The USB string will be on the form used by TI TivaWare USB library. 
+  It might be common to other USB libraries.  
+  "
   (interactive (list
                 (read-string (format "Id: "))
                 (read-string (format "USB String (be careful with trailing spaces): "))))
