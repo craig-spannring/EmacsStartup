@@ -967,7 +967,7 @@ structure instead of a class"
 
 (defun midtech-get-pos-c-guess (tmp)
   (let ((tmp (cdar tmp)))
-    (message "tmp is %s" tmp)
+    ;; (message "tmp is %s" tmp)
     (if (listp tmp)
         (car tmp)
       tmp)))
