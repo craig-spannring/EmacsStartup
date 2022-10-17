@@ -27,7 +27,9 @@ PACKAGES is a list of packages that are required.
 (require 'dired-x)
 (load "setup_svn")
 (load "setup_magit")
-(load "setup_rtags")
+
+(if (version< emacs-version "28.0") 
+    (load "setup_rtags"))
 (load "msvc_functions")
 (load "setup_cmake")
 ;; (load "setup_cmake-ide")
