@@ -1,5 +1,6 @@
 
 (install-and-require-packages '(modern-cpp-font-lock string-inflection))
+(install-and-require-packages '(realgud-lldb))
 (require 'find-file)
 
 
