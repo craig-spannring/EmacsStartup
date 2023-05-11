@@ -892,11 +892,13 @@ the value is \"\".
     (cts-rtp--load-compile-commands proj-path)
     (cts-rtp-switch-project proj-path)
     (setq compile-command
-          (concat 
-           (expand-file-name (concat
-                              (file-name-directory proj-file)
-                              ".././bsr2"))
-           " build"))
+           (concat 
+            (abbreviate-file-name
+             (expand-file-name (concat
+                               (file-name-directory proj-file)
+                               ".././bsr2")))
+            " build"))
+    
     (setq msvc-current-compilation-system 'rtags-ide)))
 
 
