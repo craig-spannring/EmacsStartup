@@ -99,3 +99,4 @@
  ;     (eval c-set-offset
  ;           (quote substatement-open)
  ;           0))))
+(put 'upcase-region 'disabled nil)
