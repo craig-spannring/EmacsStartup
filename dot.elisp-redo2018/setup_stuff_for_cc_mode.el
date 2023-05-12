@@ -1,5 +1,6 @@
 
 (install-and-require-packages '(modern-cpp-font-lock string-inflection))
+(install-and-require-packages '(realgud-lldb))
 (require 'find-file)
 
 
@@ -162,7 +163,8 @@ more pleasant.")
 (add-hook 'c-mode-common-hook 'my-cc-mode-common-hook)
 (add-hook 'c++-mode-hook #'modern-c++-font-lock-mode)
 
-; be-selective ;  (add-hook 'c-mode-common-hook 'hs-minor-mode)
+(add-hook 'c-mode-common-hook 'hs-minor-mode)
+
 ; be-selective ;
 ; be-selective ;  ;;
 ; be-selective ;  ;;  put the icc c++ file extensions into the auto-mode-alist variable
