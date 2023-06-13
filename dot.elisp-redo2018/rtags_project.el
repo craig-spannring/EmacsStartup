@@ -81,7 +81,7 @@
     (make-directory (cts-rtp--rdmserver-dir project-path) t)
 
     ;; Start the rdm process 
-    (let* ((hash (cts-rtp--projpath-hash project-path))
+    (let* ((hash              (cts-rtp--projpath-hash project-path))
            (rtags-rdm-process (start-file-process-shell-command
                               (format "RTags-%s" hash)
                               (format "*rdm-%s*" hash)

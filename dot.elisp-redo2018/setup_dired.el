@@ -4,9 +4,8 @@
 (require 'dired-x)
 
 
-(let* ((predicates (concat 
-                    (if t                                         " \\( ! -regex '.*/DebugEvalBoard/.*' \\) " "")
-                    (if t                                         " \\( ! -regex '.*/DebugTcm2Board/.*' \\) " "")
+(let* ((predicates (concat
+                    (if t                                         " \\( ! -regex '.*/Debug[a-zA-Z0-9]*Board/.*' \\) " "")
 
                     (if (string= system-type "windows-nt")        " \\( ! -regex '.*/Output/Debug/.*'   \\) " "")
                     (if (string= system-type "windows-nt")        " \\( ! -regex '.*/Output/Release/.*' \\) " "")
