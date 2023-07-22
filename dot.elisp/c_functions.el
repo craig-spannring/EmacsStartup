@@ -19,10 +19,6 @@
 ;;       place a '#ifndef THIS_FILE_h' line into the file
 ;;       to prevent this file from being included multiple times 
 ;;       if that line doesn't already exist.
-;;    insert-c-rcsid
-;;       Place rcs id lines in the source code.  They are 
-;;       similar to the ones used by the VLT Inc. for the VLCS project.
-;;       Very deprecated.  VLT doesn't exist anymore.  RCS shouldn't.
 ;;    add-c-function-tail-comment
 ;;       This function will figure out the name of the function 
 ;;       that starts on the current line and will place an
@@ -545,47 +541,6 @@ file if it is a header file and doesn't already have one."
   )
 
 
-(defun insert-c-rcsid ()
-  "Insert rcsid lines.  Needless to say, this is old and deprecated."
-  (interactive)
-  (cond
-   ((null (buffer-file-name))
-    (message "Current buffer does not have a file name"))
-   (t
-    (let (def-line simple-name index)
-      (setq simple-name (Find_Simple_File_Name (buffer-file-name)))
-      
-      (cond 
-       ((is_spec_file buffer-file-name)
-        (insert 
-         (format "static char  rcsid_%s [ ] =\n" 
-                 (cvt_file_name_to_rcsid_var simple-name nil)))
-        (cond (use_RCS_CRCs
-               (insert (format "         \"%sId$\"" "$"))
-               (insert (format " RCSREV_AUX ( \"\" , %s_crc , \"00000000\" )"
-                               (cvt_file_name_to_rcsid_var simple-name t))))
-              (t
-               (insert (format "         \"%s\"" software_version_string))))
-        (insert ";\n")
-        (insert (format "static void *no_unused_%s_warn[]={rcsid_%s, "
-                        (cvt_file_name_to_rcsid_var simple-name nil)
-                        (cvt_file_name_to_rcsid_var simple-name nil)))
-        (insert (format "no_unused_%s_warn};\n" 
-                        (cvt_file_name_to_rcsid_var simple-name nil))))
-       (t 
-        (insert (format "static char  software_version[]   = \"%s\";\n"
-                        software_version_string))
-        (cond (use_RCS_CRCs
-               (insert "static char  rcsid[] =\n")
-               (insert (format "         \"%sId$\"" "$"))
-               (insert (format " RCSREV_STR ( \"\" , %s_crc , \"00000000\" )"
-                               (cvt_file_name_to_rcsid_var simple-name t)))
-               (insert  ";\n")))
-        (insert "static void *no_unused_var_warn[] = {software_version,\n")
-        (cond (use_RCS_CRCs
-               (insert "                                     rcsid,\n")))
-        (insert "                                     no_unused_var_warn};\n")))))))
-
 (defun add-c-function-tail-comment (func-name)
   "Place a comment after the closing brace for current function"
                          ; 
@@ -685,9 +640,52 @@ file if it is a header file and doesn't already have one."
   
 (defconst insert-c-class-hist-list '("" "public" "protected" "private"))
 
+(defun _cf-guess-class-name-containing-point ()
+  (let* ((raw-name  (which-function))
+         (cooked-name (cond ((string-prefix-p "class " raw-name)
+                             (replace-regexp-in-string "class " "" raw-name))
+                            (t ""))))
+    cooked-name))
+  
+(defun insert-c-rule-of-5 (class-name gen-type)
+  "Insert copy and move contructors to help with rule-of-5
+
+Insert copy and move ctors and assignment operators for
+CLASS-NAME into the buffer at the current point.  The generated
+methods will be either '= delete' or '= default'.  "
+
+  (interactive (list (read-string (format "Class Name (%s):"
+                                          (_cf-guess-class-name-containing-point))
+                                  nil
+                                  nil
+                                  (_cf-guess-class-name-containing-point))
+                     (completing-read "Create type (default): " ; prompt
+                                      '(("delete") ("default")) ; collection
+                                      nil                       ; predicate
+                                      t                         ; require-match
+                                      ""                        ; initial input
+                                      nil                       ; hist
+                                      "delete")))               ; def
+
+  (let ((start (point))
+        (template " xNAMEx(const xNAMEx&)                 = xGENx;
+                    xNAMEx& operator=(const xNAMEx&)      = xGENx;
+                    xNAMEx(xNAMEx&&) noexcept             = xGENx; 
+                    xNAMEx& operator=(xNAMEx&&) noexcept  = xGENx;"))
+    
+    
+    (insert (replace-regexp-in-string "xNAMEx" class-name
+                                      (replace-regexp-in-string
+                                       "xGENx" gen-type template)))
+    (indent-region start (point))
+    )
+  )
+                     
+
+  
 (defun insert-c-class (class-name access)
   "Insert a class template before the current point"
-  
+
   (interactive (list (read-string (format "Class Name: "))
                      (completing-read "Base Access: " 
                                       '(("") ("public") ("protected") ("private"))
