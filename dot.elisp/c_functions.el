@@ -659,7 +659,7 @@ methods will be either '= delete' or '= default'.  "
                                   nil
                                   nil
                                   (_cf-guess-class-name-containing-point))
-                     (completing-read "Create type (default): " ; prompt
+                     (completing-read "Create type (delete): " ; prompt
                                       '(("delete") ("default")) ; collection
                                       nil                       ; predicate
                                       t                         ; require-match
