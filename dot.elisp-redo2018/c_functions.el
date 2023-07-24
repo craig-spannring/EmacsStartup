@@ -19,10 +19,6 @@
 ;;       place a '#ifndef THIS_FILE_h' line into the file
 ;;       to prevent this file from being included multiple times 
 ;;       if that line doesn't already exist.
-;;    insert-c-rcsid
-;;       Place rcs id lines in the source code.  They are 
-;;       similar to the ones used by the VLT Inc. for the VLCS project.
-;;       Very deprecated.  VLT doesn't exist anymore.  RCS shouldn't.
 ;;    add-c-function-tail-comment
 ;;       This function will figure out the name of the function 
 ;;       that starts on the current line and will place an
@@ -657,6 +653,49 @@ file if it is a header file and doesn't already have one."
   
 (defconst insert-c-class-hist-list '("" "public" "protected" "private"))
 
+(defun _cf-guess-class-name-containing-point ()
+  (let* ((raw-name  (which-function))
+         (cooked-name (cond ((string-prefix-p "class " raw-name)
+                             (replace-regexp-in-string "class " "" raw-name))
+                            (t ""))))
+    cooked-name))
+  
+(defun insert-c-rule-of-5 (class-name gen-type)
+  "Insert copy and move contructors to help with rule-of-5
+
+Insert copy and move ctors and assignment operators for
+CLASS-NAME into the buffer at the current point.  The generated
+methods will be either '= delete' or '= default'.  "
+
+  (interactive (list (read-string (format "Class Name (%s):"
+                                          (_cf-guess-class-name-containing-point))
+                                  nil
+                                  nil
+                                  (_cf-guess-class-name-containing-point))
+                     (completing-read "Create type (delete): " ; prompt
+                                      '(("delete") ("default")) ; collection
+                                      nil                       ; predicate
+                                      t                         ; require-match
+                                      ""                        ; initial input
+                                      nil                       ; hist
+                                      "delete")))               ; def
+
+  (let ((start (point))
+        (template " xNAMEx(const xNAMEx&)                 = xGENx;
+                    xNAMEx& operator=(const xNAMEx&)      = xGENx;
+                    xNAMEx(xNAMEx&&) noexcept             = xGENx; 
+                    xNAMEx& operator=(xNAMEx&&) noexcept  = xGENx;"))
+    
+    
+    (insert (replace-regexp-in-string "xNAMEx" class-name
+                                      (replace-regexp-in-string
+                                       "xGENx" gen-type template)))
+    (indent-region start (point))
+    )
+  )
+                     
+
+  
 (defun insert-c-class (class-name access)
   "Insert a class template before the current point"
   
