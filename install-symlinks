@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+
+"""Create symlinks from sandbox files to the home directory. """
+
+import os
+import sys
+import glob
+
+op = os.path 
+
+srcdir = op.dirname(op.abspath(sys.argv[0]))
+home= op.expanduser("~/.")
+rel = os.path.relpath(srcdir, home)
+
+dot_files = list([op.relpath(f, home)
+                   for f in glob.glob(op.join(srcdir, "dot.*"))
+                  if not f.endswith('~')])
+
+os.chdir(home)
+for f in dot_files:
+    dst = op.basename(f).replace("dot.", ".", 1)
+    if op.exists(dst):
+        os.unlink(dst)
+    if op.exists(dst):
+        print(f"Warning: did not set symlink for {dst}", file=sys.stderr)
+    else:
+        # print(f"os.symlink({f}, {dst})")
+        os.symlink(f, dst)
+        
+
