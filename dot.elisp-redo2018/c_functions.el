@@ -19,10 +19,6 @@
 ;;       place a '#ifndef THIS_FILE_h' line into the file
 ;;       to prevent this file from being included multiple times 
 ;;       if that line doesn't already exist.
-;;    insert-c-rcsid
-;;       Place rcs id lines in the source code.  They are 
-;;       similar to the ones used by the VLT Inc. for the VLCS project.
-;;       Very deprecated.  VLT doesn't exist anymore.  RCS shouldn't.
 ;;    add-c-function-tail-comment
 ;;       This function will figure out the name of the function 
 ;;       that starts on the current line and will place an
