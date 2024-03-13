@@ -68,6 +68,7 @@
 (defun cts-rtp--load-compile-commands (project-path)
   "Tell rdm to load the compile_commands.json file"
   (with-temp-buffer
+    (message "%s: %s" project-path (cts-rtp--rdmserver-socket project-path))
     (rtags-call-rc "--socket-file" (cts-rtp--rdmserver-socket project-path)
                  "-J" project-path)))
 
