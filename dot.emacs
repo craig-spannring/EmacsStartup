@@ -8,9 +8,12 @@
 	                  '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
+(setq use-redo2023 nil)
+
 (let ((cts-custom-file (expand-file-name
                         (format "%s/custom-%d.el" user-emacs-directory emacs-major-version)))
       (cts-stage2      (cond
+                        (use-redo2023               (expand-file-name "~/.elisp-redo2023/emacs-stage2.el"))
                         ((> emacs-major-version 28) (expand-file-name (format "~/.elisp%d/emacs-stage2.el"
                                                                               emacs-major-version)))
                         ((> emacs-major-version 24) (expand-file-name "~/.elisp-redo2018/emacs-stage2.el"))
