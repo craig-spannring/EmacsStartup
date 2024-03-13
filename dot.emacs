@@ -26,6 +26,8 @@
         
  
 (setq software_version_string "")
+;; (set-face-attribute 'default nil :height 90)
+(transient-mark-mode 0)
 
 ;;  
 ;;  ;; TODO Think about how we want to handle customization
