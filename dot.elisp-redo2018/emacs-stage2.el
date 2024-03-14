@@ -1,4 +1,11 @@
 
+(setq custom-file
+      (let* ((tmp (expand-file-name
+                   (format "%s/custom-%d.el" user-emacs-directory emacs-major-version))))
+        (if (file-exists-p tmp) (load tmp))
+        tmp))
+
+
 (defun install-and-require-packages (packages)
   "Require all packages in the list, installing any that are missing
 
@@ -45,3 +52,9 @@ PACKAGES is a list of packages that are required.
 system-type
 (when (eq system-type 'darwin)
   (load "setup_macos"))
+
+
+(setq software_version_string "")
+;; (set-face-attribute 'default nil :height 90)
+(transient-mark-mode 0)
+
