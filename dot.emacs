@@ -7,8 +7,8 @@
 ;; You may delete these explanatory comments.
 (require 'package)
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa"        . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("gnu"          . "https://elpa.gnu.org/packages/"))
+;; (add-to-list 'package-archives '("melpa"        . "http://melpa.org/packages/"))
+;; (add-to-list 'package-archives '("gnu"          . "https://elpa.gnu.org/packages/"))
 ;; (add-to-list 'package-archives '("nongnu"       . "https://elpa.nongnu.org/nongnu/"))
 ;; (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 ;; (add-to-list 'package-archives '("melpa"        . "http://melpa.org/packages/"))
@@ -16,17 +16,28 @@
              
 (package-initialize)
 
-(setq use-redo2023 nil)
+(defcustom cts-setup-era
+                                        ; 'v2018
+                                        'v2023
+  "Select which era of emacs initialization to use. 
+Note- Changes won't take effect until you restart emacs."
+  :type '(choice
+          (const v2023)     ; 
+          (const v2018)     ; 
+          (const ancient)
+          (const other))    ; 
+  :group 'cts-emacs-conf)
 
-(let (
-      (cts-stage2      (cond
-                        (use-redo2023               (expand-file-name "~/.elisp-redo2023/emacs-stage2.el"))
-                        ((> emacs-major-version 28) (expand-file-name (format "~/.elisp%d/emacs-stage2.el"
-                                                                              emacs-major-version)))
-                        ((> emacs-major-version 24) (expand-file-name "~/.elisp-redo2018/emacs-stage2.el"))
-                        (t                          (expand-file-name "~/.elisp/emacs-stage2.el")))))
 
 
+(let ((cts-stage2
+       (cond
+        ;;((equal cts-setup-era 'v2023) (expand-file-name "~/.elisp-redo2023/emacs-stage2.el"))
+        ;;((equal cts-setup-era 'v2018) (expand-file-name "~/.elisp-redo2018/emacs-stage2.el"))
+        ((> emacs-major-version 28) (expand-file-name (format "~/.elisp%d/emacs-stage2.el"
+                                                              emacs-major-version)))
+        ((> emacs-major-version 24) (expand-file-name "~/.elisp-redo2018/emacs-stage2.el"))
+        (t                          (expand-file-name "~/.elisp/emacs-stage2.el")))))
   (if (not (file-exists-p cts-stage2))
       (message "Warning: Could not find stage2 file %s" cts-stage2)
     (load cts-stage2)))
