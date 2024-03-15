@@ -4,18 +4,18 @@
 (setq load-path (cons (expand-file-name "~/.elisp-redo2023")          load-path))
 (setq load-path (cons (expand-file-name "~/.elisp-redo2023/3rdParty") load-path))
 
-(load "cts-pre-config")
+(load "pre-config-cts")
 
-(require 'cts-package-helpers)
+(require 'package-helpers-cts)
 
 (setenv "PAGER" "cat")
 
-(require 'cts-dired)
-(require 'cts-python-setup)
-(require 'cts-cpp-setup)
-(require 'cts-moon-configuration)
-(require 'cts-subversion)
-(require 'cts-global-keys)
+(require 'dired-cts)
+(require 'python-setup-cts)
+(require 'cpp-setup-cts)
+(require 'moon-configuration-cts)
+(require 'subversion-cts)
+(require 'global-keys-cts)
 
-(load "cts-post-config")
+(load "post-config-cts")
 

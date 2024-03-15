@@ -31,4 +31,4 @@ e.g.
 
 (install-and-require-packages '(use-package))
 
-(provide 'cts-package-helpers)
+(provide 'package-helpers-cts)

@@ -6,4 +6,4 @@
 
 (setq lsp-keymap-prefix "s-l")
 
-(provide 'cts-lsp-common)
+(provide 'lsp-common-cts)

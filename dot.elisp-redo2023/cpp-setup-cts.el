@@ -3,12 +3,12 @@
 
 (message "Loading C++ support.")
 
-(require 'cts-package-helpers)
-(require 'cts-complete-common)
+(require 'package-helpers-cts)
+(require 'complete-common-cts)
 
 (global-set-key [f9 ?f] 'msvc-find-file)
 (global-set-key [f9 ?c] 'msvc-compile-current-project)
 (global-set-key [f9 f9] 'next-error)
 (global-set-key [f5 ?c] 'compile)
 
-(provide 'cts-cpp-setup)
+(provide 'cpp-setup-cts)

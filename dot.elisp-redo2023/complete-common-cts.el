@@ -4,10 +4,10 @@
 
 (message "Loading AC common")
 
-(require 'cts-package-helpers)
+(require 'package-helpers-cts)
 
 ; (install-and-require-packages '(auto-complete))
 
 ; (require 'auto-complete-config)
 
-(provide 'cts-complete-common)
+(provide 'complete-common-cts)

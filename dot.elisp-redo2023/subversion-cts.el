@@ -28,4 +28,4 @@ Note- Changes won't take effect until you restart emacs."
 
 (require 'vc-svn)
 
-(provide 'cts-subversion)
+(provide 'subversion-cts)

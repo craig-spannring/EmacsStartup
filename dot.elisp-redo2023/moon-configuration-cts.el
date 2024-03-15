@@ -22,4 +22,4 @@
 
 (require 'calendar)
 
-(provide 'cts-moon-configuration)
+(provide 'moon-configuration-cts)

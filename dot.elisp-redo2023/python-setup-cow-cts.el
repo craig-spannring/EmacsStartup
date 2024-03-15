@@ -1,11 +1,11 @@
 ;;; Craig's Own Way (COW) of python support.
 
-(require 'cts-package-helpers)
+(require 'package-helpers-cts)
 
 (message "Installing?")
 (install-and-require-packages '(lsp-mode lsp-ui))
 
-(require 'cts-lsp-common)
+(require 'lsp-common-cts)
 
 (use-package lsp-mode
   :ensure t
@@ -21,4 +21,4 @@
   (setq lsp-auto-guess-root t) ; Automatically guess project root
   ) ; Enable which-key integration for better discovery
 
-(provide 'cts-python-setup-cow)
+(provide 'python-setup-cow-cts)
