@@ -6,7 +6,8 @@
 
 (require 'package-helpers-cts)
 
-; (install-and-require-packages '(auto-complete))
+(install-and-require-packages '(company))
+(install-and-require-packages '(auto-complete))
 
 ; (require 'auto-complete-config)
 
