@@ -6,6 +6,7 @@
         tmp))
 
 
+(defvar cts-need-package-contents-refresh t)
 (defun install-and-require-packages (packages)
   "Require all packages in the list, installing any that are missing
 
@@ -20,9 +21,17 @@ PACKAGES is a list of packages that are required.
 				;; If the package wasn't found catch the error.
 				;; To handle the error we'll try to install and 
 				;; then make a 2nd attempt at requiring it
-				(message "Installing %s" pkg)
+                                (message "Installing %s" pkg)
+                                (cond (cts-need-package-contents-refresh 
+                                       (message "Refreshing package contents")
+                                       (package-refresh-contents)
+                                       (message "Refreshed package contents")
+                                       (setq cts-need-package-contents-refresh nil)))
+                                (sleep-for 0.1)
 				(package-install pkg)
-				(funcall f))
+                                (message "Installed %s" pkg)
+				(funcall f)
+                                (message "Required %s" pkg))
 			    (error
                              (message "Couldn't load %s" pkg))))))))
         packages))
