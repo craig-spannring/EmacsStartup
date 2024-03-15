@@ -1,12 +1,11 @@
 
-(install-and-require-packages 
-      '(rtags
-	company
-	company-rtags 
-	flycheck      
-	flycheck-rtags
-        popup
-	))
+(install-and-require-packages '(rtags))
+(install-and-require-packages '(company-rtags))
+;; (install-and-require-packages '(company))
+(install-and-require-packages '(flycheck))
+(install-and-require-packages '(flycheck-rtags))
+(install-and-require-packages '(popup))
+	
 
 
 ;; ensure that we use only rtags checking

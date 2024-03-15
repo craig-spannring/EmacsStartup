@@ -8,8 +8,8 @@
 				s
 				dash
 				rtags
-				company
 				company-rtags
+				company
 				flycheck
 				))
 
