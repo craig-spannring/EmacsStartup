@@ -16,18 +16,12 @@
              
 (package-initialize)
 
-(defcustom cts-setup-era
-                                        'v2018
-                                        ; 'v2023
+(defconst cts-setup-era
+  ;; 'v2018
+  'v2023
+  ;; 'ancient
   "Select which era of emacs initialization to use. 
-Note- Changes won't take effect until you restart emacs."
-  :type '(choice
-          (const v2023)     ; 
-          (const v2018)     ; 
-          (const ancient)
-          (const other))    ; 
-  :group 'cts-emacs-conf)
-
+Note- Changes won't take effect until you restart emacs.")
 
 
 (let ((cts-stage2
