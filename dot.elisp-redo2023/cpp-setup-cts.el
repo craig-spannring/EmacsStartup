@@ -1,5 +1,21 @@
 ;;; This sets up a C++ IDE
 ;;;
+;;; Capabilities 
+;;;  1. auto-complete symbols
+;;;  2. (todo) Ability to jump to file using basename instead of requiring
+;;;            user to know full path
+;;;  3. (todo) Determine datatype of symbol under the cursor
+;;;  4. (todo) Find references to arbitrary symbol 
+;;;  5. (todo) Find references to symbol under the cursor
+;;;  6. (todo) Find declarations of arbitrary symbol
+;;;  7. (todo) Find declaration/definition of symbol under cursor
+;;;  8. (todo) cd into project directory and run compile
+;;;  9. (todo) Flip between source and header file
+;;; 10. (todo) rename symbol
+;;; 11. (todo) show inheritance tree.
+;;; 12  (todo) find reimplementations of virthual method underneath cursor.
+;;; 
+
 
 (message "Loading C++ support.")
 
@@ -13,10 +29,25 @@
 
 (cond
  ((equal cts-which-lsp-package 'use-lsp)
-  (message "We don't support lsp-mode for C++ yet."))
+  (message "Using lsp-mode for C++ mode.")
+  ;; (install-and-require-packages '(lsp-mode))
+  ;; (use-package lsp-mode
+  ;;              :ensure t
+  ;;              :hook ((c-mode-hook   lsp)
+  ;;                     (c++-mode-hook lsp)
+  ;;                     (c++-mode-hook myhook))
+  ;;              )
+  (use-package lsp-mode
+               :ensure   t
+               :config   (setq lsp-auto-guess-root t) ; Automatically guess project root
+               :commands (lsp lsp-deferred)
+               :hook ((c-mode-hook   lsp)
+                      (c++-mode . lsp-deferred))
+               :config   (setq lsp-auto-configure t))
+  )
  ((equal cts-which-lsp-package 'use-eglot)
-    (install-and-require-packages '(eglot))
     (message "Using eglot for C++ mode.")
+    (install-and-require-packages '(eglot))
     ;; (use-package eglot
     ;;              :ensure t
     ;;              :config
