@@ -14,7 +14,7 @@
 (require 'python-setup-cts)
 (require 'cpp-setup-cts)
 (require 'moon-configuration-cts)
-(require 'subversion-cts)
+(require 'vc-cts)
 (require 'global-keys-cts)
 
 (load "post-config-cts")
