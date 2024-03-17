@@ -4,19 +4,19 @@
 (setq load-path (cons (file-name-directory load-file-name)
                       load-path))
 
-(load "pre-config-cts")
+(load "cow-pre-config")
 
-(require 'package-helpers-cts)
+(require 'cow-package-helpers)
 
 (setenv "PAGER" "cat")
 
-(require 'dired-cts)
-(require 'python-setup-cts)
-(require 'cpp-setup-cts)
-(require 'moon-configuration-cts)
-(require 'vc-cts)
-(require 'global-keys-cts)
-(require 'projects-cts)
+(require 'cow-dired)
+(require 'cow-python-setup)
+(require 'cow-cpp-setup)
+(require 'cow-moon-configuration)
+(require 'cow-vc)
+(require 'cow-global-keys)
+(require 'cow-projects)
 
-(load "post-config-cts")
+(load "cow-post-config")
 

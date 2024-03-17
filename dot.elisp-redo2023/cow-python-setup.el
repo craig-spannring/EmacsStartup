@@ -14,8 +14,8 @@
 
 (message "Loading python support.")
 
-(require 'package-helpers-cts)
-(require 'complete-common-cts)
+(require 'cow-package-helpers)
+(require 'cow-complete-common)
 
 (defcustom cts-python-which-support 'cow
   "Select which style of IDE to use for Python.
@@ -30,9 +30,9 @@ Note- Changes won't take effect until you restart emacs."
 (message "Using %s for python support" cts-python-which-support)
 
 (cond
- ((equal cts-python-which-support 'cow)      (require 'python-setup-cow-cts))
+ ((equal cts-python-which-support 'cow)      (require 'cow-python-setup-cow))
  ((equal cts-python-which-support 'enzu)     (message "Enzu python support package is not supported yet."))
- ((equal cts-python-which-support 'mattduck) (require 'python-setup-mattduck-cts))
+ ((equal cts-python-which-support 'mattduck) (require 'cow-python-setup-mattduck))
  (t                                          (message "Unknown python support package.")))
 
-(provide 'python-setup-cts)
+(provide 'cow-python-setup)

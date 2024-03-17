@@ -31,4 +31,4 @@ e.g.
 
 (install-and-require-packages '(use-package))
 
-(provide 'package-helpers-cts)
+(provide 'cow-package-helpers)

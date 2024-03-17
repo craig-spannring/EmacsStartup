@@ -1,8 +1,8 @@
 ;;; Craig's Own Way (COW) of python support.
 
-(require 'package-helpers-cts)
+(require 'cow-package-helpers)
 
-(require 'lsp-common-cts)
+(require 'cow-lsp-common)
 
 
 (cond
@@ -40,4 +40,4 @@
 
 
 
-(provide 'python-setup-cow-cts)
+(provide 'cow-python-setup-cow)

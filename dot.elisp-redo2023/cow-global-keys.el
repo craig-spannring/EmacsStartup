@@ -28,4 +28,4 @@
           (define-key gud-mode-map [s-down]  'gud-step)
           (define-key gud-mode-map [s-up]    'gud-finish))))
 
-(provide 'global-keys-cts)
+(provide 'cow-global-keys)

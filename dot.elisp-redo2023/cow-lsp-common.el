@@ -85,4 +85,4 @@ lsp-mode keybinding
  ((equal cts-which-lsp-package 'use-eglot)
   (install-and-require-packages '(eglot))))
 
-(provide 'lsp-common-cts)
+(provide 'cow-lsp-common)

@@ -38,4 +38,4 @@ Note- Changes won't take effect until you restart emacs."
 (use-package magit
  :ensure t)
 
-(provide 'vc-cts)
+(provide 'cow-vc)

@@ -4,11 +4,11 @@
 
 (message "Loading AC common")
 
-(require 'package-helpers-cts)
+(require 'cow-package-helpers)
 
 (use-package company :ensure t)
 ;; (install-and-require-packages '(auto-complete))
 
 ; (require 'auto-complete-config)
 
-(provide 'complete-common-cts)
+(provide 'cow-complete-common)

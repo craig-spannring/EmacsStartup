@@ -19,8 +19,8 @@
 
 (message "Loading C++ support.")
 
-(require 'package-helpers-cts)
-(require 'complete-common-cts)
+(require 'cow-package-helpers)
+(require 'cow-complete-common)
 
 ;; (global-set-key [f9 ?f] 'msvc-find-file)
 ;; (global-set-key [f9 ?c] 'msvc-compile-current-project)
@@ -68,4 +68,4 @@
     ))
 
 
-(provide 'cpp-setup-cts)
+(provide 'cow-cpp-setup)

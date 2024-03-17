@@ -4,4 +4,4 @@
 (global-set-key "\C-cn" 'find-name-dired)
 (global-set-key "\C-cl" 'find-grep-dired)
 
-(provide 'dired-cts)
+(provide 'cow-dired)
