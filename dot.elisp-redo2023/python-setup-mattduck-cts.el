@@ -16,9 +16,8 @@
                 ("pyls.plugins.pycodestyle.enabled" nil t)
                 ("pyls.plugins.mccabe.enabled" nil t)
                 ("pyls.plugins.pyflakes.enabled" nil t)))
-             :hook
-             ((python-mode . lsp)
-              (lsp-mode . lsp-enable-which-key-integration))
+             :hook ((python-mode . lsp)
+                    (lsp-mode . lsp-enable-which-key-integration))
              :bind (:map evil-normal-state-map
                          ("gh" . lsp-describe-thing-at-point)
                          :map md/leader-map
