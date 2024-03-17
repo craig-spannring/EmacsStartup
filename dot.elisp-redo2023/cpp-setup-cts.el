@@ -37,12 +37,14 @@
   ;;                     (c++-mode-hook lsp)
   ;;                     (c++-mode-hook myhook))
   ;;              )
+  (use-package yasnippet :ensure t)
   (use-package lsp-mode
                :ensure   t
                :config   (setq lsp-auto-guess-root t) ; Automatically guess project root
                :commands (lsp lsp-deferred)
                :hook ((c-mode-hook   lsp)
                       (c++-mode . lsp-deferred))
+               :config   (setq lsp-log-io t)
                :config   (setq lsp-auto-configure t))
   )
  ((equal cts-which-lsp-package 'use-eglot)

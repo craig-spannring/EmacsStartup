@@ -1,8 +1,8 @@
 ;;; Setup emacs.
 ;;;
 
-(setq load-path (cons (expand-file-name "~/.elisp-redo2023")          load-path))
-(setq load-path (cons (expand-file-name "~/.elisp-redo2023/3rdParty") load-path))
+(setq load-path (cons (file-name-directory load-file-name)
+                      load-path))
 
 (load "pre-config-cts")
 
@@ -16,6 +16,7 @@
 (require 'moon-configuration-cts)
 (require 'vc-cts)
 (require 'global-keys-cts)
+(require 'projects-cts)
 
 (load "post-config-cts")
 

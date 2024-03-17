@@ -10,4 +10,10 @@ Desired features
 - find out if there are more modern ways of doing syntax highlights.
 - magit
 - dsvn
+- It should use "use-package" to simplify loading new packages. https://github.com/jwiegley/use-package
 
+
+
+# Packages to Look at
+
+- helm - package for incremental completions 
