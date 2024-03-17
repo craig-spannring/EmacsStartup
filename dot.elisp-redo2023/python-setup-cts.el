@@ -27,6 +27,7 @@ Note- Changes won't take effect until you restart emacs."
           (const none))
   :group 'cts-emacs-conf)
 
+(message "Using %s for python support" cts-python-which-support)
 
 (cond
  ((equal cts-python-which-support 'cow)      (require 'python-setup-cow-cts))
