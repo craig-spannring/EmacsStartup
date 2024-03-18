@@ -16,9 +16,9 @@
              
 (package-initialize)
 
-(defconst cts-setup-era
-  ;; 'v2018
-  'v2023
+(defconst cow-setup-era
+   'v2018
+  ;; 'v2023
   ;; 'ancient
   "Select which era of emacs initialization to use. 
 Note- Changes won't take effect until you restart emacs.")
@@ -26,8 +26,8 @@ Note- Changes won't take effect until you restart emacs.")
 
 (let ((cts-stage2
        (cond
-        ((equal cts-setup-era 'v2023) (expand-file-name "~/.elisp-redo2023/emacs-stage2.el"))
-        ((equal cts-setup-era 'v2018) (expand-file-name "~/.elisp-redo2018/emacs-stage2.el"))
+        ((equal cow-setup-era 'v2023) (expand-file-name "~/.elisp-redo2023/emacs-stage2.el"))
+        ((equal cow-setup-era 'v2018) (expand-file-name "~/.elisp-redo2018/emacs-stage2.el"))
         ((> emacs-major-version 28) (expand-file-name (format "~/.elisp%d/emacs-stage2.el"
                                                               emacs-major-version)))
         ((> emacs-major-version 24) (expand-file-name "~/.elisp-redo2018/emacs-stage2.el"))

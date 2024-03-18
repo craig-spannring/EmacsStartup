@@ -22,12 +22,21 @@
 (require 'cow-package-helpers)
 (require 'cow-complete-common)
 
+(defcustom cow-cpp-support 'use-rtags-cpp
+  "Select which Emacs package to use for C++ 
+Note- Changes won't take effect until you restart emacs."
+  :type '(choice (const use-lsp-cpp) (const use-rtags-cpp))
+  :group 'cts-emacs-conf)
+
 ;; (global-set-key [f9 ?f] 'msvc-find-file)
 ;; (global-set-key [f9 ?c] 'msvc-compile-current-project)
 ;; (global-set-key [f9 f9] 'next-error)
 ;; (global-set-key [f5 ?c] 'compile)
 
 (cond
+ ((equal cow-cpp-support 'use-rtags-cpp)
+  (message "Using rdm for C++ mode")
+  (require 'cow-cpp-setup-rtags))
  ((equal cts-which-lsp-package 'use-lsp)
   (message "Using lsp-mode for C++ mode.")
   ;; (install-and-require-packages '(lsp-mode))

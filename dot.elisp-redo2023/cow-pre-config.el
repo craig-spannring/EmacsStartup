@@ -7,6 +7,6 @@
                    (format "%s/custom-%d-%s.el"
                            user-emacs-directory
                            emacs-major-version
-                           cts-setup-era))))
+                           cow-setup-era))))
         (if (file-exists-p tmp) (load tmp))
         tmp))
