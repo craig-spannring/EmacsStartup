@@ -21,7 +21,8 @@
   ;; 'v2023
   ;; 'ancient
   "Select which era of emacs initialization to use. 
-Note- Changes won't take effect until you restart emacs.")
+We base the filename of custom-file on this constant.  That 
+means you must edit it by hand and restart emacs")
 
 
 (let ((cts-stage2
