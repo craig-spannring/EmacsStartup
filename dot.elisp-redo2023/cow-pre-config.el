@@ -1,7 +1,5 @@
 ;;; Settings that should be made prior to loading our packages.
 
-
-
 (setq custom-file
       (let* ((tmp (expand-file-name
                    (format "%s/custom-%d-%s.el"
@@ -10,3 +8,5 @@
                            cow-setup-era))))
         (if (file-exists-p tmp) (load tmp))
         tmp))
+
+(defgroup cow-emacs-conf nil "Settings for the Craig's Own Way package")

@@ -77,7 +77,7 @@ lsp-mode keybinding
   :type '(choice
           (const use-eglot) ; see https://www.gnu.org/software/emacs/manual/html_mono/eglot.html
           (const use-lsp))  ; 
-  :group 'cts-emacs-conf)
+  :group 'cow-emacs-conf)
 
 (cond
  ((equal cts-which-lsp-package 'use-lsp)

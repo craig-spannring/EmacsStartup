@@ -10,7 +10,7 @@
   "Select which Emacs package to use for Subversion. 
 Note- Changes won't take effect until you restart emacs."
   :type '(choice (const psvn) (const dsvn))
-  :group 'cts-emacs-conf)
+  :group 'cow-emacs-conf)
 
 ;; (add-hook 'log-edit-hook 'svn_bz-insert-bugzilla-synopsis)
 

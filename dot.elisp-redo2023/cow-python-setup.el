@@ -25,7 +25,7 @@ Note- Changes won't take effect until you restart emacs."
           (const enzu)     ; See https://enzuru.medium.com/helpful-emacs-python-mode-hooks-especially-for-type-hinting-c4b70b9b2216
           (const mattduck) ; See https://www.mattduck.com/lsp-python-getting-started.html
           (const none))
-  :group 'cts-emacs-conf)
+  :group 'cow-emacs-conf)
 
 (message "Using %s for python support" cts-python-which-support)
 

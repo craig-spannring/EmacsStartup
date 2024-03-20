@@ -26,7 +26,7 @@
   "Select which Emacs package to use for C++ 
 Note- Changes won't take effect until you restart emacs."
   :type '(choice (const use-lsp-cpp) (const use-rtags-cpp))
-  :group 'cts-emacs-conf)
+  :group 'cow-emacs-conf)
 
 ;; (global-set-key [f9 ?f] 'msvc-find-file)
 ;; (global-set-key [f9 ?c] 'msvc-compile-current-project)
