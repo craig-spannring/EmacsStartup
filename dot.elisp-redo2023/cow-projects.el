@@ -10,8 +10,9 @@ This lookup table is a list of dotted pairs.
 The first item in each dotted is a predicate function.  This
 predicate function takes 3 parmeters:
    -name        Current (partial) filename to expand.
-   -predicate   
-   -how
+   -predicate   A predicate function to filter out files
+                that shouldn't be considered. 
+   -how         See 'Programmed Completion' in elisp manual
 
 The second item in each dotted pair is a function that will setup 
 for the given project.")

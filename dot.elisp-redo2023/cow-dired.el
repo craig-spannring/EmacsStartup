@@ -4,4 +4,7 @@
 (global-set-key "\C-cn" 'find-name-dired)
 (global-set-key "\C-cl" 'find-grep-dired)
 
+
+(use-package ztree :ensure t)
+
 (provide 'cow-dired)

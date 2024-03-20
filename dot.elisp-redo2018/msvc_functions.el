@@ -434,6 +434,9 @@ the value is \"\".
 
 
 (defun msvc-complete-file-name (name predicate how)
+  "COLLECTION function for use by completing-read"
+  ;; (message "msvc-complete-file-name\n  name;      %s\n  predicate: %s\n  how:       %s" name predicate how)
+  
   ;; First get rid of anything in front of the last double slash
   (while (string-match "//" name)
     (setq name (substring name (+ 2 (string-match "//" name)))))
