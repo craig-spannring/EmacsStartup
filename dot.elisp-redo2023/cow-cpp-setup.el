@@ -39,13 +39,6 @@ Note- Changes won't take effect until you restart emacs."
   (require 'cow-projects-bsr2))
  ((equal cts-which-lsp-package 'use-lsp)
   (message "Using lsp-mode for C++ mode.")
-  ;; (install-and-require-packages '(lsp-mode))
-  ;; (use-package lsp-mode
-  ;;              :ensure t
-  ;;              :hook ((c-mode-hook   lsp)
-  ;;                     (c++-mode-hook lsp)
-  ;;                     (c++-mode-hook myhook))
-  ;;              )
   (use-package yasnippet :ensure t)
   (use-package lsp-mode
                :ensure   t
