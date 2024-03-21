@@ -36,7 +36,7 @@ Note- Changes won't take effect until you restart emacs."
 (cond
  ((equal cow-cpp-support 'use-rtags-cpp)
   (message "Using rdm for C++ mode")
-  (require 'cow-cpp-setup-rtags))
+  (require 'cow-projects-bsr2))
  ((equal cts-which-lsp-package 'use-lsp)
   (message "Using lsp-mode for C++ mode.")
   ;; (install-and-require-packages '(lsp-mode))

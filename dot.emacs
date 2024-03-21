@@ -17,8 +17,8 @@
 (package-initialize)
 
 (defconst cow-setup-era
-   'v2018
-  ;; 'v2023
+  ;; 'v2018
+   'v2023
   ;; 'ancient
   "Select which era of emacs initialization to use. 
 We base the filename of custom-file on this constant.  That 

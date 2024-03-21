@@ -37,4 +37,4 @@
 
 (cow-register-project-type '(_cow-expand-rtag-proj _cow-setup-rtag-proj))
 
-(provide 'cow-cpp-setup-rtags)
+(provide 'cow-projects-bsr2)
