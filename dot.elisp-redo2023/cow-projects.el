@@ -70,13 +70,4 @@ cow-register-project-type for information about the format of the
 dotted pair.")
 
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; remove this block                              ;;
-(defun myexpander  (name predicate how) t)        ;;
-(defun mysetup     (name)               nil)	  ;;
-(cow-register-project-type '(myexpander mysetup)) ;;
-(cow-register-project-type '(myexpander mysetup)) ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (provide 'cow-projects)

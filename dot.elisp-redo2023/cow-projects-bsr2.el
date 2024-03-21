@@ -29,7 +29,8 @@
    ((and (consp how) (equal (car how) 'boundaries))
         (message "how is (boundaries . suffix)"))
    ((and (consp how) (equal (car how) 'metadata))
-    (message "how is metadata")))
+    (message "how is metadata"))
+   (t (message "how is unhandled.  |%s|" how)))
   nil)
 
 (defun _cow-setup-rtag-proj (name)
