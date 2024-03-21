@@ -12,9 +12,13 @@
 		       "Project File: "  
 		       ;; COLLECTION
 		       #'(lambda (name predicate how)
-			   (message "The predicate returns %s" (funcall predicate "hello"))
-			   (message "partial name is %s" name)
-			   "now")
+                           (message "In collection lambda.  how=%s" how)
+                           (let* ((outcomes (mapcar #'(lambda (x)
+                                                        (message "looking at %s" x)
+                                                        (funcall (car x) name predicate how))
+                                                        _cow-proj-handler-map)))
+                             (message "outcomes is %s" outcomes)
+		             "now"))
 		       ;; PREDICATE
 		       #'(lambda (x) (message "is filtering %s" x))
 		       ;; REQUIRE-MATCH

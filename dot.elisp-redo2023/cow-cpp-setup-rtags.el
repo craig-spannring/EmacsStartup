@@ -17,7 +17,19 @@
              :config (setq rtags-display-result-backend      'helm))
 
              
-(defun _cow-expand-rtag-proj (name predicate how) 
+(defun _cow-expand-rtag-proj (name predicate how)
+  (message "in  (_cow-expand-rtag-proj %s %s %s)" name predicate how)
+  (cond
+   ((null how)
+    (message "how is nil"))
+   ((equal how t)
+    (message "how is t"))
+   ((equal how 'lambda) ;; check to see if NAME is an exact match for a project filename
+    (message "how is lambda"))
+   ((and (consp how) (equal (car how) 'boundaries))
+        (message "how is (boundaries . suffix)"))
+   ((equal how 'metadata)
+    (message "how is metadata")))
   nil)
 
 (defun _cow-setup-rtag-proj (name)
