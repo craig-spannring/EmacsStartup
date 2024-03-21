@@ -28,7 +28,7 @@
     (message "how is lambda"))
    ((and (consp how) (equal (car how) 'boundaries))
         (message "how is (boundaries . suffix)"))
-   ((equal how 'metadata)
+   ((and (consp how) (equal (car how) 'metadata))
     (message "how is metadata")))
   nil)
 
