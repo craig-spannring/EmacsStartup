@@ -1,4 +1,5 @@
 
+(require 'cl-lib)
 (use-package projectile
              :ensure t)
 
@@ -16,20 +17,25 @@
 		      ;; For each one of the project types registered by
 		      ;; cow-register-project-type, call the collection
 		      ;; function
-                      (message "In collection lambda.  how=%s" how)
-                      (let* ((outcomes (mapcar #'(lambda (x)
-						   (let* ((completion (car x))
-							  (predicate  (cadr x)))
-                                                     (message "looking at %s" x)
-                                                     (funcall completion
-							      name
-							      predicate
-							      how)))
-                                               _cow-proj-handler-map)))
+                      (message "In collection function.  how=%s" how)
+                      (let*
+			  ((outcomes (mapcar
+				      #'(lambda (proj-bundle)
+					  (let*
+					      ((completion (car  proj-bundle))
+					       (predicate  (cadr proj-bundle)))
+					    (funcall completion
+						     name
+						     predicate
+						     how)))
+                                      _cow-proj-handler)))
                         (message "outcomes is %s" outcomes)
-		        "now"))
+			;; TODO figure out how to colapse all the outcomes into one
+			(cond
+			 ((member t outcomes) t)
+			 (t nil))))
 		  ;; PREDICATE
-		  #'(lambda (x) (message "Note- this shouldn't get called. (filtering %s)" x))
+		  #'(lambda (x) (message "Note- Shouldn't get here. |%s|" x))
 		  ;; REQUIRE-MATCH
 		  t                 
 		  ;; INITIAL-INPUT
@@ -40,10 +46,18 @@
 		  nil
 		  ;; INHERIT-INPUT-METHOD
 		  nil))))
-  (message "inside cow-switch-project")
-  (message "proj-file is %s" proj-file))
+  (let* ((setup (cdr (car (cl-remove-if-not
+		      #'(lambda (x) (car x))
+		      (mapcar #'(lambda (proj-bundle)
+				  (let*
+				      ((setup      (caddr proj-bundle))
+				       (predicate  (cadr  proj-bundle)))
+				    (cons (funcall predicate proj-file) setup)))
+			      _cow-proj-handler))))))
+    (message "proj-file is %s" proj-file)
+    (message "setup is %s" setup)
+    (funcall setup proj-file)))
 
-;; (defalias 'switch-project cow-switch-project)
 
 (defun cow-register-project-type (completion predicate setup)
   "Register project type with the cow. 
@@ -76,13 +90,13 @@ collection function.  This collection function takes 3 parmeters:
 The second item in each dotted pair is a function that will setup
 for the given project."
   (let* ((proj (list completion predicate setup)))
-    (if (not (member proj _cow-proj-handler-map))
+    (if (not (member proj _cow-proj-handler))
 	(progn
 	  (message "trying to add %s" proj)
-	  (setq _cow-proj-handler-map (cons proj _cow-proj-handler-map)))
+	  (setq _cow-proj-handler (cons proj _cow-proj-handler)))
       (message "not adding %s" proj))))
 
-(defvar _cow-proj-handler-map nil
+(defvar _cow-proj-handler nil
 "Lookup table of project handlers.
 
 This lookup table is a list of dotted pairs.  See
