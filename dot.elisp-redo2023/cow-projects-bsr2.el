@@ -17,25 +17,42 @@
              :config (setq rtags-display-result-backend      'helm))
 
              
-(defun _cow-expand-rtag-proj (name predicate how)
-  (message "in  (_cow-expand-rtag-proj %s %s %s)" name predicate how)
+(defun _cow-expand-bsr2-proj (name predicate how)
+  
+  (message "in (_cow-expand-bsr2-proj %s %s %s)" name predicate how)
   (cond
    ((null how)
-    (message "how is nil"))
+    ;; This is a try-completion operation 
+    (message "how is nil")
+    nil)
    ((equal how t)
-    (message "how is t"))
-   ((equal how 'lambda) ;; check to see if NAME is an exact match for a project filename
-    (message "how is lambda"))
+    ;; This an all-completions operation 
+    (message "how is t")
+    nil)
+   ((equal how 'lambda)
+    ;; This a test-completions operation
+    (message "how is lambda")
+    (funcall predicate name))
    ((and (consp how) (equal (car how) 'boundaries))
-        (message "how is (boundaries . suffix)"))
-   ((and (consp how) (equal (car how) 'metadata))
-    (message "how is metadata"))
-   (t (message "how is unhandled.  |%s|" how)))
-  nil)
+    (message "how is (boundaries . suffix)")
+    nil)
+   ((eq how 'metadata)
+    (message "how is metadata")
+    '(metadata '((category file))))
+   (t
+    (message "how is unhandled.  |%s|" how)
+    nil)))
 
-(defun _cow-setup-rtag-proj (name)
+(defun _cow-predicate-bsr2-proj (name)
+  "Determine if NAME indicates a bsr2 project"
+  (and (file-exists-p name) (equal (file-name-nondirectory name) "bsr2")))
+
+(defun _cow-setup-bsr2-proj (name)
+  (message "need to setup for project %s" name)
   t)
 
-(cow-register-project-type '(_cow-expand-rtag-proj _cow-setup-rtag-proj))
+(cow-register-project-type '_cow-expand-bsr2-proj
+                           '_cow-predicate-bsr2-proj
+                           '_cow-setup-bsr2-proj)
 
 (provide 'cow-projects-bsr2)
