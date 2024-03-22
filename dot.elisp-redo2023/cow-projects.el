@@ -4,7 +4,7 @@
              :ensure t)
 
  
-(defun cow-switch-project (proj-file)
+(defun cow-load-project (proj-file)
   "Herd the cow into a different project.
 "
   (interactive (list
@@ -56,13 +56,22 @@
 			      _cow-proj-handler))))))
     (message "proj-file is %s" proj-file)
     (message "setup is %s" setup)
-    (funcall setup proj-file)))
+    (setq _cow-project-info (funcall setup proj-file))))
 
+(defun cow-compile-project ()
+  (interactive)
+  (when (null _cow-project-info) (error "Must load a project first"))
+  (let* ((compile-func (cdr (assoc 'compile-func _cow-project-info))))
+    (when (null compile-func)
+      (error "Internal error: Project type doesn't provide 'compile-func"))
+    (message "compile function is %s" compile-func)
+    (funcall compile-func)))
+    
 
 (defun cow-register-project-type (completion predicate setup)
   "Register project type with the cow. 
 
-PROJ is a dotted pair. The first item in the dotted is a
+PROJ is a list of three items. The first item in the dotted is a
 collection function.  This collection function takes 3 parmeters:
    -name        Current (partial) filename to expand.
    -predicate   A predicate function to filter out files
@@ -88,7 +97,14 @@ collection function.  This collection function takes 3 parmeters:
                     The collection function should return nil
 
 The second item in each dotted pair is a function that will setup
-for the given project."
+for the given project.
+
+The third item is a setup function.  The function must take a
+single argument, the filename of the project.  The function
+should return a plist with the keys
+  compile
+  proj-file
+"
   (let* ((proj (list completion predicate setup)))
     (if (not (member proj _cow-proj-handler))
 	(progn
@@ -102,6 +118,11 @@ for the given project."
 This lookup table is a list of dotted pairs.  See
 cow-register-project-type for information about the format of the
 dotted pair.")
+
+(defvar _cow-project-info nil
+  "Association list with information about the project including
+project file name and a function to compile the project. ")
+  
 
 
 (provide 'cow-projects)
