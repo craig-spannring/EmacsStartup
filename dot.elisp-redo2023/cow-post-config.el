@@ -7,3 +7,9 @@
   :group 'cow-emacs-conf)
 (display-time-mode (if cow-show-clock 1 -1))
 
+(show-paren-mode 1)
+
+(defcustom cow-highlight-active-region nil
+  "Should the active region be highlighted") 
+(transient-mark-mode (if cow-highlight-active-region 1 -1))
+
