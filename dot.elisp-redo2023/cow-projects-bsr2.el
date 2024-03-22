@@ -22,22 +22,23 @@
   (message "in (_cow-expand-bsr2-proj %s %s %s)" name predicate how)
   (cond
    ((null how)
-    ;; This is a try-completion operation 
-    (message "how is nil")
-    nil)
+    ;; This is a try-completion operation
+    (cond
+     ((equal name "")
+      (message "returning %s" default-directory)
+      default-directory)
+     (t
+      (message "returning nil")
+      nil)))
    ((equal how t)
     ;; This an all-completions operation 
-    (message "how is t")
     nil)
    ((equal how 'lambda)
     ;; This a test-completions operation
-    (message "how is lambda")
     (funcall predicate name))
    ((and (consp how) (equal (car how) 'boundaries))
-    (message "how is (boundaries . suffix)")
     nil)
    ((eq how 'metadata)
-    (message "how is metadata")
     '(metadata '((category file))))
    (t
     (message "how is unhandled.  |%s|" how)
@@ -47,9 +48,22 @@
   "Determine if NAME indicates a bsr2 project"
   (and (file-exists-p name) (equal (file-name-nondirectory name) "bsr2")))
 
-(defun _cow-setup-bsr2-proj (name)
-  (message "need to setup for project %s" name)
-  t)
+(defun _cow-setup-bsr2-proj (proj-file)
+  (message "need to setup for project %s" proj-file)
+  (setq compile-command
+        (concat 
+         (abbreviate-file-name
+          (expand-file-name (concat
+                             (file-name-directory proj-file)
+                             "./bsr2")))
+         " build"))
+  (list (cons 'proj-file    proj-file)
+	(cons 'compile-func #'(lambda ()
+				(let ((cmd (read-from-minibuffer
+					    "Compile project command: "
+					    compile-command nil nil
+					    '(compile-history . 1))))
+				  (compile cmd))))))
 
 (cow-register-project-type '_cow-expand-bsr2-proj
                            '_cow-predicate-bsr2-proj
