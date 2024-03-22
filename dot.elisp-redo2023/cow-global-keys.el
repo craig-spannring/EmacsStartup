@@ -28,4 +28,6 @@
           (define-key gud-mode-map [s-down]  'gud-step)
           (define-key gud-mode-map [s-up]    'gud-finish))))
 
+(global-set-key [f9 ?c] 'cow-compile-project)
+
 (provide 'cow-global-keys)
