@@ -28,15 +28,18 @@ Note- Changes won't take effect until you restart emacs."
   :type '(choice (const use-lsp-cpp) (const use-rtags-cpp))
   :group 'cow-emacs-conf)
 
-;; (global-set-key [f9 ?f] 'msvc-find-file)
-;; (global-set-key [f9 ?c] 'msvc-compile-current-project)
-;; (global-set-key [f9 f9] 'next-error)
-;; (global-set-key [f5 ?c] 'compile)
 
 (cond
  ((equal cow-cpp-support 'use-rtags-cpp)
   (message "Using rdm for C++ mode")
-  (require 'cow-projects-bsr2))
+  (when (< emacs-major-version 29)
+    (use-package rtags
+      :ensure t
+      :config (setq rtags-completions-enabled t)
+      :config (setq rtags-use_helm            t)
+      :config (setq rtags-display-result-backend      'helm))
+    (use-package company-rtags  :ensure t)
+    (use-package flycheck-rtags :ensure t)))
  ((equal cts-which-lsp-package 'use-lsp)
   (message "Using lsp-mode for C++ mode.")
   (use-package yasnippet :ensure t)
@@ -47,8 +50,7 @@ Note- Changes won't take effect until you restart emacs."
                :hook ((c-mode-hook   lsp)
                       (c++-mode . lsp-deferred))
                :config   (setq lsp-log-io t)
-               :config   (setq lsp-auto-configure t))
-  )
+               :config   (setq lsp-auto-configure t)))
  ((equal cts-which-lsp-package 'use-eglot)
     (message "Using eglot for C++ mode.")
     (install-and-require-packages '(eglot))
@@ -66,8 +68,7 @@ Note- Changes won't take effect until you restart emacs."
             (add-hook 'c-mode-hook   x)
             (add-hook 'c++-mode-hook x))
           '(company-mode
-            eglot-ensure))
-    ))
+            eglot-ensure))))
 
 
 (provide 'cow-cpp-setup)

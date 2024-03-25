@@ -17,6 +17,7 @@
 (require 'cow-vc)
 (require 'cow-global-keys)
 (require 'cow-projects)
+(require 'cow-projects-bsr2)
 
 (load "cow-post-config")
 
