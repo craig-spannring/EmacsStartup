@@ -1,5 +1,8 @@
 ;;; Setup keybindings.
 
+(global-set-key "\C-cf" 'find-dired)
+(global-set-key "\C-cn" 'find-name-dired)
+(global-set-key "\C-cl" 'find-grep-dired)
 
 (global-set-key [f12] 'compare-windows)
 (global-set-key [f6] 'other-window) 
@@ -29,5 +32,8 @@
           (define-key gud-mode-map [s-up]    'gud-finish))))
 
 (global-set-key [f9 ?c] 'cow-compile-project)
+(global-set-key [f9 f9] 'next-error)
+(global-set-key [f5 ?c] 'compile)
+
 
 (provide 'cow-global-keys)
