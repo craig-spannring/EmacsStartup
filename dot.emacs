@@ -16,6 +16,8 @@
              
 (package-initialize)
 
+(if (< emacs-major-version 24) (error "Requires Emacs 24 or newer"))
+
 (defconst cow-setup-era
   'v2018
   ;; 'v2023
