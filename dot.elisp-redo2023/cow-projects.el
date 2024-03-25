@@ -33,8 +33,9 @@
     (setq _cow-project-info (funcall setup proj-file))))
 
 (defun cow-compile-project ()
+  "Run compile commands for a loaded project. "
   (interactive)
-  (when (null _cow-project-info) (error "Must load a project first"))
+  (when (null _cow-project-info) (error "Error: must load a project first."))
   (let* ((compile-func (cdr (assoc 'compile-func _cow-project-info))))
     (when (null compile-func)
       (error "Internal error: Project type doesn't provide 'compile-func"))
