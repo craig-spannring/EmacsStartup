@@ -18,7 +18,7 @@
 ; be-selective ;  (load "cc-mode")
 ; be-selective ;
 ; be-selective ;  (when (not (xemacs-p))
-; be-selective ;    (show-paren-mode 1)
+(show-paren-mode 1)
 ; be-selective ;    (require 'find-file))
 ; be-selective ;
 (define-key c-mode-map   "\C-co"    'msvc-find-other-file)
