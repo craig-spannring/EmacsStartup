@@ -7,9 +7,6 @@
 (load "cow-pre-config")
 
 (require 'cow-package-helpers)
-
-(setenv "PAGER" "cat")
-
 (require 'cow-dired)
 (require 'cow-python-setup)
 (require 'cow-cpp-setup)
