@@ -17,3 +17,12 @@ Desired features
 # Packages to Look at
 
 - helm - package for incremental completions 
+
+
+# Implementation Notes
+ 
+Public functions and variables all start with the cow- prefix. 
+
+Internal functions are prefixed with _cowguts- if they are internal to
+the defining elisp file, cowguts- if they are private to the cow-
+package.

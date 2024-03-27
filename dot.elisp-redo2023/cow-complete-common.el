@@ -7,7 +7,6 @@
 (require 'cow-package-helpers)
 
 (use-package company :ensure t)
-;; (install-and-require-packages '(auto-complete))
 
 ; (require 'auto-complete-config)
 

@@ -12,18 +12,15 @@
                :init     (message "Python cow backend: lsp-mode")
                :config   (setq lsp-auto-guess-root t) ; Automatically guess project root
                :commands (lsp lsp-deferred)
-               :hook (python-mode . lsp-deferred) ; Replace 'java-mode' with the appropriate major mode
+               :hook (python-mode . lsp-deferred) ; 
                :config   (setq lsp-auto-configure t))
   
-  ;; (use-package lsp-mode
-  ;;              :hook (python-mode . lsp-deferred) ; Replace 'java-mode' with the appropriate major mode
-  ;;              :commands (lsp lsp-deferred)
-  ;;              :config
-  ;;                                       ; (lsp-enable-which-key-integration t)
-  ;;              (setq lsp-auto-guess-root t) ; Automatically guess project root
-  ;;              ) ; Enable which-key integration for better discovery
-  (install-and-require-packages '(lsp-mode lsp-ui))
-  )
+  (install-and-require-packages '(lsp-mode lsp-ui)) ;; todo- replace with use-package
+  (mapc #'(lambda (exe)
+	    (when (not (executable-find exe))
+	      (message "Warning: Could not find %s.\nRequired for full python support." exe)
+	      (sleep-for 1.5)))
+	'("pylsp" "flake8")))
  ((equal cts-which-lsp-package 'use-eglot)
   (use-package eglot
                :ensure t

@@ -6,7 +6,6 @@
 (provide 'cow-dired)
 
 
-;;; Setup for grep-find
 (let* ((windows-nt (string= system-type "windows-nt"))
        (predicates (concat  ;; List of files and directories to exclude from the find
                     (if t          " \\( ! -regex '.*/Debug[a-zA-Z0-9]*Board/.*' \\) " "")
@@ -22,14 +21,17 @@
                     (if t          " \\( ! -name 'moc_*\\.cpp' \\) "                   "")
                     (if t          " \\( ! -regex '.*/\\.obj.*' \\) "                  "")
                     (if t          " \\( ! -regex '.*/\\.obj.*' \\) "                  "")))
-       (pattern (cond
+       (pattern (cond  	    ;; Way to run find on current computer for grep-find and find-dired
+
                  (windows-nt
                   (format "gfind . %s -type f -print0 | xargs -0 -e grep -nIH -e  " predicates))
                  (t
 		  (format "find . %s -type f -exec grep --color -nIH -e   {} +"     predicates))))
-       (index (cond
+       (index (cond         ;; Index will help us position cursor in mini-buffer for grep-find 
                  (windows-nt   (length pattern))
                  (t            (- (length pattern) 5)))))
+
+  ;; Setup to run find-dired
   (cond 
    (windows-nt
     (setq find-program            "gfind")

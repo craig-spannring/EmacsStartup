@@ -1,3 +1,7 @@
+;;; Setup python mode based on a blog entry from Matt Duck.
+;;;
+;;; See https://www.mattduck.com/lsp-python-getting-started.html
+
 
 (message "Setting up mattduck python support.")
 (use-package lsp-mode

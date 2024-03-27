@@ -28,7 +28,7 @@ Note- Changes won't take effect until you restart emacs."
   :type '(choice (const use-lsp-cpp) (const use-rtags-cpp))
   :group 'cow-emacs-conf)
 
-
+;; Setup the selected style of C++ support
 (cond
  ((equal cow-cpp-support 'use-rtags-cpp)
   (message "Using rdm for C++ mode")
@@ -53,22 +53,11 @@ Note- Changes won't take effect until you restart emacs."
                :config   (setq lsp-auto-configure t)))
  ((equal cts-which-lsp-package 'use-eglot)
     (message "Using eglot for C++ mode.")
-    (install-and-require-packages '(eglot))
-    ;; (use-package eglot
-    ;;              :ensure t
-    ;;              :config
-    ;;              (add-to-list 'eglot-server-programs '(cc-mode  . ("clangd")))
-    ;;              (add-to-list 'eglot-server-programs '(c++-mode . ("clangd")))
-    ;; 
-    ;;              :hook ((c-mode-hook   . eglot-ensure)
-    ;;                     (c++-mode-hook . eglot-ensure)))
+    (install-and-require-packages '(eglot)) ;; todo- replace with use-package
     (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
 
-    (mapc (lambda (x)
-            (add-hook 'c-mode-hook   x)
-            (add-hook 'c++-mode-hook x))
-          '(company-mode
-            eglot-ensure))))
+    (add-hook 'c-mode-common-hook 'company-mode)
+    (add-hook 'c-mode-common-hook 'eglot-ensure)))
 
 
 (provide 'cow-cpp-setup)

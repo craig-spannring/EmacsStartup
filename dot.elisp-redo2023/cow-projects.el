@@ -5,8 +5,7 @@
 
  
 (defun cow-load-project (proj-file)
-  "Move the cow into a different project.
-"
+  "Load a different project into COW"
   (interactive (list
 		(expand-file-name
 		 (read-file-name "Project File: " ;; PROMPT
@@ -43,7 +42,7 @@
     (funcall compile-func)))
     
 
-(defun cow-register-project-type (predicate setup)
+(defun cowguts-register-project-type (predicate setup)
   "Register project type with the cow. 
 
 PROJ is a list of three items. The first item in the dotted is a
@@ -128,19 +127,17 @@ comes after the last repeated slashes."
 	remaining)
        (t (concat "/" remaining))))))
 
-	                  
 (defvar _cow-proj-handler nil
 "Table of project handlers.
 
 This lookup table contains a list of dotted pairs.  The first
 element is a predicate function.  The second element is a setup
-function.  See cow-register-project-type for more information.")
+function.  See cowguts-register-project-type for more information.")
 
 (defvar _cow-project-info nil
   "Association list with information about the current project
 including project file name and a function to compile the
 project. ")
-  
 
 
 (provide 'cow-projects)
