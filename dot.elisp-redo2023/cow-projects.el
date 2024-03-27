@@ -1,3 +1,6 @@
+;;;
+;;; The COW method to handle projects.
+;;;
 
 (require 'cl-lib)
 (use-package projectile
@@ -43,39 +46,16 @@
     
 
 (defun cowguts-register-project-type (predicate setup)
-  "Register project type with the cow. 
+  "Register project type with the COW. 
 
-PROJ is a list of three items. The first item in the dotted is a
-collection function.  This collection function takes 3 parmeters:
-   -name        Current (partial) filename to expand.
-   -predicate   A predicate function to filter out files
-                that shouldn't be considered. 
-   -how         See 'Programmed Completion' in elisp manual
-                  nil   
-                    The collection function should return 
-                      - nil if no matches
-                      - t if unique and exact match
-                      - longest common prefix 
-                  t
-                    The collection function should return 
-                      - list of all possible completions
-                  lambda
-                    The collection function should return 
-                      - t if the specified string is an exact match 
-                          for some completion alternative. 
-                      - nil otherwise
-                  (boundaries . suffix)
-                    See completion-boundaries function in ELisp manual.
-                  metadata
-                  any other value for how
-                    The collection function should return nil
+PREDICATE is a function to see if a file name is a particular
+type of project file.  The fuction must take a pathname and
+return non-nil if that file is a project file for this particular
+project type.
 
-The second item in each dotted pair is a function that will setup
-for the given project.
-
-The third item is a setup function.  The function must take a
-single argument, the filename of the project.  The function
-should return a plist with the keys
+SETUP is the function that will configure how we compile the
+project.  The function must take a single argument, the filename
+of the project.  The function should return a plist with the keys
   compile
   proj-file
 "
@@ -108,24 +88,6 @@ slash."
     (cl-remove-if #'file-directory-p
 		  (_cowguts-files-and-dirs-by-prefix dir prefix)))
 
-(defun cowguts-handle-// (f)
-  "Handle a // in a pathname.
-
-If f does not contain any repeated slashes then f is returned
-unaltered.  Otherwise this returns the portion of the string that
-comes after the last repeated slashes."
-
-  (if (not (cl-search "//" f)) f
-    (let* ((remaining (car (last  (split-string f "//+")))))
-      (cond
-       ((or (string-prefix-p "~/"  remaining)
-	    (string-prefix-p "./"  remaining)
-	    (string-prefix-p "../" remaining)
-	    (equal "."  remaining)
-	    (equal ".." remaining)
-	    (equal "~"  remaining))
-	remaining)
-       (t (concat "/" remaining))))))
 
 (defvar _cow-proj-handler nil
 "Table of project handlers.
@@ -135,9 +97,10 @@ element is a predicate function.  The second element is a setup
 function.  See cowguts-register-project-type for more information.")
 
 (defvar _cow-project-info nil
-  "Association list with information about the current project
-including project file name and a function to compile the
-project. ")
+  "Association list with information about the current project.
+The information includes at least:
+  - project file name 
+  - function to compile the project. ")
 
 
 (provide 'cow-projects)

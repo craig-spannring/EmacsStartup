@@ -2,8 +2,7 @@
 ;;
 ;; 
 
-(defcustom cts-which-lsp-package 'use-lsp  ;; other choice is 'use-eglot
-  
+(defcustom cts-which-lsp-package 'use-lsp  ;; other choice is 'use-eglot  
   "Which type of python support do we want to use?
 lsp-mode seems to be the more powerful of the two modes. 
 
@@ -29,7 +28,7 @@ Note- The default keyboard layout on a US 104 keyboard doesn't
 have a super-key.  You might need to map one of the existing
 keys (e.g. right-Windows key) to be the super key.
 
-lsp-mode keybinding
+Standard lsp-mode keybindings:
    <mouse-3>    lsp-mouse-click
    s-l G g      lsp-ui-peek-find-definitions
    s-l G i      lsp-ui-peek-find-implementation
@@ -81,8 +80,8 @@ lsp-mode keybinding
 
 (cond
  ((equal cts-which-lsp-package 'use-lsp)
-  (install-and-require-packages '(lsp-mode lsp-ui)))
+  (install-and-require-packages '(lsp-mode lsp-ui))) ;; todo replace with use-package
  ((equal cts-which-lsp-package 'use-eglot)
-  (install-and-require-packages '(eglot))))
+  (install-and-require-packages '(eglot))))          ;; todo replace with use-package
 
 (provide 'cow-lsp-common)

@@ -23,6 +23,6 @@ Desired features
  
 Public functions and variables all start with the cow- prefix. 
 
-Internal functions are prefixed with _cowguts- if they are internal to
+Internal functions are prefixed with _cow- if they are internal to
 the defining elisp file, cowguts- if they are private to the cow-
 package.
