@@ -1,4 +1,4 @@
-;;; Use rtags for C++ support
+;;; Support for a BSR2 project. 
 
 (require 'cow-package-helpers)
 (require 'cow-projects)
@@ -32,7 +32,7 @@ to enable code browsing.
   ;; 
   ;; cowguts-register-project-type wants the setup function to return
   ;; a plist with the keys proj-file and compile-func.  So create and
-  ;; return a plist.
+  ;; return such a plist.
   ;; 
   (list (cons 'proj-file    proj-file)
 	(cons 'compile-func #'(lambda ()

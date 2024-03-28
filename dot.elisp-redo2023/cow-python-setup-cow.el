@@ -6,7 +6,7 @@
 
 
 (cond
- ((equal cts-which-lsp-package 'use-lsp)
+ ((equal cow-which-lsp-package 'use-lsp)
   (use-package lsp-mode
                :ensure   t
                :init     (message "Python cow backend: lsp-mode")
@@ -21,7 +21,7 @@
 	      (message "Warning: Could not find %s.\nRequired for full python support." exe)
 	      (sleep-for 1.5)))
 	'("pylsp" "flake8")))
- ((equal cts-which-lsp-package 'use-eglot)
+ ((equal cow-which-lsp-package 'use-eglot)
   (use-package eglot
                :ensure t
                :init   (message "Python cow backend: eglot")

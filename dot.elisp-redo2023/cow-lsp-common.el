@@ -2,7 +2,7 @@
 ;;
 ;; 
 
-(defcustom cts-which-lsp-package 'use-lsp  ;; other choice is 'use-eglot  
+(defcustom cow-which-lsp-package 'use-lsp  ;; other choice is 'use-eglot  
   "Which type of python support do we want to use?
 lsp-mode seems to be the more powerful of the two modes. 
 
@@ -79,9 +79,9 @@ Standard lsp-mode keybindings:
   :group 'cow-emacs-conf)
 
 (cond
- ((equal cts-which-lsp-package 'use-lsp)
+ ((equal cow-which-lsp-package 'use-lsp)
   (install-and-require-packages '(lsp-mode lsp-ui))) ;; todo replace with use-package
- ((equal cts-which-lsp-package 'use-eglot)
+ ((equal cow-which-lsp-package 'use-eglot)
   (install-and-require-packages '(eglot))))          ;; todo replace with use-package
 
 (provide 'cow-lsp-common)

@@ -21,11 +21,14 @@
 
 (require 'cow-package-helpers)
 (require 'cow-complete-common)
+(require 'cow-lsp-common)
 
 (defcustom cow-cpp-support 'use-rtags-cpp
   "Select which Emacs package to use for C++ 
 Note- Changes won't take effect until you restart emacs."
-  :type '(choice (const use-lsp-cpp) (const use-rtags-cpp))
+  :type '(choice 
+	  (const use-lsp-cpp)
+	  (const use-rtags-cpp))
   :group 'cow-emacs-conf)
 
 ;; Setup the selected style of C++ support
@@ -40,7 +43,7 @@ Note- Changes won't take effect until you restart emacs."
       :config (setq rtags-display-result-backend      'helm))
     (use-package company-rtags  :ensure t)
     (use-package flycheck-rtags :ensure t)))
- ((equal cts-which-lsp-package 'use-lsp)
+ ((equal cow-which-lsp-package 'use-lsp)
   (message "Using lsp-mode for C++ mode.")
   (use-package yasnippet :ensure t)
   (use-package lsp-mode
@@ -51,7 +54,7 @@ Note- Changes won't take effect until you restart emacs."
                       (c++-mode . lsp-deferred))
                :config   (setq lsp-log-io t)
                :config   (setq lsp-auto-configure t)))
- ((equal cts-which-lsp-package 'use-eglot)
+ ((equal cow-which-lsp-package 'use-eglot)
     (message "Using eglot for C++ mode.")
     (install-and-require-packages '(eglot)) ;; todo- replace with use-package
     (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
