@@ -12,6 +12,8 @@
 (show-paren-mode 1)
 (setq-default indent-tabs-mode nil)
 (save-place-mode 1)
+(put 'upcase-region     'disabled nil)
+(put 'narrow-to-region 'disabled nil)
 
 (defcustom cow-highlight-active-region nil
   "Should the active region be highlighted"
