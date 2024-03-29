@@ -2,6 +2,7 @@
 
 (require 'cow-package-helpers)
 (require 'cow-projects)
+(require 'cow-cpp-setup)
 
 (use-package company        :ensure t)
 (use-package flycheck       :ensure t)
@@ -28,7 +29,17 @@ to enable code browsing.
                              (file-name-directory proj-file)
                              "./bsr2")))
          " build"))
-
+  
+  (cond
+   ((equal cow-cpp-support 'use-rtags-cpp)
+    ;; Fail if we can't find rdm
+    (if (not (rtags-executable-find "rdm")) 
+	(error "Error: couldn't find rdm"))
+    (cow-rdm-select-a-compile-commands-json proj))
+   ((equal cow-cpp-support 'use-lsp-cpp)
+    (message "TODO- flesh out the LSP cpp support")
+    (sleep-for 1.0)))
+  
   ;; 
   ;; cowguts-register-project-type wants the setup function to return
   ;; a plist with the keys proj-file and compile-func.  So create and
@@ -36,7 +47,7 @@ to enable code browsing.
   ;; 
   (list (cons 'proj-file    proj-file)
 	(cons 'compile-func #'(lambda ()
-				;; let use modify compile command 
+				;; let user modify compile command 
 				(let ((cmd (read-from-minibuffer
 					    "Compile project command: "
 					    compile-command nil nil

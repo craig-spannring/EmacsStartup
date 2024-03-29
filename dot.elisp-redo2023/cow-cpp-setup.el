@@ -35,14 +35,7 @@ Note- Changes won't take effect until you restart emacs."
 (cond
  ((equal cow-cpp-support 'use-rtags-cpp)
   (message "Using rdm for C++ mode")
-  (when (< emacs-major-version 29)
-    (use-package rtags
-      :ensure t
-      :config (setq rtags-completions-enabled t)
-      :config (setq rtags-use_helm            t)
-      :config (setq rtags-display-result-backend      'helm))
-    (use-package company-rtags  :ensure t)
-    (use-package flycheck-rtags :ensure t)))
+  (require 'cow-rtags-common))
  ((equal cow-which-lsp-package 'use-lsp)
   (message "Using lsp-mode for C++ mode.")
   (use-package yasnippet :ensure t)

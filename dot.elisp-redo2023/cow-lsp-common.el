@@ -80,8 +80,9 @@ Standard lsp-mode keybindings:
 
 (cond
  ((equal cow-which-lsp-package 'use-lsp)
-  (install-and-require-packages '(lsp-mode lsp-ui))) ;; todo replace with use-package
+  (use-package lsp-mode :ensure t)
+  (use-package lsp-ui   :ensure t))
  ((equal cow-which-lsp-package 'use-eglot)
-  (install-and-require-packages '(eglot))))          ;; todo replace with use-package
+  (use-package eglot)))
 
 (provide 'cow-lsp-common)

@@ -10,26 +10,26 @@
 (defun cow-load-project (proj-file)
   "Load a different project into COW"
   (interactive (list
-		(expand-file-name
-		 (read-file-name "Project File: " ;; PROMPT
-				 nil              ;; DIR
-				 nil              ;; DEFAULT-FILENAME
-				 t                ;; MUSTMATCH
-				 nil              ;; INITIAL
-				 #'(lambda (f)    ;; PREDICATE
-				     (or (mapcar
-					  #'(lambda (h)
-					      (funcall (car h) f))
-					  _cow-proj-handler)))))))
+                (expand-file-name
+                 (read-file-name "Project File: " ;; PROMPT
+                                 nil              ;; DIR
+                                 nil              ;; DEFAULT-FILENAME
+                                 t                ;; MUSTMATCH
+                                 nil              ;; INITIAL
+                                 #'(lambda (f)    ;; PREDICATE
+                                     (or (mapcar
+                                          #'(lambda (h)
+                                              (funcall (car h) f))
+                                          _cow-proj-handler)))))))
  
   (let* ((setup (cdr (car (cl-remove-if-not
-		      #'(lambda (x) (car x))
-		      (mapcar #'(lambda (proj-bundle)
-				  (let*
-				      ((setup      (cadr proj-bundle))
-				       (predicate  (car  proj-bundle)))
-				    (cons (funcall predicate proj-file) setup)))
-			      _cow-proj-handler))))))
+                      #'(lambda (x) (car x))
+                      (mapcar #'(lambda (proj-bundle)
+                                  (let*
+                                      ((setup      (cadr proj-bundle))
+                                       (predicate  (car  proj-bundle)))
+                                    (cons (funcall predicate proj-file) setup)))
+                              _cow-proj-handler))))))
     (message "proj-file is %s" proj-file)
     (message "setup is %s" setup)
     (setq _cow-project-info (funcall setup proj-file))))
@@ -61,9 +61,9 @@ of the project.  The function should return a plist with the keys
 "
   (let* ((proj (list predicate setup)))
     (if (not (member proj _cow-proj-handler))
-	(progn
-	  (message "trying to add %s" proj)
-	  (setq _cow-proj-handler (cons proj _cow-proj-handler)))
+        (progn
+          (message "trying to add %s" proj)
+          (setq _cow-proj-handler (cons proj _cow-proj-handler)))
       (message "not adding %s" proj))))
 
 (defun _cowguts-files-and-dirs-by-prefix (dir prefix)
@@ -78,15 +78,15 @@ of the project.  The function should return a plist with the keys
 All directories returned will be fully qualified have a trailing
 slash."
     (mapcar #'file-name-as-directory
-	    (cl-remove-if-not #'file-directory-p
-			      (_cowguts-files-and-dirs-by-prefix dir prefix))))
+            (cl-remove-if-not #'file-directory-p
+                              (_cowguts-files-and-dirs-by-prefix dir prefix))))
 (defun cowguts-files-by-prefix (dir prefix)
     "Return a list of all directories in DIR that start with PREFIX
 
 All directories returned will be fully qualified have a trailing
 slash."
     (cl-remove-if #'file-directory-p
-		  (_cowguts-files-and-dirs-by-prefix dir prefix)))
+                  (_cowguts-files-and-dirs-by-prefix dir prefix)))
 
 
 (defvar _cow-proj-handler nil
