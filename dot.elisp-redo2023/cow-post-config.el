@@ -10,6 +10,8 @@
   :group 'cow-emacs-conf)
 
 (show-paren-mode 1)
+(setq-default indent-tabs-mode nil)
+(save-place-mode 1)
 
 (defcustom cow-highlight-active-region nil
   "Should the active region be highlighted"
