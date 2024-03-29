@@ -84,9 +84,9 @@
     ;; Start the rdm process 
     (let* ((hash              (cts-rtp--projpath-hash project-path))
            (rtags-rdm-process (start-file-process-shell-command
-                              (format "RTags-%s" hash)
-                              (format "*rdm-%s*" hash)
-                              (cts-rtp--rdm-cmdline project-path))))
+                               (format "RTags-%s" hash)
+                               (format "*rdm-%s*" hash)
+                               (cts-rtp--rdm-cmdline project-path))))
       (set-process-query-on-exit-flag rtags-rdm-process nil)
       (set-process-sentinel rtags-rdm-process 'rtags-sentinel))
     ;; Create a readme file in the rdm directory
@@ -175,8 +175,9 @@
   "
   (concat (cts-rtp--rdmserver-dir project-path) "rdm.log"))
 
-(defun cts-rtp-all-files (project-path)
-  (message "rdm status %s" (cts-rtp--is-server-responsive project-path))
-  )
+;; TODO- remove
+;;(defun cts-rtp-all-files (project-path)
+;;  (message "rdm status %s" (cts-rtp--is-server-responsive project-path))
+;;   )
 
 (provide 'rtags_project)
