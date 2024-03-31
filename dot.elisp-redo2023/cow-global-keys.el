@@ -11,7 +11,6 @@
 (global-set-key [f5 ?c] 'compile)
 
 
-
 (cond (nil ;; For now, don't use this next set of mappings. 
         ;;
         ;; setup keys to make it easier to step in gdb
