@@ -20,7 +20,9 @@
   (let* ((era (getenv "COW_SETUP_ERA")))
     (cond ((string-equal era "2018")    'v2018)
           ((string-equal era "ancient") 'ancient)
-          (t                            'v2023)))
+          ((string-equal era "2023")    'v2023)
+          ((null era)                   'v2023)
+          (t                            (error "Invalid COW_SETUP_ERA.  Must be ancient, 2018, or 2023"))))
   "Select which era of emacs initialization to use. 
 We base the filename of custom-file on this constant.  That 
 means you must edit it by hand and restart emacs")
