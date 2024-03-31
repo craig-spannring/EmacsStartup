@@ -25,4 +25,4 @@ The 2023 version is the currently supported version and is selected by
 default.  If you wish to use the 2018 version simply set the
 environment variable `COW_SETUP_ERA` to `2018`.
 
-For more details on the 2023 version, see ./dot.elisp-redo2023/README.md 2023
+For more details on the 2023 version, see [2023](dot.elisp-redo2023/README.md)
