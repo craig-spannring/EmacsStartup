@@ -24,13 +24,14 @@ _cow-rdms-parent-dir (i.e. ~/.rdm-servers).
     (if (not (string-equal plain-name "compile_commands.json"))
 	(error "Unsupported file %s" plain-name))
 
-    ;; Stash away internal values that are baseed on the full path of
-    ;; compile_commands.json    
+    ;; Stash away location of of compile_commands.json.  All other
+    ;; project locations are based off of that.    
     (setq _cow-rdm-compile-commands-json-path full-path)
     (make-directory (_cow-rdm-server-dir) t)
                         
     ;; kill any previous cow-created RDM servers
-    ; TODO figure out how
+    ; TODO figure out how and figure out if we really want to and need
+    ; to do that.
 
     (message "About to start RDM")
     ;; Start rdm
@@ -45,7 +46,7 @@ _cow-rdms-parent-dir (i.e. ~/.rdm-servers).
                                       "/tmp/*;"
                                       "/private/tmp/*;"
                                       "/private/var/*\"")))
-         (cmd-line    (concat (rtags-executable-find "rdm")                      
+         (cmd-line    (concat (rtags-executable-find "rdm")
                               (format " --socket-file %s" (_cow-rdm-server-socket))
                               (format " --data-dir %s"    (_cow-rdm-server-datadir))
                               (format " --log-file %s"    (_cow-rdm-server-log-file))

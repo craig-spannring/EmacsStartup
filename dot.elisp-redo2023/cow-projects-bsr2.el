@@ -32,14 +32,11 @@ to enable code browsing.
                              (file-name-directory proj-file)
                              "./bsr2")))
          " build"))
-  (message "compile command is  %s" compile-command)
   (cond
    ((equal cow-cpp-support 'use-rtags-cpp)
-    (message "looking up rdm exe")
     ;; Fail if we can't find rdm
     (if (not (rtags-executable-find "rdm")) 
 	(error "Error: couldn't find rdm"))
-    (message "Loading %s for rtags support" proj-file)
     (cow-rdm-select-a-compile-commands-json
      (_cow-brs2-to-compile-commands-json proj-file)))
    ((equal cow-cpp-support 'use-lsp-cpp)
