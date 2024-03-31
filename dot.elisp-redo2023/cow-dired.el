@@ -5,6 +5,9 @@
 
 (provide 'cow-dired)
 
+(global-set-key "\C-cf" 'find-dired)
+(global-set-key "\C-cn" 'find-name-dired)
+(global-set-key "\C-cl" 'find-grep-dired)
 
 (let* ((windows-nt (string= system-type "windows-nt"))
        (predicates (concat  ;; List of files and directories to exclude from the find
