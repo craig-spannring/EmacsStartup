@@ -10,8 +10,6 @@
 ;; (add-to-list 'package-archives '("melpa"        . "http://melpa.org/packages/"))
 ;; (add-to-list 'package-archives '("gnu"          . "https://elpa.gnu.org/packages/"))
 ;; (add-to-list 'package-archives '("nongnu"       . "https://elpa.nongnu.org/nongnu/"))
-;; (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
-;; (add-to-list 'package-archives '("melpa"        . "http://melpa.org/packages/"))
 ;; (add-to-list 'package-archives '("org"          . "https://orgmode.org/elpa/"))
              
 (package-initialize)
@@ -19,12 +17,10 @@
 (if (< emacs-major-version 24) (error "Requires Emacs 24 or newer"))
 
 (defconst cow-setup-era
-  ;; 'v2018
-  ;; 'v2023
-  ;; 'ancient
-  (if (member (user-login-name) '("craig" "craig.spannring"))
-      'v2023
-    'v2018)
+  (let* ((era (getenv "COW_SETUP_ERA")))
+    (cond ((string-equal era "2018")    'v2018)
+          ((string-equal era "ancient") 'ancient)
+          (t                            'v2023)))
   "Select which era of emacs initialization to use. 
 We base the filename of custom-file on this constant.  That 
 means you must edit it by hand and restart emacs")
@@ -41,12 +37,6 @@ means you must edit it by hand and restart emacs")
       (message "Warning: Could not find stage2 file %s" cts-stage2)
     (load cts-stage2)))
         
-;;  
-;;  ;; Matlab editing support
-;;  (autoload 'matlab-mode "matlab" "Enter MATLAB mode." t)
-;;  (setq auto-mode-alist (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
-;;  (autoload 'matlab-shell "matlab" "Interactive MATLAB mode." t)
-;;  
 
 
 
