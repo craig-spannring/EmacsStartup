@@ -19,9 +19,12 @@
 (if (< emacs-major-version 24) (error "Requires Emacs 24 or newer"))
 
 (defconst cow-setup-era
-  'v2018
+  ;; 'v2018
   ;; 'v2023
   ;; 'ancient
+  (if (member (user-login-name) '("craig" "craig.spannring"))
+      'v2023
+    'v2018)
   "Select which era of emacs initialization to use. 
 We base the filename of custom-file on this constant.  That 
 means you must edit it by hand and restart emacs")
@@ -44,35 +47,6 @@ means you must edit it by hand and restart emacs")
 ;;  (setq auto-mode-alist (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
 ;;  (autoload 'matlab-shell "matlab" "Interactive MATLAB mode." t)
 ;;  
-;;  (custom-set-faces
-;;   ;; custom-set-faces was added by Custom.
-;;   ;; If you edit it by hand, you could mess it up, so be careful.
-;;   ;; Your init file should contain only one such instance.
-;;   ;; If there is more than one, they won't work right.
-;;   )
-;;  
 
- ; '(safe-local-variable-values
- ;   (quote
- ;    ((eval c-set-offset
- ;           (quote arglist-cont-nonempty)
- ;           (quote
- ;            (c-lineup-gcc-asm-reg c-lineup-arglist)))
- ;     (eval c-set-offset
- ;           (quote arglist-close)
- ;           0)
- ;     (eval c-set-offset
- ;           (quote arglist-intro)
- ;           (quote ++))
- ;     (eval c-set-offset
- ;           (quote case-label)
- ;           0)
- ;     (eval c-set-offset
- ;           (quote statement-case-open)
- ;           0)
- ;     (eval c-set-offset
- ;           (quote substatement-open)
- ;           0))))
 
-;; (put 'upcase-region 'disabled nil)
 
