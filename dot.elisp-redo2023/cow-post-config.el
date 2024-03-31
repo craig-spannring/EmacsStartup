@@ -24,3 +24,6 @@
   :group 'cow-emacs-conf)
 
 (setenv "PAGER" "cat")
+
+(put 'upcase-region    'disabled nil)
+(put 'narrow-to-region 'disabled nil)
