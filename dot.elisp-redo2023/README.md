@@ -13,15 +13,10 @@ Desired features
 - It should use "use-package" to simplify loading new packages. https://github.com/jwiegley/use-package
 
 
-
-# Packages to Look at
-
-- helm - package for incremental completions 
-
-
-# Implementation Notes
+# Naming Conventions
  
-Public functions and variables all start with the cow- prefix. 
+Public functions and variables all start with the cow- prefix.  (COW
+is short for "Craig's Own Way".)
 
 Internal functions are prefixed with _cow- if they are internal to
 the defining elisp file, cowguts- if they are private to the cow-
