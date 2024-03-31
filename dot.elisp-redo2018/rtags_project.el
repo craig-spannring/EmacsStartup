@@ -175,9 +175,5 @@
   "
   (concat (cts-rtp--rdmserver-dir project-path) "rdm.log"))
 
-;; TODO- remove
-;;(defun cts-rtp-all-files (project-path)
-;;  (message "rdm status %s" (cts-rtp--is-server-responsive project-path))
-;;   )
 
 (provide 'rtags_project)
