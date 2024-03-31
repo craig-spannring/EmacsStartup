@@ -8,6 +8,8 @@ To install
     $ cd EmacsStartup 
     $ ./install-symlinks 
 ```
+Note- the first time you run Emacs it will spend a fair amount of time
+downloading and installing pakcages.
 
 ## History 
 
@@ -18,3 +20,6 @@ VOS) from the elisp, but it was still crufty.  In 2023 I started a
 second round, This most recent refactor wasn't so much a refactor as
 it was a delete everything and rewrite anything I still wanted.
 
+The 2023 version is the currently supported version and is selected by
+default.  If you wish to use the 2018 version simply set the
+environment variable `COW_SETUP_ERA` to `2018`.

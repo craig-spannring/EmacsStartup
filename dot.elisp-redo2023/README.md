@@ -22,9 +22,9 @@ Internal functions are prefixed with _cow- if they are internal to
 the defining elisp file, cowguts- if they are private to the cow-
 package.
 
-# C++ Features
+# C++ IDE
 
-Capabilities 
+Desired Capabilities 
  1. auto-complete symbols
  1. Ability to jump to file using basename instead of requiring
     user to know full path.
@@ -40,4 +40,6 @@ Capabilities
  1.  find reimplementations of virthual method underneath cursor.
 
 These are all functional when `cow-cpp-support` is set to
-`'use-rtags-cpp`.
+`'use-rtags-cpp`.  (Default out of the box setting.)  You may
+customize the variable to use an LSP based IDE but COW's support of
+LSP isn't fully completed.
