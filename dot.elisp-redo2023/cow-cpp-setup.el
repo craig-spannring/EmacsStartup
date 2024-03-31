@@ -35,7 +35,8 @@ Note- Changes won't take effect until you restart emacs."
 (cond
  ((equal cow-cpp-support 'use-rtags-cpp)
   (message "Using rdm for C++ mode")
-  (require 'cow-rtags-common))
+  (require 'cow-rtags-common)
+  (add-hook 'c-mode-common-hook 'company-mode))
  ((equal cow-which-lsp-package 'use-lsp)
   (message "Using lsp-mode for C++ mode.")
   (use-package yasnippet :ensure t)
