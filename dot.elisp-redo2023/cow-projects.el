@@ -6,7 +6,14 @@
 (use-package projectile
              :ensure t)
 
- 
+
+;; Let user know they don't have a project loaded if they try to find a file
+;;
+(defun _cow-notify-no-project ()
+  (interactive) (message "No project loaded."))
+(global-set-key [f9 ?f] '_cow-notify-no-project)
+
+
 (defun cow-load-project (proj-file)
   "Load a different project into COW"
   (interactive (list
