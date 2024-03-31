@@ -1,20 +1,6 @@
 ;;; This sets up a C++ IDE
-;;;
-;;; Capabilities 
-;;;  1. auto-complete symbols
-;;;  2. (todo) Ability to jump to file using basename instead of requiring
-;;;            user to know full path
-;;;  3. (todo) Determine datatype of symbol under the cursor
-;;;  4. (todo) Find references to arbitrary symbol 
-;;;  5. (todo) Find references to symbol under the cursor
-;;;  6. (todo) Find declarations of arbitrary symbol
-;;;  7. (todo) Find declaration/definition of symbol under cursor
-;;;  8. (todo) cd into project directory and run compile
-;;;  9. (todo) Flip between source and header file
-;;; 10. (todo) rename symbol
-;;; 11. (todo) show inheritance tree.
-;;; 12  (todo) find reimplementations of virthual method underneath cursor.
 ;;; 
+;;; See README.md for more details. 
 
 
 (message "Loading C++ support.")
