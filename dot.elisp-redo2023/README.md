@@ -13,15 +13,6 @@ Desired features
 - It should use "use-package" to simplify loading new packages. https://github.com/jwiegley/use-package
 
 
-# Naming Conventions
- 
-Public functions and variables all start with the cow- prefix.  (COW
-is short for "Craig's Own Way".)
-
-Internal functions are prefixed with _cow- if they are internal to
-the defining elisp file, cowguts- if they are private to the cow-
-package.
-
 # C++ IDE
 
 Desired Capabilities 
@@ -43,3 +34,16 @@ These are all functional when `cow-cpp-support` is set to
 `'use-rtags-cpp`.  (Default out of the box setting.)  You may
 customize the variable to use an LSP based IDE but COW's support of
 LSP isn't fully completed.
+
+
+# Internals 
+
+## Naming Conventions
+ 
+Public functions and variables all start with the cow- prefix.  (COW
+is short for "Craig's Own Way".)
+
+Internal functions are prefixed with _cow- if they are internal to
+the defining elisp file, cowguts- if they are private to the cow-
+package.
+
