@@ -10,10 +10,12 @@
   :group 'cow-emacs-conf)
 
 (show-paren-mode 1)
-(setq-default indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)  ;; New buffers will use spaces by default
 (save-place-mode 1)
-(put 'upcase-region     'disabled nil)
-(put 'narrow-to-region 'disabled nil)
+(setq scroll-step 1)
+(setq blink-matching-paren t)
+(setq blink-matching-paren-distance (max 50000 blink-matching-paren-distance))
+(setq next-line-add-newlines nil)
 
 (defcustom cow-highlight-active-region nil
   "Should the active region be highlighted"
