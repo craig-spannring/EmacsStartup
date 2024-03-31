@@ -36,7 +36,7 @@ _cow-rdms-parent-dir (i.e. ~/.rdm-servers).
     (message "About to start RDM")
     ;; Start rdm
     (let*
-        ((job-count   (max 1 (- (system-cores :physical) 1)))
+        ((job-count   (max 1 (- (system-cores :physical t) 1)))
          (excludes    (format " --exclude-filter %s"
                               (concat "\""
                                       "*/tmp/bsr2-builds/*;"
@@ -62,7 +62,7 @@ _cow-rdms-parent-dir (i.e. ~/.rdm-servers).
                              (format "RTags-%s" unique-name)
                              (format "*rdm-%s*" unique-name)
                              cmd-line)))
-      (message "RDM started.\n%s" cmd-line)
+      (message "RDM started.\n")
       (set-process-query-on-exit-flag rdm-process nil)
       (set-process-sentinel           rdm-process 'rtags-sentinel))
 
@@ -83,17 +83,18 @@ _cow-rdms-parent-dir (i.e. ~/.rdm-servers).
       (rtags-call-rc "--socket-file" (_cow-rdm-server-socket)
                      "-J" (file-name-directory full-path)))
 
-    ;; Connect (?) to the server.
+    ;; Connect Emacs to the RDM  server.
     (setq rtags-socket-file (_cow-rdm-server-socket))
-          
+
+    ;; F9-f will find and open a file that rdm is aware of. 
+    (global-set-key [f9 ?f] 'rtags-find-file)
+
     ;; Create a README.txt file in the server directory
     (let* ((filename (concat (_cow-rdm-server-dir) "/README.txt")))
       (unless (file-exists-p filename)
         (with-temp-file filename (insert (message "Project: %s\n" path)))))
 
     _cow-rdm-compile-commands-json-path))
-
-
 
 
 (defun _cow-rdm-server-not-running ()
