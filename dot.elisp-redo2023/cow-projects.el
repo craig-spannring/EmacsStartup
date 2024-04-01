@@ -7,11 +7,12 @@
              :ensure t)
 
 
+;;
 ;; Let user know they don't have a project loaded if they try to find a file
 ;;
-(defun _cow-notify-no-project ()
-  (interactive) (message "No project loaded."))
-(global-set-key [f9 ?f] '_cow-notify-no-project)
+(defun _cow-find-file-no-proj () (interactive)
+       (message "No project loaded or find-file is not implemented yet."))
+(global-set-key [f9 ?f] '_cow-find-file-no-proj)
 
 
 (defun cow-load-project (proj-file)
@@ -109,5 +110,7 @@ The information includes at least:
   - project file name 
   - function to compile the project. ")
 
+
+(require 'cow-cpp-setup)
 
 (provide 'cow-projects)

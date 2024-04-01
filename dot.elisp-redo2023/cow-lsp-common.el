@@ -83,6 +83,9 @@ Standard lsp-mode keybindings:
   (use-package lsp-mode :ensure t)
   (use-package lsp-ui   :ensure t))
  ((equal cow-which-lsp-package 'use-eglot)
-  (use-package eglot)))
+  (use-package eglot))
+ (t
+  (message "Warning: cow-which-lsp-package's value is not recognized.")
+  (sleep-for 2.0)))
 
 (provide 'cow-lsp-common)

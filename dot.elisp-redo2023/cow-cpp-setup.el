@@ -25,10 +25,11 @@ Note- Changes won't take effect until you restart emacs."
   (add-hook 'c-mode-common-hook 'company-mode))
  ((equal cow-which-lsp-package 'use-lsp)
   (message "Using lsp-mode for C++ mode.")
+  (require 'cow-lsp-clangd-common)
   (use-package yasnippet :ensure t)
   (use-package lsp-mode
                :ensure   t
-               :config   (setq lsp-auto-guess-root t) ; Automatically guess project root
+               ;; :config   (setq lsp-auto-guess-root t) ; Automatically guess project root
                :commands (lsp lsp-deferred)
                :hook ((c-mode-hook   lsp)
                       (c++-mode . lsp-deferred))

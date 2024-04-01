@@ -10,7 +10,7 @@
   (use-package lsp-mode
                :ensure   t
                :init     (message "Python cow backend: lsp-mode")
-               :config   (setq lsp-auto-guess-root t) ; Automatically guess project root
+               ;; :config   (setq lsp-auto-guess-root t) ; Automatically guess project root
                :commands (lsp lsp-deferred)
                :hook (python-mode . lsp-deferred) ; 
                :config   (setq lsp-auto-configure t))

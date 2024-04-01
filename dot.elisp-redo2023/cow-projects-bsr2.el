@@ -32,6 +32,7 @@ to enable code browsing.
                              (file-name-directory proj-file)
                              "./bsr2")))
          " build"))
+  
   (cond
    ((equal cow-cpp-support 'use-rtags-cpp)
     ;; Fail if we can't find rdm
@@ -40,8 +41,9 @@ to enable code browsing.
     (cow-rdm-select-a-compile-commands-json
      (_cow-brs2-to-compile-commands-json proj-file)))
    ((equal cow-cpp-support 'use-lsp-cpp)
-    (message "TODO- flesh out the LSP cpp support")
-    (sleep-for 1.0)))
+    (cow-clangd-select-a-compile-commands-json
+     (_cow-brs2-to-compile-commands-json proj-file))))
+
   
   ;; 
   ;; cowguts-register-project-type wants the setup function to return
