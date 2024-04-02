@@ -7,10 +7,8 @@
              :ensure t)
 
 
-;;
-;; Let user know they don't have a project loaded if they try to find a file
-;;
 (defun _cow-find-file-no-proj () (interactive)
+       "Let user know if no project is loaded."
        (message "No project loaded or find-file is not implemented yet."))
 (global-set-key [f9 ?f] '_cow-find-file-no-proj)
 
@@ -42,6 +40,15 @@
     (message "setup is %s" setup)
     (setq _cow-project-info (funcall setup proj-file))))
 
+(defun cow-current-project-file()
+  "Print the current project in the mini-buffer"
+  (interactive)
+  (let ((proj-file (if _cow-project-info
+                       (cdr (assoc 'proj-file _cow-project-info))
+                     "None")))
+    (message "Current project: %s" proj-file)
+    proj-file))
+  
 (defun cow-compile-project ()
   "Run compile commands for a loaded project. "
   (interactive)

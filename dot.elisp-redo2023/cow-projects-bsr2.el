@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 ;;; Support for a BSR2 project. 
 
 (require 'cow-package-helpers)
@@ -41,7 +43,7 @@ to enable code browsing.
     (cow-rdm-select-a-compile-commands-json
      (_cow-brs2-to-compile-commands-json proj-file)))
    ((equal cow-cpp-support 'use-lsp-cpp)
-    (cow-clangd-select-a-compile-commands-json
+    (_cow-bsr2-select-a-compile-commands-json
      (_cow-brs2-to-compile-commands-json proj-file))))
 
   
@@ -62,5 +64,41 @@ to enable code browsing.
 
 (cowguts-register-project-type '_cow-predicate-bsr2-proj
                                '_cow-setup-bsr2-proj)
+
+
+
+(defun _cow-bsr2-select-a-compile-commands-json (path)
+  "Load a compile_commands.json. 
+Load the json from PATH."
+
+  (lsp-workspace-folders-add (file-name-directory  path))
+  
+  (global-set-key
+   [f9 ?f] 
+   (lambda (file-name)
+     ;; (interactive "f")
+     (interactive
+      (list
+       (completing-read "Find C++ File: "
+                        (cowguts-all-dot-c-cpp-h-and-hpp
+                         (file-name-directory  path))
+                        nil     ; predicate
+                        t       ; require-match
+                        nil     ; init
+                        nil     ; hist
+                        nil)))  ; def
+     
+     (message "In lambda (%s) path=%s" file-name path)
+
+     (let* ((file-full-path (gethash file-name (cowguts-all-dot-c-cpp-h-and-hpp
+                                               (file-name-directory  path)))))
+       (message "file-full-path: %s" file-full-path)
+       (_cow-bsr2-find-file-in-project file-full-path))))
+
+  (message "Loaded: %s" path))
+
+(defun _cow-bsr2-find-file-in-project (file-full-path)
+  (find-file file-full-path))
+
 
 (provide 'cow-projects-bsr2)
