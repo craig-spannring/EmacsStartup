@@ -26,7 +26,6 @@ In addition to the requirements imposed by cow-load-project
 this will optionally start rdm and connect with that server 
 to enable code browsing. 
 "
-  (message "need to setup for project %s" proj-file)
   (setq compile-command
         (concat 
          (abbreviate-file-name
