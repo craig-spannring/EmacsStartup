@@ -1,5 +1,11 @@
 ; -*- mode: emacs-lisp -*-
 
+;; (setq user-emacs-directory
+;;       (expand-file-name
+;;        (format "~/.emacs.d-%d.el"
+;;                emacs-major-version)))
+(message "user-emacs-directory is %s" user-emacs-directory)
+
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -36,7 +42,3 @@
   (if (not (file-exists-p cts-stage2))
       (message "Warning: Could not find stage2 file %s" cts-stage2)
     (load cts-stage2)))
-        
-
-
-

@@ -31,6 +31,13 @@ Note- Changes won't take effect until you restart emacs."
 	  (const use-rtags-cpp))
   :group 'cow-emacs-conf)
 
+(if (and (equal cow-cpp-support 'use-rtags-cpp)
+         (>= emacs-major-version 29))
+    (progn
+      (message "rtags is not support on Emacs 29+.  Using LSP mode.")
+      (setq  cow-which-lsp-package 'use-lsp)
+      (sleep-for 3.0)))
+
 ;; Setup the selected style of C++ support
 (cond
  ((equal cow-cpp-support 'use-rtags-cpp)
