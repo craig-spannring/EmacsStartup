@@ -1,7 +1,21 @@
 ;;; This sets up a C++ IDE
-;;; 
-;;; See README.md for more details. 
-
+;;;
+;;; See README.md for more details.
+;;;
+;;; Desired Capabilities
+;;;  1. auto-complete symbols
+;;;  2. Ability to jump to file using basename instead of requiring
+;;;     user to know full path.
+;;;  3. Determine datatype of symbol under the cursor
+;;;  4. Find references to arbitrary symbol
+;;;  5. Find references to symbol under the cursor
+;;;  6. Find declarations of arbitrary symbol
+;;;  7. Find declaration/definition of symbol under cursor
+;;;  8. cd into project directory and run compile
+;;;  9. Flip between source and header file
+;;; 10. rename symbol
+;;; 11. show inheritance tree.
+;;; 12.  find reimplementations of virthual method underneath cursor.
 
 (message "Loading C++ support.")
 
@@ -10,9 +24,9 @@
 (require 'cow-lsp-common)
 
 (defcustom cow-cpp-support 'use-rtags-cpp
-  "Select which Emacs package to use for C++ 
+  "Select which Emacs package to use for C++
 Note- Changes won't take effect until you restart emacs."
-  :type '(choice 
+  :type '(choice
 	  (const use-lsp-cpp)
 	  (const use-rtags-cpp))
   :group 'cow-emacs-conf)
