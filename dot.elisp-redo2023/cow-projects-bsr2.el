@@ -90,15 +90,23 @@ Load the json from PATH."
      
      (message "In lambda (%s) path=%s" file-name path)
 
-     (let* ((file-full-path (gethash file-name (cowguts-all-dot-c-cpp-h-and-hpp
-                                               (file-name-directory  path)))))
-       (message "file-full-path: %s" file-full-path)
-       (_cow-bsr2-find-file-in-project file-full-path))))
+     (_cow-bsr2-find-file-in-project
+      (file-name-directory  path)
+      (gethash file-name (cowguts-all-dot-c-cpp-h-and-hpp
+                                   (file-name-directory  path)))))))
 
-  (message "Loaded: %s" path))
-
-(defun _cow-bsr2-find-file-in-project (file-full-path)
-  (find-file file-full-path))
+(defun _cow-bsr2-find-file-in-project (top-dir matches)
+  (message "length is %d" (length matches))
+  
+  (if (equal (length matches) 1)
+      (find-file (car matches))
+    (let* ((quoted (concat "'"
+                            (replace-regexp-in-string "'" "'\\''" (file-name-nondirectory (car matches)))
+                            "'"))
+           (args  (format "-name %s" quoted)))
+      (message "about to run (find-dired %s %s)" top-dir args)
+      (find-dired top-dir args))))
+                
 
 
 (provide 'cow-projects-bsr2)
