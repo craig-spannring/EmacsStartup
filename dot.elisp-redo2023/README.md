@@ -20,6 +20,14 @@ controlled by the customization variable `cow-cpp-support`.
 
 You may load a project with `M-x cow-load-project`.
 
+# Python IDE 
+TBD 
+
+# Calendar Display 
+
+We provide a latitude/longitude for the Emacs calendar (`M-x
+calendar`) via the `cow-calendar-location` variable.  You may
+customize that variable.
 
 # Internals 
 
