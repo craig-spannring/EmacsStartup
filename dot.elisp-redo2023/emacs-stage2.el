@@ -18,6 +18,7 @@
 (require 'cow-projects)
 (require 'cow-projects-bsr2)
 (require 'cow-qt-support)
+(require 'cow-sql)
 
 (load "cow-post-config")
 
