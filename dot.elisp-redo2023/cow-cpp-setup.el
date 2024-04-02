@@ -23,7 +23,7 @@
 (require 'cow-complete-common)
 (require 'cow-lsp-common)
 
-(defcustom cow-cpp-support 'use-rtags-cpp
+(defcustom cow-cpp-support 'use-lsp-cpp
   "Select which Emacs package to use for C++
 Note- Changes won't take effect until you restart emacs."
   :type '(choice
