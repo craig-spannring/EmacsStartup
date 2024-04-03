@@ -23,6 +23,9 @@ controlled by the customization variable `cow-cpp-support`.
 You may load a project with `M-x cow-load-project`.
 
 # Python IDE 
+Prerequsites
+- pylsp
+
 TBD 
 
 # Calendar Display 
