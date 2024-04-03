@@ -16,6 +16,10 @@ Desired features
 TBD
 
 # C++ IDE
+## Prerequsites
+- clangd and/or rtags
+
+
 
 This supports two different options for C++ support.  The option is
 controlled by the customization variable `cow-cpp-support`.
@@ -23,7 +27,7 @@ controlled by the customization variable `cow-cpp-support`.
 You may load a project with `M-x cow-load-project`.
 
 # Python IDE 
-Prerequsites
+## Prerequsites
 - pylsp
 
 TBD 
