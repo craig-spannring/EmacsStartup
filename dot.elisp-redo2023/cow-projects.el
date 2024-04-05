@@ -14,7 +14,7 @@
 
 
 (defun cow-load-project (proj-file)
-  "Load a different project into COW"
+  "Load a project into the COW"
   (interactive (list
                 (expand-file-name
                  (read-file-name "Project File: " ;; PROMPT
@@ -27,26 +27,30 @@
                                           #'(lambda (h)
                                               (funcall (car h) f))
                                           _cow-proj-handler)))))))
- 
-  (let* ((setup (cdr (car (cl-remove-if-not
-                      #'(lambda (x) (car x))
-                      (mapcar #'(lambda (proj-bundle)
-                                  (let*
-                                      ((setup      (cadr proj-bundle))
-                                       (predicate  (car  proj-bundle)))
-                                    (cons (funcall predicate proj-file) setup)))
-                              _cow-proj-handler))))))
+
+  (let* ((setup_fun (cdr (car (cl-remove-if-not
+                               #'(lambda (x) (car x))
+                               (mapcar #'(lambda (proj-bundle)
+                                           (let*
+                                               ((setup      (cadr proj-bundle))
+                                                (predicate  (car  proj-bundle)))
+                                             (cons (funcall predicate proj-file) setup)))
+                                       _cow-proj-handler))))))
     (message "proj-file is %s" proj-file)
-    (message "setup is %s" setup)
-    (setq _cow-project-info (funcall setup proj-file))))
+    (message "setup_fun is %s" setup_fun)
+    (setq _cow-project-info (funcall setup_fun proj-file))))
 
 (defun cow-current-project-file()
-  "Print the current project in the mini-buffer"
+  "Currently loaded project.  
+
+When called interactively it will display to the mini-buffer
+"   
   (interactive)
   (let ((proj-file (if _cow-project-info
                        (cdr (assoc 'proj-file _cow-project-info))
-                     "None")))
-    (message "Current project: %s" proj-file)
+                     nil)))
+    (if (called-interactively-p 'interactive)
+        (message "Current project: %s" (or proj-file "None")))
     proj-file))
   
 (defun cow-compile-project ()
