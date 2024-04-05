@@ -20,7 +20,7 @@
 	       (equal (file-name-nondirectory name) "bsr2")))
 
 (defun _cow-setup-bsr2-proj (proj-file)
-  "File that can be called by cow-load-project.
+  "Function that can be called by cow-load-project to setup the project.
 
 In addition to the requirements imposed by cow-load-project
 this will optionally start rdm and connect with that server 
@@ -106,6 +106,4 @@ Load the json from PATH."
       (message "about to run (find-dired %s %s)" top-dir args)
       (find-dired top-dir args))))
                 
-
-
 (provide 'cow-projects-bsr2)
