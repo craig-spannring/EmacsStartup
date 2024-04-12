@@ -1,5 +1,8 @@
 ;;; Setup to use version control
 ;;;
+;;; Setup support for different version control packages.  Currently
+;;; this means magit and your choice of dsvn or psvn.
+;;; 
 ;;; TODO- Figure out what hooks we still want.  Prior to the 2023 remake 
 ;;;       we had one hook, `svn_bz-insert-bugzilla-synopsis` which
 ;;;       would grab the synopsis for a bugzilla issue and place it
