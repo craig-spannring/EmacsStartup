@@ -10,7 +10,7 @@
 (use-package company-rtags  :ensure t)
 (use-package flycheck-rtags :ensure t)
 
-(defun cow-rdm-select-a-compile-commands-json (path)
+(defun cow-rdm-load-compile-commands-json (path)
   "Load a compile_commands.json file and start RDM server.
 
 The file at PATH will be used for starting and controlling RDM.
@@ -18,6 +18,7 @@ The pathname to the compile_commands.json will be the basis for
 the name of a subdirectory in
 _cow-rdms-parent-dir (i.e. ~/.rdm-servers).
   "
+  
   (let*
       ((full-path  (expand-file-name path))
        (plain-name (file-name-nondirectory path)))
@@ -62,11 +63,15 @@ _cow-rdms-parent-dir (i.e. ~/.rdm-servers).
                              (format "RTags-%s" unique-name)
                              (format "*rdm-%s*" unique-name)
                              cmd-line)))
+      (sleep-for 1.0)
       (message "RDM started.\n")
       (set-process-query-on-exit-flag rdm-process nil)
-      (set-process-sentinel           rdm-process 'rtags-sentinel))
-
+      (message "ran set-process-query-on-exit-flag")
+      (set-process-sentinel           rdm-process 'rtags-sentinel)
+      (message "ran set-process-sentinel"))
+    
     ;; Wait until rdm is running and responsive
+    (sleep-for 1.0)
     (dotimes (i 5)
       (let ((running    (_cow-rdm-server-running))
             (responsive (_cow-rdm-server-responsive)))
@@ -98,6 +103,7 @@ _cow-rdms-parent-dir (i.e. ~/.rdm-servers).
 
 
 (defun _cow-rdm-server-not-running ()
+  (message "(_cow-rdm-server-socket) -> %s" (_cow-rdm-server-socket))
   (not
    (remove-if-not
     #'(lambda (pid)

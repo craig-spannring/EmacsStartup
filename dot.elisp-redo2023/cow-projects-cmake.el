@@ -16,21 +16,29 @@
 
 (defun _cow-setup-cmake-proj (proj-file)
 
-  (let* ((build-dir             (_cow-cmake-build-dir proj-file))
+  (let* ((src-dir               (file-name-directory proj-file))
+         (build-dir             (_cow-cmake-build-dir proj-file))
          (compile_commands.json (cowguts-join-paths build-dir
                                                     "compile_commands.json"))
          (ninja                 (executable-find "ninja"))
-         (generator             (if ninja "-G Ninja" "\"Unix Makefiles\""))
-         (cmake-cmd             (format "cmake %s -S \"%s\" -B \"%s\""
-                                        generator
-                                        (file-name-directory proj-file)
-                                        build-dir)))
-         
-    (if (not (file-regular-p compile_commands.json))
-          (compile cmake-cmd))
-                  
+         (generator             (if ninja "Ninja" "\"Unix Makefiles\"")))
+
+
+    (if (file-regular-p compile_commands.json)
+        (message "Found %s" compile_commands.json)
+      (message "About to configure %s" build-dir)
+      (_cow-configure-cmake-build-dir generator src-dir build-dir))
+     
     (global-set-key [f9 ?f] '_cow-find-file-cmake)
 
+    (cond
+     ((equal cow-cpp-support 'use-rtags-cpp)
+      ;; Fail if we can't find rdm
+      (if (not (rtags-executable-find "rdm")) 
+	  (error "Error: couldn't find rdm"))
+      (cow-rdm-load-compile-commands-json compile_commands.json))
+     ((equal cow-cpp-support 'use-lsp-cpp)
+      nil))    
     
     ;; 
     ;; cowguts-register-project-type wants the setup function to return
@@ -51,8 +59,6 @@
 				    (compile cmd)))))))
 
 
-    
-
 (defun _cow-find-file-cmake () (interactive)
         (message "Sorry, find file for cmake isn't implemented yet."))
 
@@ -60,6 +66,32 @@
 (cowguts-register-project-type '_cow-predicate-cmake-proj
                                '_cow-setup-cmake-proj)
 
+
+   ;;; (cmake-cmd             (format "cmake %s -S \"%s\" -B \"%s\""
+   ;;;                            generator
+   ;;; 
+   ;;;                            build-dir)))
+
+(defun _cow-configure-cmake-build-dir (generator src-dir build-dir)
+  "Configure the build directory."
+  (message "(_cow-configure-cmake-build-dir %s %s %s)" generator src-dir build-dir)
+  (save-excursion
+    (let* ((buf (generate-new-buffer "*cow-cmake-populate-build-dir*"))
+           (rc  (progn 
+                  (switch-to-buffer buf)
+                  (pop-to-buffer buf)
+                  (call-process "cmake"
+                                nil              ; infile
+                                buf              ; destination
+                                t                ; display
+                                generator        ; &rest
+                                "-S" src-dir 
+                                "-B" build-dir))))
+      (if (= rc 0)
+          (kill-buffer buf)
+        (message "Error: failed to configure build directory."))
+      rc)))
+      
 
 (defun _cow-cmake-build-dir(&optional project-file)
   (message "inside (_cow-cmake-build-dir %s)"  project-file)

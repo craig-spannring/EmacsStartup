@@ -12,6 +12,7 @@
 
 
 (defun _cow-brs2-to-compile-commands-json (proj-file)
+  "Path to the compile-commands.json file"
   (concat (file-name-directory proj-file) "SystemsSrc/compile_commands.json"))
 
 (defun _cow-predicate-bsr2-proj (name)
@@ -39,7 +40,7 @@ to enable code browsing.
     ;; Fail if we can't find rdm
     (if (not (rtags-executable-find "rdm")) 
 	(error "Error: couldn't find rdm"))
-    (cow-rdm-select-a-compile-commands-json
+    (cow-rdm-load-compile-commands-json
      (_cow-brs2-to-compile-commands-json proj-file)))
    ((equal cow-cpp-support 'use-lsp-cpp)
     (_cow-bsr2-select-a-compile-commands-json
