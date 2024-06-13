@@ -12,7 +12,7 @@
   nil)
  ((eq cow-cpp-support 'use-rtags-cpp)
   ;; todo setup any keys we might want for RTAGS
-  nil)
+  nil))
   
 
 (provide 'cow-keys-cpp)
