@@ -22,6 +22,7 @@
 (require 'cow-package-helpers)
 (require 'cow-complete-common)
 (require 'cow-lsp-common)
+(require 'cow-cc-setup)
 
 (defcustom cow-cpp-support 'use-lsp-cpp
   "Select which Emacs package to use for C++
