@@ -67,3 +67,4 @@ Note- Changes won't take effect until you restart emacs."
 
 
 (provide 'cow-cpp-setup)
+(require 'cow-keys-cpp)
