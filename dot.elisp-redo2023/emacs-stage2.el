@@ -14,7 +14,6 @@
 (require 'cow-gud-setup)
 (require 'cow-moon-configuration)
 (require 'cow-vc)
-(require 'cow-global-keys)
 (require 'cow-projects)
 (require 'cow-projects-cmake)
 (require 'cow-projects-bsr2)
@@ -23,6 +22,7 @@
 (require 'cow-projects-iarwb)
 (require 'cow-qt-support)
 (require 'cow-sql)
+(require 'cow-keys-global)
 
 (load "cow-post-config")
 
