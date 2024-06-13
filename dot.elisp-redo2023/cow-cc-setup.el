@@ -43,7 +43,6 @@
 
 (add-hook 'c-mode-common-hook
           #'(lambda ()
-              (message "setting C/C++ style to %s" cow-cc-coding-standard)
               (c-set-style cow-cc-coding-standard)))
 
 (provide 'cow-cc-setup)
