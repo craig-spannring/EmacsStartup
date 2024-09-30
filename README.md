@@ -6,10 +6,10 @@ To install
 ```shell
     $ git clone https://github.com/craig-spannring/EmacsStartup.git
     $ cd EmacsStartup 
-    $ ./install-symlinks 
+    $ ./install-symlinks # create symlinks in home dir to .emacs, etc.
 ```
 Note- the first time you run Emacs it will spend a fair amount of time
-downloading and installing pakcages.
+downloading and installing packages.
 
 
 ## History 
