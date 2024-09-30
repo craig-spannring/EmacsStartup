@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """Create symlinks from sandbox files to the home directory. """
 
