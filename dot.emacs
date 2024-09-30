@@ -33,12 +33,11 @@
 
 (let ((cts-stage2
        (cond
-        ((equal cow-setup-era 'v2023) (expand-file-name "~/.elisp-redo2023/emacs-stage2.el"))
-        ((equal cow-setup-era 'v2018) (expand-file-name "~/.elisp-redo2018/emacs-stage2.el"))
-        ((> emacs-major-version 28) (expand-file-name (format "~/.elisp%d/emacs-stage2.el"
-                                                              emacs-major-version)))
-        ((> emacs-major-version 24) (expand-file-name "~/.elisp-redo2018/emacs-stage2.el"))
-        (t                          (expand-file-name "~/.elisp/emacs-stage2.el")))))
+        ((equal cow-setup-era 'v2023)   (expand-file-name "~/.elisp-redo2023/emacs-stage2.el"))
+        ((equal cow-setup-era 'v2018)   (expand-file-name "~/.elisp-redo2018/emacs-stage2.el"))
+        ((equal cow-setup-era 'ancient) (expand-file-name "~/.elisp/emacs-stage2.el"))
+        ((< emacs-major-version 25)     (expand-file-name "~/.elisp-redo2018/emacs-stage2.el"))
+        (t                              (expand-file-name "~/.elisp/emacs-stage2.el")))))
   (if (not (file-exists-p cts-stage2))
       (message "Warning: Could not find stage2 file %s" cts-stage2)
     (load cts-stage2)))

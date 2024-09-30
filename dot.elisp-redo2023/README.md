@@ -4,7 +4,7 @@ Desired features
 - lsp based IDE
 - support for something like msvc-load-project that can handle different types of project files.
 - functions from c_functions.el (probably all, but there might be one or two that get cut.)
-- keys for GUD.
+- key bindings for GUD.
 - probably bring in realgud-lldb
 - support for different indentation styles (easily customized for working on code from different projects.)
 - find out if there are more modern ways of doing syntax highlights.
@@ -16,6 +16,10 @@ Desired features
 TBD
 
 # C++ IDE
+## Prerequsites
+- clangd and/or rtags
+
+
 
 This supports two different options for C++ support.  The option is
 controlled by the customization variable `cow-cpp-support`.
@@ -23,6 +27,9 @@ controlled by the customization variable `cow-cpp-support`.
 You may load a project with `M-x cow-load-project`.
 
 # Python IDE 
+## Prerequsites
+- pylsp
+
 TBD 
 
 # Calendar Display 

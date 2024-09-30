@@ -7,4 +7,4 @@
 (global-set-key [f5 ?c] 'compile)
 
 
-(provide 'cow-global-keys)
+(provide 'cow-keys-global)

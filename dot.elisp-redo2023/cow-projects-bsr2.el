@@ -12,6 +12,7 @@
 
 
 (defun _cow-brs2-to-compile-commands-json (proj-file)
+  "Path to the compile-commands.json file"
   (concat (file-name-directory proj-file) "SystemsSrc/compile_commands.json"))
 
 (defun _cow-predicate-bsr2-proj (name)
@@ -20,7 +21,7 @@
 	       (equal (file-name-nondirectory name) "bsr2")))
 
 (defun _cow-setup-bsr2-proj (proj-file)
-  "File that can be called by cow-load-project.
+  "Function that can be called by cow-load-project to setup the project.
 
 In addition to the requirements imposed by cow-load-project
 this will optionally start rdm and connect with that server 
@@ -39,7 +40,7 @@ to enable code browsing.
     ;; Fail if we can't find rdm
     (if (not (rtags-executable-find "rdm")) 
 	(error "Error: couldn't find rdm"))
-    (cow-rdm-select-a-compile-commands-json
+    (cow-rdm-load-compile-commands-json
      (_cow-brs2-to-compile-commands-json proj-file)))
    ((equal cow-cpp-support 'use-lsp-cpp)
     (_cow-bsr2-select-a-compile-commands-json
@@ -106,6 +107,4 @@ Load the json from PATH."
       (message "about to run (find-dired %s %s)" top-dir args)
       (find-dired top-dir args))))
                 
-
-
 (provide 'cow-projects-bsr2)
