@@ -23,6 +23,7 @@
 (require 'cow-qt-support)
 (require 'cow-sql)
 (require 'cow-keys-global)
-
+(require 'cow-host-specific)
+         
 (load "cow-post-config")
 
