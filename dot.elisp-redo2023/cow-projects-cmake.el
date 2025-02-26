@@ -1,5 +1,8 @@
 ;;; -*- lexical-binding: t -*-
 
+(install-and-require-packages '(string-inflection cmake-mode))
+
+
 (require 'cow-package-helpers)
 (require 'cow-projects)
 (require 'cow-cpp-setup)
