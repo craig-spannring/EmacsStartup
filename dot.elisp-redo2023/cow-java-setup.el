@@ -12,6 +12,7 @@
 (install-and-require-packages '(lsp-java company))
 
 (add-hook 'java-mode-hook #'lsp)
+(add-hook 'java-mode-hook #'hs-minor-mode)
 
 
 (cond
