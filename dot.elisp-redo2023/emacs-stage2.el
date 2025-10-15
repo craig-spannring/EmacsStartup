@@ -11,6 +11,7 @@
 (require 'cow-dired)
 (require 'cow-python-setup)
 (require 'cow-cpp-setup)
+(require 'cow-java-setup)
 (require 'cow-gud-setup)
 (require 'cow-moon-configuration)
 (require 'cow-vc)
