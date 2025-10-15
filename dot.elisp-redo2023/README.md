@@ -29,6 +29,7 @@ You may load a project with `M-x cow-load-project`.
 # Python IDE 
 ## Prerequsites
 - pylsp
+- flake8
 
 TBD 
 
