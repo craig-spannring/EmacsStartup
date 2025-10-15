@@ -23,7 +23,7 @@
                  (label . 0)
                  (statement-cont . +))))
 
-(c-add-style "MI-STYLE" ;; Montana Instruments         
+(c-add-style "MI-STYLE"
              '((c-basic-offset . 4)
                (c-offsets-alist . ((inclass . ++)
                                    (access-label . -)
@@ -33,11 +33,21 @@
                                    (inlambda . -)
                                    (arglist-intro . +)))))
 
+(c-add-style "cow"
+             '((c-basic-offset . 2)
+               (c-offsets-alist . ((inclass . ++)
+                                   (access-label . -)
+                                   (member-init-intro . 0)
+                                   (substatement-open . 0)
+                                   (case-label . +)
+                                   (inlambda . -)
+                                   (arglist-intro . +)))))
 
-(defcustom cow-cc-coding-standard "whitesmith"
+
+(defcustom cow-cc-coding-standard "cow"
   "Which coding standard are we working with right now?"
-  ;;                         cap     lower
-  :type '(choice (const :tag "MI-STYLE"       "mi-style")
+  :type '(choice (const :tag "COW"            "cow")
+                 (const :tag "MI-STYLE"       "mi-style")
                  (const :tag "NOT-MI-STYLE"   "not-mi-style")
                  (const :tag "PI-STYLE"       "pi-style")
                  (const :tag "Gnu"            "gnu")
