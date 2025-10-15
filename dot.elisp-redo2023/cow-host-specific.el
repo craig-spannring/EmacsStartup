@@ -1,34 +1,21 @@
 (when (string= (system-name) "nomad.local")
+  (setenv "ANT_HOME" "/Users/cts/apache-ant-1.10.15")
+  (setenv "JAVA_HOME"
+          (string-trim-right 
+           (shell-command-to-string "/usr/libexec/java_home")))
+
   (setenv "PATH"
           (mapconcat 'identity
                      (append
                       (split-string (getenv "PATH") path-separator)
-                      '(
-                        ;; "/Library/Frameworks/Python.framework/Versions/3.9/bin"
-                        ;; "/Library/Frameworks/Python.framework/Versions/3.12/bin"
-                        ;; "/Users/cts/.cargo/bin"
-                        ;; "/opt/local/bin"
-                        ;; "/opt/local/sbin"
-                        ;; "/Library/Frameworks/Python.framework/Versions/Current/bin/"
-                        ;; "/Library/PostgreSQL/16/bin"
-                        ;; "/usr/bin"
-                        ;; "/bin"
-                        ;; "/usr/sbin"
-                        ;; "/sbin"
-                        "/usr/local/bin"
-                        ;; "/opt/local/bin"
-                        ;; "/opt/local/sbin"
-                        ;; "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
-                        ;; "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
-                        ;; "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
-                        ;; "/opt/X11/bin"
-                        ;; "/Library/Apple/usr/bin"
-                        ;; "/Library/TeX/texbin"
-                        "/Users/cts/bin"
-                        ;; "/Library/PostgreSQL/12/bin"
-                        "/opt/spannring/bin"
-                        ))
+                      (cons
+                       (format "%s/bin" (getenv "ANT_HOME"))
+                       '(
+                         "/usr/local/bin"
+                         "/Library/TeX/texbin"
+                         "/Users/cts/bin"
+                         "/opt/spannring/bin"
+                         "/opt/gradle/gradle-8.13/bin")))
                      ":")))
   
-
 (provide 'cow-host-specific)
