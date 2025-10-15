@@ -22,6 +22,7 @@
 (require 'cow-projects-iarwb)
 (require 'cow-qt-support)
 (require 'cow-sql)
+(require 'cow-uml)
 (require 'cow-keys-global)
 (require 'cow-host-specific)
          
