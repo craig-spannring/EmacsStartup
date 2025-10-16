@@ -3,9 +3,8 @@
 ;;;
 
 (require 'cl-lib)
-(use-package projectile
-             :ensure t)
-
+(use-package projectile  :ensure t)
+(use-package neotree     :ensure t) 
 
 (defun _cow-find-file-no-proj () (interactive)
        "Let user know if no project is loaded."
@@ -81,7 +80,7 @@ of the project.  The function should return a plist with the keys
   (let* ((proj (list predicate setup)))
     (if (not (member proj _cow-proj-handler))
         (progn
-          (message "trying to add %s" proj)
+          (message "Adding project type %s" (car proj))
           (setq _cow-proj-handler (cons proj _cow-proj-handler)))
       (message "not adding %s" proj))))
 
