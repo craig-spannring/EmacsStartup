@@ -15,7 +15,7 @@
 ;;;  9. Flip between source and header file
 ;;; 10. rename symbol
 ;;; 11. show inheritance tree.
-;;; 12.  find reimplementations of virthual method underneath cursor.
+;;; 12.  find reimplementations of virtual method underneath cursor.
 
 (message "Loading C++ support.")
 
@@ -23,6 +23,7 @@
 (require 'cow-complete-common)
 (require 'cow-lsp-common)
 (require 'cow-cc-setup)
+(require 'cow-style)
 
 (defcustom cow-cpp-support 'use-lsp-cpp
   "Select which Emacs package to use for C++
@@ -56,7 +57,8 @@ Note- Changes won't take effect until you restart emacs."
                :hook ((c-mode-hook   lsp)
                       (c++-mode . lsp-deferred))
                :config   (setq lsp-log-io t)
-               :config   (setq lsp-auto-configure t)))
+               :config   (setq lsp-auto-configure t))
+  (add-hook 'c-mode-common-hook #'clang-format+-mode))
  ((equal cow-which-lsp-package 'use-eglot)
     (message "Using eglot for C++ mode.")
     (install-and-require-packages '(eglot)) ;; todo- replace with use-package

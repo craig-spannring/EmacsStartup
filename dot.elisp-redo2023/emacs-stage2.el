@@ -21,6 +21,7 @@
 (require 'cow-projects-xcode)
 (require 'cow-projects-msvc)
 (require 'cow-projects-iarwb)
+(require 'cow-github-copilot)
 (require 'cow-qt-support)
 (require 'cow-sql)
 (require 'cow-uml)
