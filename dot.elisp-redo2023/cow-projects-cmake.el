@@ -87,7 +87,7 @@
                                 nil              ; infile
                                 buf              ; destination
                                 t                ; display
-                                generator        ; &rest
+                                "-G" generator   ; &rest
                                 "-S" src-dir 
                                 "-B" build-dir))))
       (if (= rc 0)
@@ -100,7 +100,6 @@
   (message "inside (_cow-cmake-build-dir %s)"  project-file)
   (let* ((proj        (or project-file (cow-current-project-file)))
          (proj-dir    (file-name-directory proj))
-         (foo         (message "proj-dir %s" proj-dir))         
          (scratch-dir (cowguts-join-paths
                        (cowguts-scratching-posts-dir)
                        (concat
