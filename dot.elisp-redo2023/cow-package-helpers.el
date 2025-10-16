@@ -3,6 +3,9 @@
 
 (message "Loading package helpers")
 
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+
 (defun install-and-require-packages (packages)
   "Require all packages in the list, installing any that are missing
 
