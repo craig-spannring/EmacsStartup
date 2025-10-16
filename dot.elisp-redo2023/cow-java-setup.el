@@ -30,8 +30,8 @@
   (use-package lsp-java    :ensure t :config (add-hook 'java-mode-hook 'lsp))
   (use-package dap-mode    :ensure t :after lsp-mode :config (dap-auto-configure-mode))
   (use-package dap-java    :ensure nil)
-  (use-package helm-lsp    :ensure t)
-  (use-package helm        :config (helm-mode))
+  ;; (use-package helm-lsp    :ensure t)
+  ;; (use-package helm        :config (helm-mode))
   (use-package lsp-treemacs)))
   
 (provide 'cow-java-setup)
