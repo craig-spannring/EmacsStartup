@@ -97,6 +97,23 @@
   :type     (_cow-coding-style-create-type-choices)
   :options  (mapcar #'cdr _cow-coding-style-choices))
   
+(defun cow-set-session-coding-style (style)
+  "Set the coding style for this Emacs session to STYLE."
+  (interactive
+   (list (completing-read
+          "Select coding style: "            ;; prompt
+          (mapcar #'cdr
+                  _cow-coding-style-choices) ;; collection
+          nil                                ;; predicate
+          t                                  ;; require-match
+          nil                                ;; initial-input
+          nil                                ;; hist
+          cow-cc-coding-style)))             ;; default
+  ;;  (setq cow-cc-coding-style style)
+  ;;  (message "Coding style set to %s" cow-cc-coding-style))
+  (c-set-style style)
+  (setq cow-cc-coding-style style)
+  (message  "Coding style set to %s" style))
 
 (use-package clang-format+  :ensure t)
 (use-package clang-format   :ensure t)
