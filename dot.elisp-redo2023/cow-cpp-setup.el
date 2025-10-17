@@ -57,8 +57,7 @@ Note- Changes won't take effect until you restart emacs."
                :hook ((c-mode-hook   lsp)
                       (c++-mode . lsp-deferred))
                :config   (setq lsp-log-io t)
-               :config   (setq lsp-auto-configure t))
-  (add-hook 'c-mode-common-hook #'clang-format+-mode))
+               :config   (setq lsp-auto-configure t)))
  ((equal cow-which-lsp-package 'use-eglot)
     (message "Using eglot for C++ mode.")
     (install-and-require-packages '(eglot)) ;; todo- replace with use-package
