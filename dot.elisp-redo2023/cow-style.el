@@ -66,43 +66,40 @@
                         (block-open . 0)
                         (brace-list-open . 0)))
     ))
-(defcustom cow-cc-coding-standard "cow"
-  "Which coding standard are we working with right now?"
-  :type '(choice (const :tag "COW"            "cow")
-                 (const :tag "User"           "user")
-                 (const :tag "CRG"            "crg")
-                 (const :tag "MI-STYLE"       "mi-style")
-                 (const :tag "NOT-MI-STYLE"   "not-mi-style")
-                 (const :tag "PI-STYLE"       "pi-style")
-                 (const :tag "Gnu"            "gnu")
-                 (const :tag "K&R"            "k&r")
-                 (const :tag "BSD"            "bsd")
-                 (const :tag "Stroustrup"     "stroustrup")
-                 (const :tag "Whitesmith"     "whitesmith")
-                 (const :tag "Ellemtel"       "ellemtel")
-                 (const :tag "linux"          "linux")
-                 (const :tag "Python"         "python")
-                 (const :tag "Java"           "java")
-                 (const :tag "Awk"            "awk"))          
-  :options '("cow"     ; These are offered as convenient choices in the Customize UI
-             "user"
-             "crg"
-             "mi-style" 
-             "not-mi-style"  
-             "pi-style"      
-             "gnu"           
-             "k&r"           
-             "bsd"           
-             "stroustrup"    
-             "whitesmith"    
-             "ellemtel"      
-             "linux"         
-             "python"        
-             "java"          
-             "awk"))
 
+(defconst _cow-coding-style-choices
+  '(("COW"          .  "cow")
+    ("User"         .  "user")
+    ("CRG"          .  "crg")
+    ("MI-STYLE"     .  "mi-style")
+    ("NOT-MI-STYLE" .  "not-mi-style")
+    ("PI-STYLE"     .  "pi-style")
+    ("Gnu"          .  "gnu")
+    ("K&R"          .  "k&r")
+    ("BSD"          .  "bsd")
+    ("Stroustrup"   .  "stroustrup")
+    ("Whitesmith"   .  "whitesmith")
+    ("Ellemtel"     .  "ellemtel")
+    ("linux"        .  "linux")
+    ("Python"       .  "python")
+    ("Java"         .  "java")
+    ("Awk"          .  "awk")))
+
+(defun _cow-coding-style-create-type-choices ()
+  ;; Build a `choice` type from the options
+  `(choice ,@(mapcar (lambda (opt)
+                       `(const :tag ,(car opt) ,(cdr opt)))
+                     _cow-coding-style-choices)))
+
+
+(defcustom cow-cc-coding-style (cdar _cow-coding-style-choices)
+  "Which coding standard are we working with right now?"
+  :type     (_cow-coding-style-create-type-choices)
+  :options  (mapcar #'cdr _cow-coding-style-choices))
+  
 
 (use-package clang-format+  :ensure t)
 (use-package clang-format   :ensure t)
+(clang-format--on-save-disable)
 
 (provide 'cow-style)

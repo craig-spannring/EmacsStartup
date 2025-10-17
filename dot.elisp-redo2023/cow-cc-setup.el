@@ -8,6 +8,6 @@
 
 (add-hook 'c-mode-common-hook
           #'(lambda ()
-              (c-set-style cow-cc-coding-standard)))
+              (c-set-style cow-cc-coding-style)))
 
 (provide 'cow-cc-setup)
