@@ -109,8 +109,6 @@
           nil                                ;; initial-input
           nil                                ;; hist
           cow-cc-coding-style)))             ;; default
-  ;;  (setq cow-cc-coding-style style)
-  ;;  (message "Coding style set to %s" cow-cc-coding-style))
   (c-set-style style)
   (setq cow-cc-coding-style style)
   (message  "Coding style set to %s" style))
