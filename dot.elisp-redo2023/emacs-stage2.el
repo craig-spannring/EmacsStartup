@@ -12,7 +12,7 @@
 (require 'cow-python-setup)
 (require 'cow-cpp-setup)
 (require 'cow-java-setup)
-(require 'cow-gud-setup)
+(require 'cow-debugger-setup)
 (require 'cow-moon-configuration)
 (require 'cow-vc)
 (require 'cow-projects)

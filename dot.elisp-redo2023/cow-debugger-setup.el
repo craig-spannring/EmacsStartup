@@ -6,5 +6,5 @@
 (require 'gud)
 (require 'cc-mode)
 
-(provide 'cow-gud-setup)
+(provide 'cow-debugger-setup)
 (require 'cow-keys-gud)
