@@ -62,9 +62,9 @@ empty string, this will ensure the result ends with a slash.
            (concat (_cow-ensure-sep top) (car parts))
            (cdr parts)))))
 
-(defun cowguts-scratching-posts-dir()
+(defun cowguts-salt-licks-dir()
   "Scratch directory for COW"
-  (expand-file-name "~/tmp/cow-scratching-posts"))
+  (expand-file-name "~/tmp/cow-salt-licks"))
 
   
 (provide 'cow-helpers)

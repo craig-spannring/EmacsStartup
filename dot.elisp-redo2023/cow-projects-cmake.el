@@ -84,10 +84,12 @@
                   (switch-to-buffer buf)
                   (pop-to-buffer buf)
                   (call-process "cmake"
-                                nil              ; infile
-                                buf              ; destination
-                                t                ; display
-                                "-G" generator   ; &rest
+                                nil                                  ; infile
+                                buf                                  ; dest
+                                t                                    ; display
+                                "-G" generator                       ; &rest
+                                "-DCMAKE_BUILD_TYPE=Debug" 
+                                "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
                                 "-S" src-dir 
                                 "-B" build-dir))))
       (if (= rc 0)
@@ -101,7 +103,7 @@
   (let* ((proj        (or project-file (cow-current-project-file)))
          (proj-dir    (file-name-directory proj))
          (scratch-dir (cowguts-join-paths
-                       (cowguts-scratching-posts-dir)
+                       (cowguts-salt-licks-dir)
                        (concat
                         "build-"
                         (replace-regexp-in-string "/" "_" proj-dir)))))
