@@ -9,23 +9,23 @@
 (use-package company      :ensure t)
 (use-package jsonrpc      :ensure t)
 
+(require 'cow-cpp-setup)
 
 (defun cow-copilot-mode-hook-func()
   (message "running cow-copilot-mode-hook-func")
-  (copilot-mode)
-    (use-local-map copilot-completion-map))
+  (copilot-mode))
 
 (use-package copilot
   :ensure    t
   :defer     nil
   :hook      (prog-mode . cow-copilot-mode-hook-func)
-  :custom    (copilot-idle-delay 2))       ; <--- less distractions
+  :custom    (copilot-idle-delay 1))       ; <--- less distractions
 
-(define-key copilot-completion-map (kbd "C-S-<tab>") 'copilot-accept-completion)
-(define-key copilot-completion-map (kbd "C-s-<tab>") 'copilot-accept-completion-by-word)
-;; 
-(define-key copilot-completion-map (kbd "C-S-n")     'copilot-next-completion)
-(define-key copilot-completion-map (kbd "C-S-p")     'copilot-previous-completion)
+
+(keymap-set c++-mode-map "C-S-<tab>" #'copilot-accept-completion)
+(keymap-set c++-mode-map "C-s-<tab>" #'copilot-accept-completion-by-word)
+(keymap-set c-mode-map "C-S-<tab>"   #'copilot-accept-completion)
+(keymap-set c-mode-map "C-s-<tab>"   #'copilot-accept-completion-by-word)
 
 (unless (copilot-installed-version)
   (copilot-install-server))
