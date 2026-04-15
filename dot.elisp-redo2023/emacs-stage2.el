@@ -2,7 +2,11 @@
 ;;;
 
 (setq load-path (cons (file-name-directory load-file-name)
+                       load-path))
+(setq load-path (cons (file-name-concat (file-name-directory load-file-name) "3rdParty")
                       load-path))
+
+(require 'cow-host-specific-pre)
 
 (load "cow-pre-config")
 
@@ -26,7 +30,7 @@
 (require 'cow-sql)
 (require 'cow-uml)
 (require 'cow-keys-global)
-(require 'cow-host-specific)
-         
+(require 'cow-host-specific-post)
+      
 (load "cow-post-config")
 
