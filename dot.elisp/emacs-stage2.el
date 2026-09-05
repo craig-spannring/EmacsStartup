@@ -22,14 +22,6 @@
 
 (when (equal (system-name) "HYDRA") (setq default-directory "~/"))
 
-;;; 
-;;; Keep cygwin from complaining when emacs passes it 
-;;; DOS style file names.
-;;; 
-(when (equal (system-name) "BZN00W145") 
-  (when (not (getenv "CYGWIN"))
-    (setenv "CYGWIN" "nodosfilewarning")))
-
 (defun xemacs-p ()
   (and (boundp 'running-xemacs) running-xemacs))
 
