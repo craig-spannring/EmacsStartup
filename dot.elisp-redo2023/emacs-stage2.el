@@ -1,10 +1,14 @@
-;;; Setup emacs.
-;;;
+;;; -*- lexical-binding: t; -*-
 
-(setq load-path (cons (file-name-directory load-file-name)
-                       load-path))
-(setq load-path (cons (file-name-concat (file-name-directory load-file-name) "3rdParty")
-                      load-path))
+;;; Setup emacs.  
+
+
+(when (and (boundp 'load-file-name) load-file-name)
+  (message "load-file-name %s %s" load-file-name (boundp 'load-file-name))
+  (setq load-path (cons (file-name-directory load-file-name)
+			load-path))
+  (setq load-path (cons (file-name-concat (file-name-directory load-file-name) "3rdParty")
+			load-path)))
 
 (require 'cow-host-specific-pre)
 
