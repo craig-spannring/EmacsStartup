@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;; Setup coding style. 
 ;;;
 
@@ -26,9 +28,19 @@
                                    (case-label . +)
                                    (inlambda . -)
                                    (arglist-intro . +)))))
+
+(defun cow-inline-open-indent (langelem)
+  "Indent inline-open."
+  (let ((syntax (c-guess-basic-syntax)))
+    (if (assoc 'inlambda syntax)
+        '+ ; indent by one indentation unit 
+      0))) ; default indentation
+
+
 (c-add-style "cow"
              '((c-basic-offset . 2)
                (c-offsets-alist . ((inclass . ++)
+                                   (inline-open . cow-inline-open-indent)
                                    (access-label . -)
                                    (member-init-intro . 0)
                                    (substatement-open . 0)
