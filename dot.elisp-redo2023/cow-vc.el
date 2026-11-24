@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;; Setup to use version control
 ;;;
 ;;; Setup support for different version control packages.  Currently
@@ -8,6 +10,9 @@
 ;;;       would grab the synopsis for a bugzilla issue and place it
 ;;;       in the log message. 
 ;;; 
+
+
+(install-and-require-packages '(dsvn))
 
 (defcustom subversion-preferred-package 'dsvn
   "Select which Emacs package to use for Subversion. 
