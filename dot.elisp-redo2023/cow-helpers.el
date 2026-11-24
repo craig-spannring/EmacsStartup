@@ -1,6 +1,9 @@
-;;;
+;; -*- lexical-binding: t; -*-
+
 ;;; Helper functions
-;;;
+
+(use-package lorem-ipsum
+  :ensure t)  
 
 (defun set-tab-width (w)
    (interactive "nWidth: ")
@@ -64,7 +67,7 @@ empty string, this will ensure the result ends with a slash.
 
 (defun cowguts-salt-licks-dir()
   "Scratch directory for COW"
-  (expand-file-name "~/tmp/cow-salt-licks"))
+  (expand-file-name "~/tmp/cow-licks"))
 
   
 (provide 'cow-helpers)
