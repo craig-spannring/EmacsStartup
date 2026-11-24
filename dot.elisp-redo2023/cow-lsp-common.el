@@ -1,6 +1,7 @@
-;; Some common definitions for LSP 
-;;
-;; 
+;; -*- lexical-binding: t; -*-
+
+;;; Some common definitions for LSP 
+
 
 (defcustom cow-which-lsp-package 'use-lsp  ;; other choice is 'use-eglot  
   "Which type of python support do we want to use?

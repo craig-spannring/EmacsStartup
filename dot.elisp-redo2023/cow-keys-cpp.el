@@ -1,4 +1,5 @@
-;;;
+;; -*- lexical-binding: t; -*-
+
 ;;; Setup keybindings for C/C++ mode
 
 (require 'cow-cpp-setup)

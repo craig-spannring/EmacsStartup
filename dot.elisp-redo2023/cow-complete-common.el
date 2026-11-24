@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;; Auto-complete setup common to general use.  
 
 

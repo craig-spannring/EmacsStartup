@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;; This sets up a Java IDE
 ;;;
 ;;; See README.md for more details.

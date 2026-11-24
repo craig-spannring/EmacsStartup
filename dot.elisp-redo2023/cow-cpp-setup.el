@@ -1,3 +1,6 @@
+;; -*- lexical-binding: t; -*-
+
+
 ;;; This sets up a C++ IDE
 ;;;
 ;;; See README.md for more details.

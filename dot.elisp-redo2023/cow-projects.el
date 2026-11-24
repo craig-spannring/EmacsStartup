@@ -1,6 +1,8 @@
-;;;
+;; -*- lexical-binding: t; -*-
+
+
 ;;; The COW method to handle projects.
-;;;
+
 
 (require 'cl-lib)
 (use-package projectile  :ensure t)

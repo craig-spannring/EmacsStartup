@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;; Craig's Own Way (COW) of python support.
 
 (require 'cow-package-helpers)

@@ -1,4 +1,14 @@
+;; -*- lexical-binding: t; -*-
+
 ;;; Settings that should be made prior to loading our packages.
+;;; 
+;;;  This file
+;;;   1) Sets up the custom-file to be outside of the version
+;;;      controlled area.  That way if users customize any of the Emacs
+;;;      behaviors it won't change any version controlled files. 
+;;; 
+
+
 
 (setq custom-file
       (let* ((tmp (expand-file-name

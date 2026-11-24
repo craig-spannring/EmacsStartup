@@ -1,4 +1,5 @@
-;;;
+;; -*- lexical-binding: t; -*-
+
 ;;; Setup mode for Qt programming.
 ;;;
 ;;; If needed, this installs qt-pro-mode and qml-mode.  It then adds

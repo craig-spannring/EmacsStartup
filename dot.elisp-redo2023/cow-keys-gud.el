@@ -1,5 +1,6 @@
-;;
-;; Setup keys to make it easier to step in gdb
+;; -*- lexical-binding: t; -*-
+
+;;; Setup keys to make it easier to step in gdb
 ;;
 
 

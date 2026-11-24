@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;; Routines that help with using Emacs' package management. 
 
 
@@ -14,7 +16,7 @@ PACKAGES is a list of packages that are required.
 e.g.
    (install-and-require-packages '(string-inflection sql-indent))
 
-Note: This could likely be replaced by
+Note: For emacs 29.1 and newer, this could likely be replaced by
   (use-package pkg :ensure t)
 "
   (mapc

@@ -1,4 +1,6 @@
-;;; This sets up a python IDE
+;; -*- lexical-binding: t; -*-
+
+;;; Set up a python IDE
 ;;;
 ;;;                                 LSP
 ;;; Two choices for client

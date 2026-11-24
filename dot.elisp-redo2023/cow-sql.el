@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 
 (use-package sql-indent :ensure t)
 (add-hook 'sql-mode-hook

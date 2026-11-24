@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;; Settings that should be made after loading our packages.
 ;;;
 ;;; This is a good spot for user choices, e.g. should clock be displayed?

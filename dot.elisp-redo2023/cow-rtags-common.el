@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;; Support for using rtags for C++
 
 (use-package company :ensure t)

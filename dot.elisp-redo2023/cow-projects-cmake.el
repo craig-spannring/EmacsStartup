@@ -1,11 +1,15 @@
 ;;; -*- lexical-binding: t -*-
 
+;;; Support for CMake projects for cow-load-project
+;;;
+
 (install-and-require-packages '(string-inflection cmake-mode))
 
 
 (require 'cow-package-helpers)
 (require 'cow-projects)
 (require 'cow-cpp-setup)
+(require 'system-cores)
 
 (use-package company        :ensure t)
 (use-package flycheck       :ensure t)
@@ -24,6 +28,7 @@
          (compile_commands.json (cowguts-join-paths build-dir
                                                     "compile_commands.json"))
          (ninja                 (executable-find "ninja"))
+         (job-count             (max 1 (- (system-cores :physical t) 1)))
          (generator             (if ninja "Ninja" "\"Unix Makefiles\"")))
 
 
@@ -48,8 +53,8 @@
     ;; A plist with the keys proj-file and compile-func.  So create and
     ;; return such a plist.
     ;;
-    (setq compile-command (if ninja (format "%s -C \"%s\"" ninja build-dir)
-                            (format "make -C \"%s\"" build-dir)))
+    (setq compile-command (if ninja (format "%s -j %s -C \"%s\"" ninja job-count build-dir)
+                            (format "make -j %s -C \"%s\"" job-count build-dir)))
     
     (list (cons 'proj-file    proj-file)
 	  (cons 'compile-func #'(lambda ()
@@ -70,11 +75,6 @@
                                '_cow-setup-cmake-proj)
 
 
-   ;;; (cmake-cmd             (format "cmake %s -S \"%s\" -B \"%s\""
-   ;;;                            generator
-   ;;; 
-   ;;;                            build-dir)))
-
 (defun _cow-configure-cmake-build-dir (generator src-dir build-dir)
   "Configure the build directory."
   (message "(_cow-configure-cmake-build-dir %s %s %s)" generator src-dir build-dir)
@@ -93,20 +93,29 @@
                                 "-S" src-dir 
                                 "-B" build-dir))))
       (if (= rc 0)
-          (kill-buffer buf)
+          (bury-buffer buf)
         (message "Error: failed to configure build directory."))
       rc)))
       
 
 (defun _cow-cmake-build-dir(&optional project-file)
   (message "inside (_cow-cmake-build-dir %s)"  project-file)
-  (let* ((proj        (or project-file (cow-current-project-file)))
-         (proj-dir    (file-name-directory proj))
-         (scratch-dir (cowguts-join-paths
-                       (cowguts-salt-licks-dir)
-                       (concat
-                        "build-"
-                        (replace-regexp-in-string "/" "_" proj-dir)))))
+  (let* ((proj          (or project-file (cow-current-project-file)))
+         (proj-dir      (file-name-directory proj))
+         (base-proj-dir (car (last (seq-filter
+                                    (lambda (x) (not (= (length x) 0)))
+                                    (file-name-split proj-dir)))))
+         (foo1          (message "cowguts-salt-licks-dir %s" (cowguts-salt-licks-dir)))
+         (foo2          (message "proj %s" proj-dir))
+         (foo3          (message "proj-dir %s" proj-dir))
+         (foo4          (message "base-proj-dir %s" base-proj-dir))
+         ;; (foo4          (message " %s" ))
+         (scratch-dir   (cowguts-join-paths
+                         (cowguts-salt-licks-dir)
+                         (concat
+                          "build-"
+                          base-proj-dir
+                          (replace-regexp-in-string "/" "_" proj-dir)))))
     (make-directory scratch-dir t)
     scratch-dir))
 

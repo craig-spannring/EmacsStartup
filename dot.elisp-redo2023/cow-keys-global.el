@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;; Setup keybindings.
 
 (global-set-key [f12]   'compare-windows)
