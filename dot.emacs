@@ -1,10 +1,4 @@
-; -*- mode: emacs-lisp -*-
-
-;; (setq user-emacs-directory
-;;       (expand-file-name
-;;        (format "~/.emacs.d-%d.el"
-;;                emacs-major-version)))
-(message "user-emacs-directory is %s" user-emacs-directory)
+;; -*- mode: emacs-lisp; lexical-binding: t; -*-
 
 
 ;; Added by Package.el.  This must come before configurations of
