@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;; system-cores.el --- Find out how many processors and cores you have
 
 ;; Copyright (C) 2013 Aaron Miller. All rights reversed.
@@ -85,7 +87,7 @@
 ;; [1]: http://stackoverflow.com/q/20666556/1713079
 ;; [2]: https://github.com/aaron-em/system-cores.el
 
-(require 'cl)
+(require 'cl-lib)
 
 (put 'system-cores-delegate-error
      'error-conditions '(error system-cores-delegate-error))
@@ -155,7 +157,7 @@ latter may reasonably be expected, on an Apple system, to be
 more accurate than the former, it is preferred by default on
 that architecture.)")
 
-(defun* system-cores (&key (logical  nil log-p)
+(cl-defun system-cores (&key (logical  nil log-p)
                            (physical nil phy-p))
   "Return the number of processor cores, and the number of
 physical processors, installed on the machine where Emacs is
@@ -218,18 +220,18 @@ shown in the echo area.
 
   This function is a `system-cores' delegate."
   (let ((cpuinfo
-         (map 'list #'(lambda (line) (split-string line "\\s-*\:\\s-*"))
+         (cl-map 'list #'(lambda (line) (split-string line "\\s-*\:\\s-*"))
               (process-lines "cat" "/proc/cpuinfo")))
         processors cores)
     (setq cores
           (reduce '+
-                  (map 'list
+                  (cl-map 'list
                        #'(lambda (a) (if (string= "processor" (car a)) 1 0))
                        cpuinfo)))
     (setq processors
           (length (delete-dups
-                   (remove-if 'null
-                              (map 'list
+                   (cl-remove-if 'null
+                              (cl-map 'list
                                    #'(lambda (a)
                                        (if (or (string= "core id" (car a))
                                                (string= "physical id" (car a)))
@@ -255,9 +257,9 @@ obtained from the value listed for the key
 
   This function is a `system-cores' delegate."
   (let ((cpuinfo 
-         (map 'list
+         (cl-map 'list
               #'(lambda (s) (split-string s "="))
-              (remove-if
+              (cl-remove-if
                #'(lambda (s) (string= s ""))
                (process-lines
                 "wmic" "cpu" "get" "NumberOfCores,NumberOfLogicalProcessors"
@@ -280,14 +282,15 @@ Processors\".
 
   This function is a `system-cores' delegate."
   (let ((cpuinfo
-         (map 'list
+         (cl-map 'list
               #'(lambda (s) (split-string s ": "))
-              (remove-if 'null
-                         (map 'list #'(lambda (s)
+              (cl-remove-if 'null
+                         (cl-map 'list #'(lambda (s)
                                         (when (string-match "^ +" s)
                                           (replace-match "" t t s)))
                               (process-lines "system_profiler"
-                                             "SPHardwareDataType"))))))
+                                             "SPHardwareDataType"))))
+         ))
     `((logical .
                ,(let ((ht (string-equal "Enabled"
                                         (car (last (assoc "Hyper-Threading Technology" cpuinfo))))))
@@ -314,7 +317,7 @@ system's sysctl output and modify this function accordingly!]
 
   This function is a `system-cores' delegate."
   (let ((cpuinfo
-         (map 'list
+         (cl-map 'list
               #'(lambda (s) (split-string s ": " t))
               (process-lines "sysctl" "hw.physicalcpu" "hw.logicalcpu"))))
   `((logical .
