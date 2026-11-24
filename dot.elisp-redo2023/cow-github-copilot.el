@@ -1,5 +1,7 @@
+;; -*- lexical-binding: t; -*-
+
 ;;; This sets up Emacs to use github's copilot 
-;;;
+
 
 (message "Setting up copilot")
 
@@ -22,10 +24,23 @@
   :custom    (copilot-idle-delay 1))       ; <--- less distractions
 
 
-(keymap-set c++-mode-map "C-S-<tab>" #'copilot-accept-completion)
-(keymap-set c++-mode-map "C-s-<tab>" #'copilot-accept-completion-by-word)
-(keymap-set c-mode-map "C-S-<tab>"   #'copilot-accept-completion)
-(keymap-set c-mode-map "C-s-<tab>"   #'copilot-accept-completion-by-word)
+
+(cond
+ ((boundp 'copilot--overlay-visible-p)
+  (defun my/copilot-tab-or-indent ()
+    "Accept copilot completion if available, otherwise indent line."
+    (interactive)
+    (if (copilot--overlay-visible-p)
+        (copilot-accept-completion)
+      (indent-for-tab-command)))
+  
+  (with-eval-after-load 'copilot
+    (define-key copilot-mode-map (kbd "<tab>") #'my/copilot-tab-or-indent)
+    (define-key copilot-mode-map (kbd "TAB")   #'my/copilot-tab-or-indent)))
+ (t (with-eval-after-load 'copilot
+      (define-key copilot-completion-map (kbd "<tab>") #'copilot-accept-completion)
+      (define-key copilot-completion-map (kbd "TAB")   #'copilot-accept-completion))))
+    
 
 (unless (copilot-installed-version)
   (copilot-install-server))
