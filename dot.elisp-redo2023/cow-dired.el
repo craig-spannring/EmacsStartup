@@ -1,9 +1,9 @@
-;; Bring in dired and setup some global keybinds 
+;; -*- lexical-binding: t; -*-
+
+;;; Bring in dired and setup some global keybinds 
 (require 'dired-x)
 
 (use-package ztree :ensure t)
-
-(provide 'cow-dired)
 
 (global-set-key "\C-cf" 'find-dired)
 (global-set-key "\C-cn" 'find-name-dired)
@@ -46,3 +46,5 @@
       (grep-apply-setting 'grep-find-command (cons pattern index)))
      (t
       (setq grep-find-command (cons pattern index)))))))
+
+(provide 'cow-dired)
