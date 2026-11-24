@@ -1,6 +1,8 @@
+;; -*- lexical-binding: t; -*-
+
+;;; Handle setting location for the moon phases, sunrise, and sunset.
 ;;
-;; Handle setting location for the moon phases, sunrise, and sunset.
-;;
+
 
 
 
@@ -8,10 +10,11 @@
 (defcustom cow-calendar-location 'Bozeman
   "Select geographical location for calendar functions."
   :type '(choice
-	  (const Ålborg)    ;; Denmark
-          (const Bozeman)   ;; Montana USA
-	  (const Medford)   ;; Oregon USA
-          (const Portland)) ;; Oregon USA
+	  (const Ålborg)          ;; Denmark
+          (const Bozeman)         ;; Montana USA
+	  (const Medford)         ;; Oregon USA
+	  (const Rosny-sous-Bois) ;; France
+          (const Portland))       ;; Oregon USA
   :set #'(lambda (symbol value)
 	   (set-default symbol value)
 	   (message "Setting calendar location to %s" cow-calendar-location)
@@ -28,6 +31,10 @@
 	     (setq calendar-location-name "Medford")
 	     (setq calendar-latitude 42.36)
 	     (setq calendar-longitude -122.86))
+	    ((equal value 'Rosny-sous-Bois) 
+	     (setq calendar-location-name "Rosny-sous-Bois")
+	     (setq calendar-latitude 48.866)
+	     (setq calendar-longitude 29.0))
 	    ((equal value 'Portland) 
 	     (setq calendar-location-name "Portland")
 	     (setq calendar-latitude 45.5887222)
