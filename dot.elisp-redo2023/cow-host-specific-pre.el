@@ -1,3 +1,7 @@
+;; -*- lexical-binding: t; -*-
+
+;;; Perform any pre-initialization that is host-specific
+
 (when (string= (system-name) "nomad.local")
   (setenv "ANT_HOME" "/Users/cts/apache-ant-1.10.15")
   (setenv "JAVA_HOME"
@@ -18,11 +22,10 @@
 			"/usr/local/bin"
                         "/Library/TeX/texbin"
                         "/Users/cts/bin"
+                        "/opt/local/bin"
                         "/opt/spannring/bin"
                         "/opt/gradle/gradle-8.13/bin")))
                     ":"))
  (setq exec-path (split-string (getenv "PATH") path-separator)))
-
-
 
 (provide 'cow-host-specific-pre)
